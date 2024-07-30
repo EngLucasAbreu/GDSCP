@@ -12,6 +12,17 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        a {
+            color:#fff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color:#0000ff;
+            text-decoration:none;
+        }
+    </style>
 </head>
 <body>
     <div class="top-bar">
@@ -67,11 +78,13 @@
                         <ion-icon name="chevron-down-outline" class="chevron-toggle"></ion-icon>
                     </li>
                     <ul class="sub-nav">
-                        <li>SALAS</li>
-                        <li>LOCAL DA LESÃO</li>
-                        <li>TIPO DE LESÃO</li>
-                        <li>EVOLUÇÃO DO TRATAMENTO</li>
-                        <li>CONCLUSÃO DO TRATAMENTO</li>
+                        <li><a href="/sala">SALAS</a></li>
+                        <li><a href="/leito">LEITO</a></li>
+                        <li><a href="/local-lesao">LOCAL DA LESÃO</a></li>
+                        <li><a href="/tipo-lesao">TIPO DE LESÃO</a></li>
+                        <li><a href="/tipo-tratamento">TIPO DE TRATAMENTO</a></li>
+                        <li><a href="/local-lesao">EVOLUÇÃO DO TRATAMENTO</a></li>
+                        <li><a href="/local-lesao">CONCLUSÃO DO TRATAMENTO</a></li>
                     </ul>
                 </ul>
             </nav>

@@ -36,7 +36,35 @@ class PacientController extends Controller
         return view('regEvolucao');
     }
 
+    public function localLesao()
+    {
+        return view('localLesao');
+    }
+
+    public function sala()
+    {
+        return view('sala');
+    }
+
+    public function leito()
+    {
+        return view('leito');
+    }
+
+    public function tipoLesao()
+    {
+        return view('tipoLesao');
+    }
+
+    public function tipoTratamento()
+    {
+        return view('tipoTratamento');
+    }
+
+
     
-
-
 }
+
+
+
+
