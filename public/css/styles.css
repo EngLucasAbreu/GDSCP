@@ -58,12 +58,9 @@ body, html {
 
 .footer {
     background-color: #f5f5f5;
-    display: flex;
     bottom: 0;
     width: 100%;
     padding: 10px;
-    flex-direction: column;
-    justify-content: end;
 }
 
 .sidebar {
@@ -200,6 +197,8 @@ input[type="text"], input[type="date"], select {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 400px;
+    display: flex;
+    flex-direction: column;
 }
 
 

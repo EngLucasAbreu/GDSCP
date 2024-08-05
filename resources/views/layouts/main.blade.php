@@ -93,10 +93,10 @@
             @yield('content')
         </main>
     </div>
-    <footer class="footer">
+    <div class="d-flex justify-content-end flex-column footer">
         <h4>NSP - Núcleo de Segurança do Paciente</h4>
         <h6>Desenvolvido por PontesTi</h6>
-    </footer>
+    </div>
     <script src="/js/scripts.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>

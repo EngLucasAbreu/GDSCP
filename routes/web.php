@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 use App\Http\Controllers\PacientController;
-use App\Http\Controllers\LoginController;
 
 Route::get('/', [PacientController::class, 'index']);
 
@@ -38,11 +37,8 @@ Route::get('/tipo-lesao', [PacientController::class, 'tipoLesao']);
 
 Route::get('/tipo-tratamento', [PacientController::class, 'tipoTratamento']);
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
-
-
-Route::get('/login', [LoginController::class, 'login']);
-
-Route::get('/signup', [LoginController::class, 'signup']);
-
-
+require __DIR__.'/auth.php';

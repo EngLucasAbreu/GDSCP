@@ -105,7 +105,9 @@
                 <input type="text" id="descricao" name="descricao">
             </li>
         </ul>
-        <button type="submit">Cadastrar</button>
+        <div class="d-flex justify-content-end ">
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </div>
     </form>
 </div>
 @endsection

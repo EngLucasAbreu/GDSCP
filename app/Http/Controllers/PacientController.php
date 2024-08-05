@@ -8,7 +8,7 @@ class PacientController extends Controller
 {
     public function index()
     {
-        return view('welcome');
+        return view('login');
     }
 
     public function dashboard()
