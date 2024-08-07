@@ -201,6 +201,21 @@ input[type="text"], input[type="date"], select {
     flex-direction: column;
 }
 
+.btn-custom {
+    background-color: #e30505;
+}
+
+.bg-custom {
+    background-color: #f5f5f5;
+}
+
+.tx-custom {
+    color: #333;
+}
+
+.tx-custom:hover {
+    color: #606060;
+}
 
 @media (max-width: 480px) {
     .login-container {
