@@ -3,6 +3,7 @@
 @section('title', 'NSP - Dashboard')
 
 @section('content')
+
 <div class="row">
     <div class="col-sm-2">  
         <ion-icon name="medkit-outline"></ion-icon>
@@ -15,7 +16,9 @@
         <h3 class="alta">25</h3>
     </div>
 </div>
+
 <br>
+
 <div class="main-container-graph">
     <h3>Perfil etário dos pacientes com lesão no mês</h3>
     <div class="row chart-container">
@@ -41,7 +44,6 @@
             borderRadius: 5
         }]
     };
-
     // Dados para o gráfico de pizza
     var pieData = {
         labels: ['Pacientes em Leito', 'Pacientes com Alta'],
@@ -51,7 +53,6 @@
             hoverBackgroundColor: ['#FF0000', '#0000FF']
         }]
     };
-
     // Configuração do gráfico de barras
     var barConfig = {
         type: 'bar',
@@ -65,7 +66,6 @@
             }
         }
     };
-
     // Configuração do gráfico de pizza
     var pieConfig = {
         type: 'pie',
@@ -74,7 +74,6 @@
             responsive: true
         }
     };
-
     // Renderização dos gráficos
     window.onload = function() {
         var barCtx = document.getElementById('barChart').getContext('2d');

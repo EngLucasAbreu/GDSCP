@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="login-container">
-    <h2 class="">Cadastrar</h2>
+    <h2 class="d-flex justify-content-center mb-4">Cadastrar</h2>
     <form action="#">
         <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="Nome" aria-label="Nome">
@@ -19,8 +19,8 @@
         <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="Confirmar Senha" aria-label="Confirmar Senha">
         </div>
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button type="submit" class="btn btn-secondary">Cadastrar</button>
+        <div class="d-grid gap-2 d-md-flex justify-content-center">
+            <button type="submit" class="w-100 mt-1 p-2 btn btn-secondary">Cadastrar</button>
         </div>
     </form>
 </div>
