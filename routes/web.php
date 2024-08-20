@@ -7,6 +7,8 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
+Route::get('/teste', [PacientController::class, 'create']);
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [PacientController::class, 'dashboard'])->name('dashboard');
     Route::get('/cadastrar-cliente', [PacientController::class, 'cadastrarCliente']);
