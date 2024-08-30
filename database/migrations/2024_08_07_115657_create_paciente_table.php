@@ -10,10 +10,11 @@ class CreatePacienteTable extends Migration
     {
         Schema::create('pacientes', function (Blueprint $table) {
             $table->id();
+            $table->string('nome');
             $table->string('cpf');
             $table->integer('cns');
             $table->date('data_nascimento');
-            $table->string('sexo');
+            $table->enum('sexo', ['masculino', 'feminino', 'outro']);
             $table->boolean('evolucao');
             $table->unsignedBigInteger('id_comorbidade');
             $table->foreign('id_comorbidade')->references('id')->on('comorbidades');
