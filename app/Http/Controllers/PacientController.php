@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pacient;
+use resources\views;
 
 class PacientController extends Controller
 {
@@ -31,17 +32,17 @@ class PacientController extends Controller
 
     public function dashboard()
     {
-        return view('dashboard');
+        return view('dashboard.dashboard');
     }
 
     public function cadastrarCliente()
     {
-        return view('cadastrarCliente');
+        return view('pacientes.cadastrarCliente');
     }
 
     public function evolucao()
     {
-        return view('evolucao');
+        return view('lesoes.evolucao');
     }
 
     public function visualizar()
@@ -56,27 +57,27 @@ class PacientController extends Controller
 
     public function localLesao()
     {
-        return view('localLesao');
+        return view('ferramentas.localLesao');
     }
 
     public function sala()
     {
-        return view('sala');
+        return view('ferramentas.sala');
     }
 
     public function leito()
     {
-        return view('leito');
+        return view('ferramentas.leito');
     }
 
     public function tipoLesao()
     {
-        return view('tipoLesao');
+        return view('ferramentas.tipoLesao');
     }
 
     public function tipoTratamento()
     {
-        return view('tipoTratamento');
+        return view('ferramentas.tipoTratamento');
     }
 
 
