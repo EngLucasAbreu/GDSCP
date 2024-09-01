@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'NSP - Evoluir Paciente')
+@section('title', 'GDSCP - Evoluir Paciente')
 
 @section('content')
 <div class="container-cad">

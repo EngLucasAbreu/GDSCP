@@ -30,9 +30,6 @@
     <!-- <div class="container">
 
     </div> -->
-
-
-
     <div class="top-bar">
         <button class="btn btn-transparent btn-lg" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
             <ion-icon name="menu-outline">
@@ -45,7 +42,7 @@
             </div>
         </x-app-layout>
     </div>
-        <div class="container">
+        <div class="container wrapper">
             <!-- <aside class="sidebar">
                 <div class="sidebar-header">
                     <h2>NSP</h2>
@@ -101,12 +98,12 @@
             </aside> -->
 
             <div class="bg-custom-sidebar offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-                <div class="offcanvas-header d-flex align-items-bottom">
+                <div class="offcanvas-header d-flex">
                     <div class="offcanvas-title">
                         <h3 id="offcanvasScrollingLabel">GDSCP</h5>
                         <h6 id="offcanvasScrollingLabel">Gestão de dados em saúde e cuidados com a pele</h5>
                     </div>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    <button type="button" class="btn-close mb-auto" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="user-info ml-3">
                     <img src="/img/avatar.jpg" alt="User Avatar">
@@ -127,7 +124,7 @@
                                 <ion-icon name="chevron-down-outline" class="chevron-toggle"></ion-icon>
                             </li>
                             <ul class="sub-nav">
-                                <li><a href="/cadastrar-cliente">CADASTRAR</a></li>
+                                <li><a href="/cadastrar-paciente">CADASTRAR</a></li>
                                 <li>PESQUISAR</li>
                             </ul>
                             <li class="menu-item">

@@ -1,13 +1,13 @@
 @extends('layouts.main')
 
-@section('title', 'NSP - Sala')
+@section('title', 'GDSCP - Sala')
 
 @section('content')
 <div class="container-cad">
     <h3>SALA</h3>
     <hr>
     <br>
-    <form action="/clientes" method="GET">
+    <form action="/pacientes" method="GET">
         <ul class="row form">
             <li class="col-sm-12">
                 <label for="sala">Nome da Sala</label>

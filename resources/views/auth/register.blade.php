@@ -1,6 +1,6 @@
 @extends('login.main')
 
-@section('title', 'NSP - Login')
+@section('title', 'GDSCP - Login')
 
 @section('content')
 

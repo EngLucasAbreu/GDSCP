@@ -35,9 +35,9 @@ class PacientController extends Controller
         return view('dashboard.dashboard');
     }
 
-    public function cadastrarCliente()
+    public function cadastrarPaciente()
     {
-        return view('pacientes.cadastrarCliente');
+        return view('pacientes.cadastrarPaciente');
     }
 
     public function evolucao()

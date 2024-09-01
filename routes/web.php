@@ -11,7 +11,7 @@ Route::get('/teste', [PacientController::class, 'create']);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [PacientController::class, 'dashboard'])->name('dashboard');
-    Route::get('/cadastrar-cliente', [PacientController::class, 'cadastrarCliente']);
+    Route::get('/cadastrar-paciente', [PacientController::class, 'cadastrarPaciente']);
     Route::get('/evolucao', [PacientController::class, 'evolucao']);
     Route::get('/visualizar', [PacientController::class, 'visualizar']);
     Route::get('/evoluir', [PacientController::class, 'evoluir']);
