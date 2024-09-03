@@ -97,7 +97,7 @@
                 </nav>
             </aside> -->
 
-            <div class="bg-custom-sidebar offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+            <div class="bg-custom-sidebar offcanvas offcanvas-start show" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
                 <div class="offcanvas-header d-flex">
                     <div class="offcanvas-title">
                         <h3 id="offcanvasScrollingLabel">GDSCP</h5>

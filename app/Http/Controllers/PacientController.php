@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Pacient;
+use App\Models\Paciente;
 use resources\views;
 
 class PacientController extends Controller
@@ -11,15 +11,16 @@ class PacientController extends Controller
 
     public function create(Request $request){
         $new_pacient = [
-            'nome' => 'ola',
-            'data_nascimento' => 'ola',
-            'cpf' => 'ola',
-            'cns' => 'ola',
-            'sexo' => 'ola',
-            'comorbidade' => 'ola',
+            'nome' => 'Lucas',
+            'data_nascimento' => '2024-09-01 16:00:00',
+            'cpf' => '17437837790',
+            'cns' => '1743',
+            'sexo' => 'outro',
+            'evolucao' => false,
+            'id_comorbidade' => '1',
         ];
 
-        $pacient = new Pacient($new_pacient);
+        $pacient = new Paciente($new_pacient);
         $pacient->save();
 
         dd($pacient);

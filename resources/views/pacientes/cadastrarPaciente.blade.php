@@ -46,6 +46,7 @@
                 </select>
             </li>
         </ul>
+    </form
         <br>
         <br>
         <h3>REGISTRAR INCIDENTE</h3>
