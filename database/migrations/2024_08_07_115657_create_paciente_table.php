@@ -14,7 +14,7 @@ class CreatePacienteTable extends Migration
             $table->string('cpf');
             $table->integer('cns');
             $table->date('data_nascimento');
-            $table->enum('sexo', ['masculino', 'feminino', 'outro']);
+            $table->enum('sexo', ['M', 'F', 'O', 'N']);
             $table->boolean('evolucao');
             $table->unsignedBigInteger('id_comorbidade');
             $table->foreign('id_comorbidade')->references('id')->on('comorbidades');

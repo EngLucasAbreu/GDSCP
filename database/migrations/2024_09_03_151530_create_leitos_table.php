@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLeitoTable extends Migration
+class CreateLeitosTable extends Migration
 {
     public function up()
     {

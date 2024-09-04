@@ -50,21 +50,21 @@
                     <ul>
                         <li class="menu-item">
                             <a href="/dashboard">
-                            <ion-icon name="bar-chart-outline"></ion-icon> 
+                            <ion-icon name="bar-chart-outline"></ion-icon>
                             DASHBOARD
                             </a>
                         </li>
                         <li class="menu-item">
-                            <ion-icon name="person-add-outline"></ion-icon> 
+                            <ion-icon name="person-add-outline"></ion-icon>
                             PACIENTES
                             <ion-icon name="chevron-down-outline" class="chevron-toggle"></ion-icon>
                         </li>
                         <ul class="sub-nav">
-                            <li><a href="/cadastrar-cliente">CADASTRAR</a></li>
+                            <li><a href="/pacientes/create">CADASTRAR</a></li>
                             <li>PESQUISAR</li>
                         </ul>
                         <li class="menu-item">
-                            <ion-icon name="bandage-outline"></ion-icon> 
+                            <ion-icon name="bandage-outline"></ion-icon>
                             LESÕES
                             <ion-icon name="chevron-down-outline" class="chevron-toggle"></ion-icon>
                         </li>
@@ -74,7 +74,7 @@
                             <li>PESQUISAR</li>
                         </ul>
                         <li class="menu-item">
-                            <ion-icon name="hammer-outline"></ion-icon> 
+                            <ion-icon name="hammer-outline"></ion-icon>
                             FERRAMENTAS
                             <ion-icon name="chevron-down-outline" class="chevron-toggle"></ion-icon>
                         </li>

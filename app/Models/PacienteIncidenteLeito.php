@@ -5,16 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PacienteIncidenteSala extends Model
+class PacienteIncidenteLeito extends Model
 {
     use HasFactory;
 
-    protected $table = 'paciente_incidente_sala';
+    protected $table = 'paciente_incidente_leito';
 
     protected $fillable = [
         'id_paciente',
         'id_incidente',
-        'id_sala',
+        'id_leito',
     ];
 
     public function paciente()
@@ -27,8 +27,8 @@ class PacienteIncidenteSala extends Model
         return $this->belongsTo(Incidente::class, 'id_incidente');
     }
 
-    public function sala()
+    public function leito()
     {
-        return $this->belongsTo(Sala::class, 'id_sala');
+        return $this->belongsTo(Sala::class, 'id_leito');
     }
 }

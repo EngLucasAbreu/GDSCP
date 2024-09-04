@@ -10,7 +10,7 @@ class CreateComorbidadeTable extends Migration
     {
         Schema::create('comorbidades', function (Blueprint $table) {
             $table->id();
-            $table->string('tipo_comorbidade');
+            $table->string('tipo_comorbidade')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
