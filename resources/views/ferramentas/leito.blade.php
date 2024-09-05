@@ -3,6 +3,7 @@
 @section('title', 'GDSCP - Leito')
 
 @section('content')
+{{-- @include('msg.message') --}}
 <div class="container-cad">
     <h3>LEITO</h3>
     <hr>
@@ -12,13 +13,12 @@
         @if (session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert" id="success-alert">
                 {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
         <ul class="row form">
             <li class="col-sm-12">
                 <label for="leito">Salas Cadastradas</label>
-                <select>
+                <select id="sala" name="id_sala">
                     <option value="0" selected>Selecione a Sala</option>
                     @foreach ($salas as $sala)
                         <option value="{{ $sala->id }}">{{ $sala->nome_sala }}</option>)
@@ -64,4 +64,13 @@
         </table>
     </div>
 </div>
+<script>
+    setTimeout(function() {
+        let alert = document.getElementById('success-alert');
+        if (alert) {
+            let bsAlert = new bootstrap.Alert(alert);
+            bsAlert.close();
+        }
+    }, 5000); // 5000 milissegundos = 5 segundos
+</script>
 @endsection

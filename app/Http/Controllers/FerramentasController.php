@@ -109,16 +109,29 @@ class FerramentasController extends Controller
 
 
     //TRATAMENTOS
-    public function createTratamento(Request $request){
+    public function createEvolucaoTratamento(Request $request){
         $validatedData = $request->validate([
-            'nome' => 'required|string|max:255',
+            'tipo_tratamentos' => 'required|string|max:255',
         ]);
         $new_tratamento = [
-            'nome' => $validatedData['nome'],
+            'tipo_tratamentos' => $validatedData['tipo_tratamentos'],
         ];
         $tratamento = new Tratamento($new_tratamento);
         $tratamento->save();
-        return $tratamento;
+        return redirect()->route('read-all-evolucao-tratamento')->with('success', 'Evolução de tratamento cadastrada com sucesso!');
+
+    }
+
+    public function createConclusaoTratamento(Request $request){
+        $validatedData = $request->validate([
+            'tipo_tratamentos' => 'required|string|max:255',
+        ]);
+        $new_tratamento = [
+            'tipo_tratamentos' => $validatedData['tipo_tratamentos'],
+        ];
+        $tratamento = new Tratamento($new_tratamento);
+        $tratamento->save();
+        return redirect()->route('read-all-conclusao-tratamento')->with('success', 'Conclusão de tratamento cadastrada com sucesso!');
     }
 
     public function readTratamento(Request $request, $id){
@@ -126,9 +139,16 @@ class FerramentasController extends Controller
         return $tratamento;
     }
 
-    public function readAllTratamentos(Request $request){
+    public function readAllEvolucaoTratamentos(Request $request){
         $tratamentos = Tratamento::all();
-        return $tratamentos;
+        return view('ferramentas.evolucaoTratamento', compact('tratamentos'));
+
+    }
+
+    public function readAllConclusaoTratamentos(Request $request){
+        $tratamentos = Tratamento::all();
+        return view('ferramentas.conclusaoTratamento', compact('tratamentos'));
+
     }
 
     public function updateTratamento(Request $request, $id){
@@ -141,8 +161,30 @@ class FerramentasController extends Controller
 
 
     //LESOES
-    public function createLesao(Request $request){
+    public function createLocalLesao(Request $request){
+        $validatedData = $request->validate([
+            'local_lesao' => 'required|string|max:255',
+        ]);
+        $new_lesao = [
+            'local_lesao' => $validatedData['local_lesao'],
+            'tipo_lesao' => '',
+        ];
+        $lesao = new Lesao($new_lesao);
+        $lesao->save();
+        return redirect()->route('read-all-local-lesao')->with('success', 'Local da lesão cadastrada com sucesso!');
+    }
 
+    public function createTipoLesao(Request $request){
+        $validatedData = $request->validate([
+            'tipo_lesao' => 'required|string|max:255',
+        ]);
+        $new_lesao = [
+            'local_lesao' => '',
+            'tipo_lesao' => $validatedData['tipo_lesao'],
+        ];
+        $lesao = new Lesao($new_lesao);
+        $lesao->save();
+        return redirect()->route('read-all-tipo-lesao')->with('success', 'Local da lesão cadastrada com sucesso!');
     }
 
     public function readLesao(Request $request, $id){
@@ -150,9 +192,14 @@ class FerramentasController extends Controller
         return $lesao;
     }
 
-    public function readAllLesoes(Request $request){
-        $lesoes = Lesao::all();
-        return $lesoes;
+    public function readAllLocalLesoes(Request $request){
+        $lesoes = Lesao::where('local_lesao', '!=', '')->get();
+        return view('ferramentas.localLesao', compact('lesoes'));
+    }
+
+    public function readAllTipoLesoes(Request $request){
+        $lesoes = Lesao::where('tipo_lesao', '!=', '')->whereNotNull('tipo_lesao')->get();
+        return view('ferramentas.tipoLesao', compact('lesoes'));
     }
 
     public function updateLesoes(Request $request, $id){

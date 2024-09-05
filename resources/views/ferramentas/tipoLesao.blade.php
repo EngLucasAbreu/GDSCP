@@ -3,15 +3,17 @@
 @section('title', 'GDSCP - Tipo de Lesão')
 
 @section('content')
+@include('msg.message')
 <div class="container-cad">
     <h3>TIPO DE LESÃO</h3>
     <hr>
     <br>
-    <form action="/pacientes" method="GET">
+    <form action="{{ route('create-tipo-lesao')}}" method="POST">
+        @csrf
         <ul class="row form">
             <li class="col-sm-12">
                 <label for="tipolesao">Tipo de Lesão</label>
-                <input type="text" id="tipolesao" name="tipolesao">
+                <input type="text" id="tipolesao" name="tipo_lesao">
             </li>
         </ul>
         <button type="submit" class="btn btn-secondary">Cadastrar Tipo de Lesão</button>
@@ -31,33 +33,16 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach ($lesoes as $tipo)
                 <tr>
-                    <td>Cranio</td>
+                    <td>{{ $tipo->tipo_lesao }}</td>
                     <td>
                         <button class="btn btn-secondary">Editar</button>
                     </td>
                     <td>
                         <button class="btn btn-danger">Deletar</button>
                     </td>
-                </tr>
-                <tr>
-                    <td>Tibia</td>
-                    <td>
-                        <button class="btn btn-secondary">Editar</button>
-                    </td>
-                    <td>
-                        <button class="btn btn-danger">Deletar</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Radio</td>
-                    <td>
-                        <button class="btn btn-secondary">Editar</button>
-                    </td>
-                    <td>
-                        <button class="btn btn-danger">Deletar</button>
-                    </td>
-                </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

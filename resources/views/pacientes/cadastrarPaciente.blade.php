@@ -42,28 +42,11 @@
         <ul class="row form">
             <li class="col-sm-4">
                 <label for="comorbidade">Comorbidade</label>
-                <select id="comorbidade" name="comorbidade">
+                <select id="comorbidade" name="id_comorbidade">
                     <option value="" selected>Selecione uma opção</option>
-                    <option value="arritmias_cardiacas">Arritmias cardíacas</option>
-                    <option value="cardiopatia_hipertensiva">Cardiopatia hipertensiva</option>
-                    <option value="cardiopatias_congenitas_no_adulto">Cardiopatias congênitas no adulto</option>
-                    <option value="cirrose_hepatica">Cirrose hepática</option>
-                    <option value="diabetes_mellitus">Diabetes mellitus</option>
-                    <option value="doenca_cerebrovascular">Doença cerebrovascular</option>
-                    <option value="doenca_renal_cronica">Doença renal crônica</option>
-                    <option value="doencas_da_aorta_dos_grandes_vasos_e_fistulas_arteriovenosas">Doenças da aorta, dos grandes vasos e fístulas arteriovenosas</option>
-                    <option value="hemoglobinopatias_graves">Hemoglobinopatias graves</option>
-                    <option value="hipertensao_arterial">Hipertensão arterial</option>
-                    <option value="hipertensao_arterial_resistente_har">Hipertensão Arterial Resistente (HAR)</option>
-                    <option value="hipertensao_pulmonar_cor_pulmonale">Hipertensão pulmonar / Cor-pulmonale</option>
-                    <option value="imunossuprimidos">Imunossuprimidos</option>
-                    <option value="insuficiencia_cardiaca">Insuficiência cardíaca</option>
-                    <option value="miocardiopatias_e_pericardiopatias">Miocardiopatias e pericardiopatias</option>
-                    <option value="obesidade_morbida">Obesidade mórbida</option>
-                    <option value="pneumopatias_cronicas_graves">Pneumopatias crônicas graves</option>
-                    <option value="proteses_valvares_e_dispositivos_cardiacos_implantados">Próteses valvares e dispositivos cardíacos implantados</option>
-                    <option value="reumaticos_como_portadores_de_espondilite_anquilosante">Reumáticos como portadores de espondilite anquilosante</option>
-                    <option value="sindrome_de_down">Síndrome de Down</option>
+                    @foreach ($comorbidades as $comorbidade)
+                        <option value="{{$comorbidade->id}}">{{$comorbidade->tipo_comorbidade}}</option>
+                    @endforeach
                 </select>
             </li>
         </ul>
@@ -83,40 +66,50 @@
             </li>
             <li class="col-sm-4">
                 <label for="sala">Sala</label>
-                <input type="text" id="sala" name="sala" required>
+                <select type="text" id="sala" name="sala" required>
+                    <option value="" selected>Selecione uma opção</option>
+                    @foreach($salas as $sala)
+                        <option value="{{$sala->id}}">{{$sala->nome_sala}}</option>
+                    @endforeach
+                </select>
             </li>
             <li class="col-sm-4">
                 <label for="leito">Leito</label>
-                <input type="text" id="leito" name="leito" required>
+                <select type="text" id="leito" name="leito" required>
+                    <option value="" selected>Selecione uma opção</option>
+                    @foreach($leitos as $leito)
+                        <option value="{{$leito->id}}">{{$leito->tipo_leito}}</option>
+                    @endforeach
+                </select>
             </li>
         </ul>
         <ul class="row form">
             <li class="col-sm">
                 <label for="localLesao">Local de Lesão</label>
-                <select id="localLesao" name="localLesao" required>
-                    <option value="1">Cabeça</option>
-                    <option value="2">Pescoço</option>
-                    <option value="3">Tronco</option>
-                    <option value="4">Membros Superiores</option>
-                    <option value="5">Membros Inferiores</option>
+                <select id="localLesao" name="id_lesao" required>
+                    <option value="" selected>Selecione uma opção</option>
+                    @foreach ($locais as $local)
+                        <option value="{{$local->id}}">{{$local->local_lesao}}</option>
+                    @endforeach
+
                 </select>
             </li>
             <li class="col-sm">
                 <label for="tipoLesao">Tipo de Lesão</label>
-                <select id="tipoLesao" name="tipoLesao" required>
-                    <option value="1">Ferida Cirúrgica</option>
-                    <option value="2">Úlcera por Pressão</option>
-                    <option value="3">Queimadura</option>
-                    <option value="4">Outro</option>
+                <select id="tipoLesao" name="tipo_lesao" required>
+                    <option value="" selected>Selecione uma opção</option>
+                    @foreach ($tipos as $tipo)
+                        <option value="{{$tipo->id}}">{{$tipo->tipo_lesao}}</option>
+                    @endforeach
                 </select>
             </li>
             <li class="col-sm">
                 <label for="tratamento">Tipo de Tratamento</label>
-                <select id="tratamento" name="tratamento" required>
-                    <option value="1">Curativo</option>
-                    <option value="2">Medicamentoso</option>
-                    <option value="3">Cirúrgico</option>
-                    <option value="4">Outro</option>
+                <select id="tratamento" name="id_tratamento" required>
+                    <option value="" selected>Selecione uma opção</option>
+                    @foreach ($tratamentos as $tratamento)
+                        <option value="{{$tratamento->id}}">{{$tratamento->tipo_tratamento}}</option>
+                    @endforeach
                 </select>
             </li>
         </ul>

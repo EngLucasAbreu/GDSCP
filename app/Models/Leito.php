@@ -14,7 +14,13 @@ class Leito extends Model
 
     protected $fillable = [
         'tipo_leito',
+        'id_sala'
     ];
+
+    public function sala()
+    {
+        return $this->belongsTo(Sala::class, 'id_sala');
+    }
 
     public function salas()
     {

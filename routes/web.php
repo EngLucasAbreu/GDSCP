@@ -11,13 +11,6 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
-
-
-
-
-
-
-
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [PacientController::class, 'dashboard'])->name('dashboard');
 
@@ -27,11 +20,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/pacientes/pesquisar', [PacientesController::class, 'pesquisar'])->name('pacientes.pesquisar');
 
     // EVOLUÇÂO DE LESÕES
-    Route::post('/lesoes/create-lesao', [LesoesController::class, 'create'])->name('create-lesao');
-    Route::get('/lesoes/read-lesao', [LesoesController::class, 'readLesao'])->name('read-lesao');
-    Route::get('/lesoes/read-all-lesoes', [LesoesController::class, 'readAllLesoes'])->name('lesoes.index');
-    Route::put('/lesoes/update-lesao', [LesoesController::class, 'updateLesao'])->name('update-lesao');
-    Route::delete('/lesoes/delete-lesao', [LesoesController::class, 'deleteLesao'])->name('delete-lesao');
+    // Route::post('/lesoes/create-lesao', [LesoesController::class, 'create'])->name('create-evolucao-lesao');
+    // Route::get('/lesoes/read-lesao', [LesoesController::class, 'readLesao'])->name('read-evolucao-lesao');
+    // Route::get('/lesoes/read-all-lesoes', [LesoesController::class, 'readAllLesoes'])->name('read-all-evolucao-lesao');
+    // Route::put('/lesoes/update-lesao', [LesoesController::class, 'updateLesao'])->name('update-evolucao-lesao');
+    // Route::delete('/lesoes/delete-lesao', [LesoesController::class, 'deleteLesao'])->name('delete-evolucao-lesao');
 
     // COMORBIDADES
     Route::post('/ferramentas/create-comorbidade', [FerramentasController::class, 'createComorbidade'])->name('create-comorbidade');
@@ -55,16 +48,20 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/ferramentas/delete-leito', [FerramentasController::class, 'deleteLeito'])->name('delete-leito');
 
     // TRATAMENTOS
-    Route::post('/ferramentas/create-tratamento', [FerramentasController::class, 'createTratamento'])->name('create-tratamento');
+    Route::post('/ferramentas/create-evolucao-tratamento', [FerramentasController::class, 'createEvolucaoTratamento'])->name('create-evolucao-tratamento');
+    Route::post('/ferramentas/create-conclusao-tratamento', [FerramentasController::class, 'createConclusaoTratamento'])->name('create-conclusao-tratamento');
     Route::get('/ferramentas/read-tratamento', [FerramentasController::class, 'readTratamento'])->name('read-tratamento');
-    Route::get('/ferramentas/read-all-tratamentos', [FerramentasController::class, 'readAllTratamentos'])->name('tratamentos.index');
+    Route::get('/ferramentas/read-all-evolucao-tratamentos', [FerramentasController::class, 'readAllEvolucaoTratamentos'])->name('read-all-evolucao-tratamento');
+    Route::get('/ferramentas/read-all-conclusao-tratamentos', [FerramentasController::class, 'readAllConclusaoTratamentos'])->name('read-all-conclusao-tratamento');
     Route::put('/ferramentas/update-tratamento', [FerramentasController::class, 'updateTratamento'])->name('update-tratamento');
     Route::delete('/ferramentas/delete-tratamento', [FerramentasController::class, 'deleteTratamento'])->name('delete-tratamento');
 
     // LESÕES
-    Route::post('/ferramentas/create-lesao', [FerramentasController::class, 'createLesao'])->name('create-lesao');
+    Route::post('/ferramentas/create-local-lesao', [FerramentasController::class, 'createLocalLesao'])->name('create-local-lesao');
+    Route::post('/ferramentas/create-tipo-lesao', [FerramentasController::class, 'createTipoLesao'])->name('create-tipo-lesao');
     Route::get('/ferramentas/read-lesao', [FerramentasController::class, 'readLesao'])->name('read-lesao');
-    Route::get('/ferramentas/read-all-lesoes', [FerramentasController::class, 'readAllLesoes'])->name('lesoes.index');
+    Route::get('/ferramentas/read-all-local-lesao', [FerramentasController::class, 'readAllLocalLesoes'])->name('read-all-local-lesao');
+    Route::get('/ferramentas/read-all-tipo-lesao', [FerramentasController::class, 'readAllTipoLesoes'])->name('read-all-tipo-lesao');
     Route::put('/ferramentas/update-lesao', [FerramentasController::class, 'updateLesao'])->name('update-lesao');
     Route::delete('/ferramentas/delete-lesao', [FerramentasController::class, 'deleteLesao'])->name('delete-lesao');
 
