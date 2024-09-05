@@ -66,7 +66,7 @@
                             <ion-icon name="chevron-down-outline" class="chevron-toggle"></ion-icon>
                         </li>
                         <ul class="sub-nav">
-                            <li><a href="/cadastrar-cliente">CADASTRAR</a></li>
+                            <li><a href="/pacientes/create">CADASTRAR</a></li>
                             <li>PESQUISAR</li>
                         </ul>
                         <li class="menu-item">
@@ -124,8 +124,8 @@
                                 <ion-icon name="chevron-down-outline" class="chevron-toggle"></ion-icon>
                             </li>
                             <ul class="sub-nav">
-                                <li><a href="/cadastrar-paciente">CADASTRAR</a></li>
-                                <li><a href="/pesquisar-paciente">PESQUISAR</a></li>
+                                <li><a href="/pacientes/create">CADASTRAR</a></li>
+                                <li><a href="/pacientes/store">PESQUISAR</a></li>
                             </ul>
                             <li class="menu-item">
                                 <ion-icon name="bandage-outline"></ion-icon>

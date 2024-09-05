@@ -32,6 +32,6 @@ class Incidente extends Model
 
     public function pacienteIncidenteSala()
     {
-        return $this->hasMany(PacienteIncidenteSala::class, 'id_incidente');
+        return $this->hasMany(PacienteIncidenteLeito::class, 'id_incidente');
     }
 }
