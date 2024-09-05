@@ -125,7 +125,7 @@
                             </li>
                             <ul class="sub-nav">
                                 <li><a href="/cadastrar-paciente">CADASTRAR</a></li>
-                                <li>PESQUISAR</li>
+                                <li><a href="/pesquisar-paciente">PESQUISAR</a></li>
                             </ul>
                             <li class="menu-item">
                                 <ion-icon name="bandage-outline"></ion-icon>
@@ -135,7 +135,7 @@
                             <ul class="sub-nav">
                                 <li>REGISTRAR INCIDENTE</li>
                                 <li><a href="/evolucao">EVOLUÇÃO</a></li>
-                                <li>PESQUISAR</li>
+                                <li><a href="/pesquisar-lesoes">PESQUISAR</a></li>
                             </ul>
                             <li class="menu-item">
                                 <ion-icon name="hammer-outline"></ion-icon>
@@ -145,7 +145,7 @@
                             <ul class="sub-nav">
                                 <li><a href="/sala">SALAS</a></li>
                                 <li><a href="/leito">LEITO</a></li>
-                                <li><a href="/comorbidade">COMORBIDADE</a></li>
+                                <li><a href="/ferramentas/read-all-comorbidades">COMORBIDADE</a></li>
                                 <li><a href="/local-lesao">LOCAL DA LESÃO</a></li>
                                 <li><a href="/tipo-lesao">TIPO DE LESÃO</a></li>
                                 <li><a href="/tipo-tratamento">TIPO DE TRATAMENTO</a></li>

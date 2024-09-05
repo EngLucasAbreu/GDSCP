@@ -107,6 +107,15 @@ class PacientController extends Controller
         return view('ferramentas.comorbidade');
     }
 
+    public function pesquisarPaciente()
+    {
+        return view('pacientes.pesquisar');
+    }
+
+    public function pesquisarEvolucao()
+    {
+        return view('lesoes.pesquisar');
+    }
 
 
 }

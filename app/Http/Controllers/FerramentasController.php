@@ -179,8 +179,9 @@ class FerramentasController extends Controller
         // Busca todas as comorbidades no banco de dados
         $comorbidades = Comorbidade::all();
 
+
         // Retorna a view e passa as comorbidades para ela
-        return view('ferramentas.comorbidade', ['comorbidades' => 'comorbidades']);
+        return view('ferramentas.comorbidade', compact('comorbidades'));
     }
 
     public function updateComorbidade(Request $request, $id){
