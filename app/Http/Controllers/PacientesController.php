@@ -21,7 +21,6 @@ class PacientesController extends Controller
 
     public function create()
     {
-        return DB::table('pacientes')->get();
         return view('pacientes.cadastrarPaciente');
     }
 
