@@ -4,11 +4,16 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePacienteIncidenteLeitoTable extends Migration
+class CreateSalasLeitoStatusTable extends Migration
 {
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
     public function up()
     {
-        Schema::create('paciente_incidente_leito', function (Blueprint $table) {
+        Schema::create('salas_leito_status', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_sala');
             $table->unsignedBigInteger('id_leito');

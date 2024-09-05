@@ -13,8 +13,11 @@ Route::get('/teste', [PacientController::class, 'create']);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [PacientController::class, 'dashboard'])->name('dashboard');
+
+    // PACIENTES
     Route::get('/pacientes/create', [PacientesController::class, 'create'])->name('pacientes.create');
     Route::post('/pacientes/store', [PacientesController::class, 'store'])->name('pacientes.store');
+
     Route::get('/evolucao', [PacientController::class, 'evolucao']);
     Route::get('/visualizar', [PacientController::class, 'visualizar']);
     Route::get('/evoluir', [PacientController::class, 'evoluir']);

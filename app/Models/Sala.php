@@ -24,6 +24,6 @@ class Sala extends Model
 
     public function pacienteIncidenteSala()
     {
-        return $this->hasMany(PacienteIncidenteSala::class, 'id_sala');
+        return $this->hasMany(PacienteIncidenteLeito::class, 'id_sala');
     }
 }
