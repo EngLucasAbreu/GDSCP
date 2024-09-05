@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'NSP - Cadastrar Paciente')
+@section('title', 'GDSCP - Cadastrar Paciente')
 
 @section('content')
 @include('msg.message')

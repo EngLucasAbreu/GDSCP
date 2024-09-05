@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'NSP')
+@section('title', 'GDSCP')
 
 @section('content')
 

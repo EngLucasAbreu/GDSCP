@@ -1,28 +1,26 @@
 @extends('layouts.main')
 
-@section('title', 'NSP - Evolução')
+@section('title', 'GDSCP - Pesquisar Lesões')
 
 @section('content')
 <div class="container-cad">
     <h3>FILTRO DE PESQUISA</h3>
     <hr>
     <br>
-    <form action="/clientes" method="GET">
+    <form action="/pacientes" method="GET">
         <ul class="row form">
             <li class="col-sm-6">
-                <label for="nome">Nome</label>
+                <label for="nome" class="ml-2">Nome</label>
                 <input type="text" id="nome" name="nome">
             </li>
-            <li class="col-sm-4">
-                <label for="cpf">CPF</label>
+            <li class="col-sm-6">
+                <label for="cpf" class="ml-2">CPF</label>
                 <input type="text" id="cpf" name="cpf">
             </li>
-            <li class="col-sm-2">
-                <label for="nascimento">Data de Nascimento</label>
-                <input type="date" id="nascimento" name="nascimento">
-            </li>
         </ul>
-        <button type="submit">PESQUISAR</button>
+        <div class="text-right">
+            <button type="submit" class="btn btn-primary">PESQUISAR</button>
+        </div>
     </form>
     <div>
         <br>
@@ -58,7 +56,7 @@
                     <td>
                         <a href="/evoluir">
                             <button type="button" class="btn btn-primary">
-                            <ion-icon name="create-outline"></ion-icon>
+                                <ion-icon name="create-outline"></ion-icon>
                                 Evoluir
                             </button>
                         </a>
@@ -80,7 +78,7 @@
                     <td>
                         <a href="/evoluir">
                             <button type="button" class="btn btn-primary">
-                            <ion-icon name="create-outline"></ion-icon>
+                                <ion-icon name="create-outline"></ion-icon>
                                 Evoluir
                             </button>
                         </a>
@@ -102,7 +100,7 @@
                     <td>
                         <a href="/evoluir">
                             <button type="button" class="btn btn-primary">
-                            <ion-icon name="create-outline"></ion-icon>
+                                <ion-icon name="create-outline"></ion-icon>
                                 Evoluir
                             </button>
                         </a>

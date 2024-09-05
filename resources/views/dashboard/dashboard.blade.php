@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'NSP - Dashboard')
+@section('title', 'GDSCP - Dashboard')
 
 @section('content')
 

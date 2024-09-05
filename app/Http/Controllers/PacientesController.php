@@ -21,7 +21,7 @@ class PacientesController extends Controller
 
     public function create()
     {
-        return view('cadastrarCliente');
+        return view('pacientes.cadastrarPaciente');
     }
 
     public function store(Request $request)
@@ -37,25 +37,28 @@ class PacientesController extends Controller
             'sala' => 'required|string|max:255',
             'leito' => 'required|string|max:255',
             'descricao' => 'required|string',
+            'sexo' => 'required|string|in:M,F,O,N',
         ]);
 
         DB::beginTransaction();
         try {
-            $comorbidade = Comorbidade::create([
-                'tipo_comorbidade' => $request->comorbidade,
-            ]);
-            $lesao =Lesao::create([
+            // Initialize comorbidade_id as null in case it's not created
+            $comorbidade_id = null;
+
+            if ($request->has('comorbidade')) {
+                $comorbidade = Comorbidade::create([
+                    'tipo_comorbidade' => $request->comorbidade,
+                ]);
+                $comorbidade_id = $comorbidade->id;
+            }
+
+            $lesao = Lesao::create([
                 'tipo_lesao' => $request->tipoLesao,
                 'local_lesao' => $request->localLesao,
             ]);
             $tratamento = Tratamento::create([
                 'tipo_tratamento' => $request->tratamento,
             ]);
-
-            $comorbidade_id = $comorbidade->id;
-            $lesao_id = $lesao->id;
-            $tratamento_id = $tratamento->id;
-
 
             Paciente::create([
                 'nome' => $request->nome,
@@ -64,14 +67,14 @@ class PacientesController extends Controller
                 'cns' => $request->cns,
                 'sexo' => $request->sexo,
                 'evolucao' => true,
-                'id_comorbidade' => $comorbidade_id,
+                'id_comorbidade' => $comorbidade_id,  // Will be null if no comorbidade was provided
             ]);
 
             Incidente::create([
                 'data_internacao' => $request->internacao,
                 'saida' => $request->evento,
-                'id_lesao' => $lesao_id,
-                'id_tratamento' => $tratamento_id,
+                'id_lesao' => $lesao->id,
+                'id_tratamento' => $tratamento->id,
                 'descricao' => $request->descricao,
             ]);
 
@@ -82,5 +85,11 @@ class PacientesController extends Controller
             DB::rollback();
             return back()->with('error', 'Erro ao cadastrar paciente e incidente. ' . $e->getMessage())->withInput();
         }
+    }
+
+    public function pesquisar(Request $request)
+    {
+        $pacientes = DB::table('pacientes')->get();
+        return view('pacientes.pesquisar', ['pacientes' => $pacientes]);
     }
 }

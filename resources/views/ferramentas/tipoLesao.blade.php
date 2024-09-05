@@ -1,38 +1,38 @@
 @extends('layouts.main')
 
-@section('title', 'NSP - Leito')
+@section('title', 'GDSCP - Tipo de Lesão')
 
 @section('content')
 <div class="container-cad">
-    <h3>LEITO</h3>
+    <h3>TIPO DE LESÃO</h3>
     <hr>
     <br>
-    <form action="/clientes" method="GET">
+    <form action="/pacientes" method="GET">
         <ul class="row form">
             <li class="col-sm-12">
-                <label for="leito">Leito</label>
-                <input type="text" id="leito" name="leito">
+                <label for="tipolesao">Tipo de Lesão</label>
+                <input type="text" id="tipolesao" name="tipolesao">
             </li>
         </ul>
-        <button type="submit" class="btn btn-secondary">Cadastrar Leito</button>
+        <button type="submit" class="btn btn-secondary">Cadastrar Tipo de Lesão</button>
     </form>
     <div>
         <br>
         <br>
-        <h3>REGISTRO DOS LEITOS</h3>
+        <h3>REGISTRO DOS TIPOS DE LESÃO</h3>
         <br>
         <br>
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">Leitos</th>
+                    <th scope="col">Tipos de Lesão</th>
                     <th scope="col"></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>1</td>
+                    <td>Cranio</td>
                     <td>
                         <button class="btn btn-secondary">Editar</button>
                     </td>
@@ -41,7 +41,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>2</td>
+                    <td>Tibia</td>
                     <td>
                         <button class="btn btn-secondary">Editar</button>
                     </td>
@@ -50,7 +50,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>3</td>
+                    <td>Radio</td>
                     <td>
                         <button class="btn btn-secondary">Editar</button>
                     </td>

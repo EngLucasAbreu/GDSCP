@@ -1,38 +1,38 @@
 @extends('layouts.main')
 
-@section('title', 'NSP - Tipo de Tratamento')
+@section('title', 'GDSCP - Local da Lesão')
 
 @section('content')
 <div class="container-cad">
-    <h3>TIPO DE TRATAMENTO</h3>
+    <h3>LOCAL DA LESÃO</h3>
     <hr>
     <br>
-    <form action="/clientes" method="GET">
+    <form action="/pacientes" method="GET">
         <ul class="row form">
             <li class="col-sm-12">
-                <label for="tipotratamento">Tipo de Tratamento</label>
-                <input type="text" id="tipotratamento" name="tipotratamento">
+                <label for="lesao">Lesão</label>
+                <input type="text" id="lesao" name="lesao">
             </li>
         </ul>
-        <button type="submit" class="btn btn-secondary">Cadastrar Tipo de Tratamento</button>
+        <button type="submit" class="btn btn-secondary">Cadastrar Local da Lesão</button>
     </form>
     <div>
         <br>
         <br>
-        <h3>REGISTRO DOS TIPOS DE TRATAMENTO</h3>
+        <h3>REGISTRO DOS LOCAIS DA LESÃO</h3>
         <br>
         <br>
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">Tipos de Tratamento</th>
+                    <th scope="col">Locais da Lesão</th>
                     <th scope="col"></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>antibiotico</td>
+                    <td>Lucas</td>
                     <td>
                         <button class="btn btn-secondary">Editar</button>
                     </td>
@@ -41,7 +41,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>fisioterapia</td>
+                    <td>João</td>
                     <td>
                         <button class="btn btn-secondary">Editar</button>
                     </td>
@@ -50,7 +50,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>descanso</td>
+                    <td>Maria</td>
                     <td>
                         <button class="btn btn-secondary">Editar</button>
                     </td>
