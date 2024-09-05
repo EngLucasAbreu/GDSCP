@@ -125,7 +125,7 @@
                             </li>
                             <ul class="sub-nav">
                                 <li><a href="/pacientes/create">CADASTRAR</a></li>
-                                <li><a href="/pacientes/store">PESQUISAR</a></li>
+                                <li><a href="/pacientes/pesquisar">PESQUISAR</a></li>
                             </ul>
                             <li class="menu-item">
                                 <ion-icon name="bandage-outline"></ion-icon>
@@ -134,7 +134,7 @@
                             </li>
                             <ul class="sub-nav">
                                 <li>REGISTRAR INCIDENTE</li>
-                                <li><a href="/evolucao">EVOLUÇÃO</a></li>
+                                <li><a href="/lesoes/read-all-lesoes">EVOLUÇÃO</a></li>
                                 <li><a href="/pesquisar-lesoes">PESQUISAR</a></li>
                             </ul>
                             <li class="menu-item">
@@ -143,14 +143,14 @@
                                 <ion-icon name="chevron-down-outline" class="chevron-toggle"></ion-icon>
                             </li>
                             <ul class="sub-nav">
-                                <li><a href="/sala">SALAS</a></li>
-                                <li><a href="/leito">LEITO</a></li>
+                                <li><a href="/ferramentas/read-all-salas">SALAS</a></li>
+                                <li><a href="/ferramentas/read-all-leitos">LEITO</a></li>
                                 <li><a href="/ferramentas/read-all-comorbidades">COMORBIDADE</a></li>
-                                <li><a href="/local-lesao">LOCAL DA LESÃO</a></li>
-                                <li><a href="/tipo-lesao">TIPO DE LESÃO</a></li>
-                                <li><a href="/tipo-tratamento">TIPO DE TRATAMENTO</a></li>
-                                <li><a href="/local-lesao">EVOLUÇÃO DO TRATAMENTO</a></li>
-                                <li><a href="/local-lesao">CONCLUSÃO DO TRATAMENTO</a></li>
+                                <li><a href="/ferramentas/read-all-local-lesao">LOCAL DA LESÃO</a></li>
+                                <li><a href="/ferramentas/read-all-tipo-lesao">TIPO DE LESÃO</a></li>
+                                <li><a href="/ferramentas/read-all-tipo-tratamento">TIPO DE TRATAMENTO</a></li>
+                                <li><a href="/ferramentas/read-all-local-lesao">EVOLUÇÃO DO TRATAMENTO</a></li>
+                                <li><a href="/ferramentas/read-all-local-lesao">CONCLUSÃO DO TRATAMENTO</a></li>
                             </ul>
                         </ul>
                     </nav>

@@ -7,22 +7,29 @@
     <h3>LEITO</h3>
     <hr>
     <br>
-    <form action="/pacientes" method="GET">
+    <form action="{{ route('create-leito') }}" method="POST">
+        @csrf
+        @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert" id="success-alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
         <ul class="row form">
             <li class="col-sm-12">
                 <label for="leito">Salas Cadastradas</label>
                 <select>
                     <option value="0" selected>Selecione a Sala</option>
-                    <option value="1">304</option>
-                    <option value="2">206</option>
-                    <option value="3">102</option>
+                    @foreach ($salas as $sala)
+                        <option value="{{ $sala->id }}">{{ $sala->nome_sala }}</option>)
+                    @endforeach
                 </select>
             </li>
         </ul>
         <ul class="row form">
             <li class="col-sm-12">
                 <label for="leito">Identificação do Leito</label>
-                <input type="text" id="leito" name="leito">
+                <input type="text" id="leito" name="tipo_leito">
             </li>
         </ul>
         <button type="submit" class="btn btn-secondary">Cadastrar Leito</button>
@@ -42,33 +49,17 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>
-                        <button class="btn btn-secondary">Editar</button>
-                    </td>
-                    <td>
-                        <button class="btn btn-danger">Deletar</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>
-                        <button class="btn btn-secondary">Editar</button>
-                    </td>
-                    <td>
-                        <button class="btn btn-danger">Deletar</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>
-                        <button class="btn btn-secondary">Editar</button>
-                    </td>
-                    <td>
-                        <button class="btn btn-danger">Deletar</button>
-                    </td>
-                </tr>
+                @foreach ($leitos as $leito)
+                    <tr>
+                        <td>{{ $leito->tipo_leito }}</td>
+                        <td>
+                            <button class="btn btn-secondary">Editar</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger">Deletar</button>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

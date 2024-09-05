@@ -15,19 +15,22 @@ use resources\views;
 class FerramentasController extends Controller
 {
 
-    public function createSala(Request $request){
+    //SALAS
+    public function createSala(Request $request)
+    {
         $validatedData = $request->validate([
-            'nome' => 'required|string|max:255',
+            'nome_sala' => 'required|string|max:255',
         ]);
 
         $new_sala = [
-            'nome' => $validatedData['nome'],
+            'nome_sala' => $validatedData['nome_sala'],
         ];
 
         $sala = new Sala($new_sala);
         $sala->save();
 
-        return $sala;
+        return redirect()->route('salas.index')->with('success', 'Sala cadastrada com sucesso!');
+
 
     }
 
@@ -38,38 +41,40 @@ class FerramentasController extends Controller
 
     public function readAllSalas(Request $request){
         $salas = Sala::all();
-        return $salas;
+        return view('ferramentas.sala', compact('salas'));
     }
 
     public function updateSala(Request $request, $id){
         $validatedData = $request->validate([
-            'nome' => 'required|string|max:255',
+            'nome_sala' => 'required|string|max:255',
         ]);
         $sala = Sala::find($id);
-        $sala->nome = $validatedData['nome'];
+        $sala->nome = $validatedData['nome_sala'];
         $sala->save();
     }
 
-    public function deleteSala(Request $request, $id){
-        $validatedData = $request->validate([
-            'id' => 'required|integer',
-        ]);
-        $sala = Sala::find($id);
+    public function deleteSala($id)
+    {
+        $sala = Sala::findOrFail($id);
         $sala->delete();
+
+        return redirect()->route('salas.index')->with('success', 'Sala deletada com sucesso!');
     }
 
+
+    //LEITOS
     public function createLeito(Request $request){
         $validatedData = $request->validate([
-            'nome' => 'required|string|max:255',
+            'tipo_leito' => 'required|string|max:255',
             'id_sala' => 'required|integer',
         ]);
         $new_leito = [
-            'nome' => $validatedData['nome'],
+            'tipo_leito' => $validatedData['tipo_leito'],
             'id_sala' => $validatedData['id_sala'],
         ];
         $leito = new Leito($new_leito);
         $leito->save();
-        return $leito;
+        return redirect()->route('leitos.index')->with('success', 'Leito cadastrada com sucesso!');
     }
 
     public function readLeito(Request $request, $id){
@@ -78,8 +83,9 @@ class FerramentasController extends Controller
     }
 
     public function readAllLeitos(Request $request){
+        $salas = Sala::all();
         $leitos = Leito::all();
-        return $leitos;
+        return view('ferramentas.leito', compact('leitos', 'salas'));
     }
 
     public function updateLeito(Request $request, $id){
@@ -101,6 +107,8 @@ class FerramentasController extends Controller
         $leito->delete();
     }
 
+
+    //TRATAMENTOS
     public function createTratamento(Request $request){
         $validatedData = $request->validate([
             'nome' => 'required|string|max:255',
@@ -131,6 +139,8 @@ class FerramentasController extends Controller
 
     }
 
+
+    //LESOES
     public function createLesao(Request $request){
 
     }
@@ -153,6 +163,8 @@ class FerramentasController extends Controller
 
     }
 
+
+    //COMORBIDADES
     public function createComorbidade(Request $request)
     {
         $validatedData = $request->validate([
@@ -176,11 +188,7 @@ class FerramentasController extends Controller
 
     public function readAllComorbidades(Request $request)
     {
-        // Busca todas as comorbidades no banco de dados
         $comorbidades = Comorbidade::all();
-
-
-        // Retorna a view e passa as comorbidades para ela
         return view('ferramentas.comorbidade', compact('comorbidades'));
     }
 
