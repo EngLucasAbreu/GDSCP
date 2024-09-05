@@ -8,13 +8,10 @@
     <hr>
     <br>
     <form action="/pacientes" method="GET">
-        <ul class="row form">
-            <li class="col-sm-12">
-                <label for="sala">Nome da Sala</label>
-                <input type="text" id="sala" name="sala">
-            </li>
-        </ul>
-        <button type="submit" class="btn btn-secondary">Cadastrar Sala</button>
+        <label for="sala" class="ml-2">Cadastrar nova sala</label>
+        <input type="text" class="form-control" aria-label="Text input with dropdown button" id="sala-input">
+
+        <button type="submit" class="btn btn-secondary mt-2">Cadastrar Sala</button>
     </form>
     <div>
         <br>
@@ -62,4 +59,10 @@
         </table>
     </div>
 </div>
+<script>
+    // Função que atualiza o input com o valor selecionado no dropdown
+    function selecionarSala(sala) {
+        document.getElementById('sala-input').value = sala;
+    }
+</script>
 @endsection

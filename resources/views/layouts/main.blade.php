@@ -56,12 +56,12 @@
                     <ul>
                         <li class="menu-item">
                             <a href="/dashboard">
-                            <ion-icon name="bar-chart-outline"></ion-icon> 
+                            <ion-icon name="bar-chart-outline"></ion-icon>
                             DASHBOARD
                             </a>
                         </li>
                         <li class="menu-item">
-                            <ion-icon name="person-add-outline"></ion-icon> 
+                            <ion-icon name="person-add-outline"></ion-icon>
                             PACIENTES
                             <ion-icon name="chevron-down-outline" class="chevron-toggle"></ion-icon>
                         </li>
@@ -70,7 +70,7 @@
                             <li>PESQUISAR</li>
                         </ul>
                         <li class="menu-item">
-                            <ion-icon name="bandage-outline"></ion-icon> 
+                            <ion-icon name="bandage-outline"></ion-icon>
                             LESÕES
                             <ion-icon name="chevron-down-outline" class="chevron-toggle"></ion-icon>
                         </li>
@@ -80,7 +80,7 @@
                             <li>PESQUISAR</li>
                         </ul>
                         <li class="menu-item">
-                            <ion-icon name="hammer-outline"></ion-icon> 
+                            <ion-icon name="hammer-outline"></ion-icon>
                             FERRAMENTAS
                             <ion-icon name="chevron-down-outline" class="chevron-toggle"></ion-icon>
                         </li>
@@ -114,12 +114,12 @@
                         <ul>
                             <li class="menu-item">
                                 <a href="/dashboard">
-                                <ion-icon name="bar-chart-outline"></ion-icon> 
+                                <ion-icon name="bar-chart-outline"></ion-icon>
                                 DASHBOARD
                                 </a>
                             </li>
                             <li class="menu-item">
-                                <ion-icon name="person-add-outline"></ion-icon> 
+                                <ion-icon name="person-add-outline"></ion-icon>
                                 PACIENTES
                                 <ion-icon name="chevron-down-outline" class="chevron-toggle"></ion-icon>
                             </li>
@@ -128,7 +128,7 @@
                                 <li>PESQUISAR</li>
                             </ul>
                             <li class="menu-item">
-                                <ion-icon name="bandage-outline"></ion-icon> 
+                                <ion-icon name="bandage-outline"></ion-icon>
                                 LESÕES
                                 <ion-icon name="chevron-down-outline" class="chevron-toggle"></ion-icon>
                             </li>
@@ -138,13 +138,14 @@
                                 <li>PESQUISAR</li>
                             </ul>
                             <li class="menu-item">
-                                <ion-icon name="hammer-outline"></ion-icon> 
+                                <ion-icon name="hammer-outline"></ion-icon>
                                 FERRAMENTAS
                                 <ion-icon name="chevron-down-outline" class="chevron-toggle"></ion-icon>
                             </li>
                             <ul class="sub-nav">
                                 <li><a href="/sala">SALAS</a></li>
                                 <li><a href="/leito">LEITO</a></li>
+                                <li><a href="/comorbidade">COMORBIDADE</a></li>
                                 <li><a href="/local-lesao">LOCAL DA LESÃO</a></li>
                                 <li><a href="/tipo-lesao">TIPO DE LESÃO</a></li>
                                 <li><a href="/tipo-tratamento">TIPO DE TRATAMENTO</a></li>
@@ -158,7 +159,7 @@
             <main class="main-content">
                 @yield('content')
             </main>
-        </div>  
+        </div>
         <footer class="footer d-flex flex-column align-items-end">
             <h6 class="fs-5">GDSCP - Gestão de dados em saúde e cuidados com a pele</h6>
             <h6 class="fs-6">Desenvolvido por PontesTi</h6>

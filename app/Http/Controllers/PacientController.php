@@ -9,21 +9,42 @@ use resources\views;
 class PacientController extends Controller
 {
 
-    public function create(Request $request){
+    public function create(Request $request)
+    {
+        $validatedData = $request->validate([
+            'nome' => 'required|string|max:255',
+            'nascimento' => 'required|date',
+            'cpf' => 'required|string|max:11',
+            'cns' => 'nullable|string|max:15',
+            'sexo' => 'required|string|in:M,F,O,N',
+            'comorbidade' => 'required|string|in:S,N',
+        ]);
+
         $new_pacient = [
-            'nome' => 'Lucas',
-            'data_nascimento' => '2024-09-01 16:00:00',
-            'cpf' => '17437837790',
-            'cns' => '1743',
-            'sexo' => 'outro',
+            'nome' => $validatedData['nome'],
+            'data_nascimento' => $validatedData['nascimento'],
+            'cpf' => $validatedData['cpf'],
+            'cns' => $validatedData['cns'],
+            'sexo' => $validatedData['sexo'],
             'evolucao' => false,
-            'id_comorbidade' => '1',
+            'id_comorbidade' => $validatedData['comorbidade'] === 'S' ? 4 : null,
         ];
 
         $pacient = new Paciente($new_pacient);
         $pacient->save();
 
-        dd($pacient);
+        return redirect()->back()->with('success', 'Paciente cadastrado com sucesso!');
+    }
+
+
+    public function read(Request $request, $id){
+        $paciente = Paciente::find($id);
+        return $paciente;
+    }
+
+    public function read_all(Request $request){
+        $pacientes = Paciente::all();
+        return $pacientes;
     }
 
     public function index()
@@ -81,8 +102,13 @@ class PacientController extends Controller
         return view('ferramentas.tipoTratamento');
     }
 
+    public function comorbidade()
+    {
+        return view('ferramentas.comorbidade');
+    }
 
-    
+
+
 }
 
 

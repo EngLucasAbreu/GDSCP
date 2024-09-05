@@ -7,7 +7,8 @@
     <h3>CADASTRAR PACIENTE</h3>
     <hr>
     <br>
-    <form action="/pacientes" method="POST">
+    <form action="{{ route('create') }}" method="POST">
+        @csrf
         <ul class="row form">
             <li class="col-sm-8">
                 <label for="nome">Nome</label>
@@ -46,6 +47,9 @@
                 </select>
             </li>
         </ul>
+        <div class="d-flex justify-content-end ">
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </div>
     </form
         <br>
         <br>
@@ -106,9 +110,6 @@
                 <input type="text" id="descricao" name="descricao">
             </li>
         </ul>
-        <div class="d-flex justify-content-end ">
-            <button type="submit" class="btn btn-primary">Cadastrar</button>
-        </div>
     </form>
 </div>
 @endsection

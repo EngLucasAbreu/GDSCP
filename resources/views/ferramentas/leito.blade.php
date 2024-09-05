@@ -10,7 +10,18 @@
     <form action="/pacientes" method="GET">
         <ul class="row form">
             <li class="col-sm-12">
-                <label for="leito">Leito</label>
+                <label for="leito">Salas Cadastradas</label>
+                <select>
+                    <option value="0" selected>Selecione a Sala</option>
+                    <option value="1">304</option>
+                    <option value="2">206</option>
+                    <option value="3">102</option>
+                </select>
+            </li>
+        </ul>
+        <ul class="row form">
+            <li class="col-sm-12">
+                <label for="leito">Identificação do Leito</label>
                 <input type="text" id="leito" name="leito">
             </li>
         </ul>
