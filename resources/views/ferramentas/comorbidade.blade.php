@@ -16,7 +16,7 @@
             </div>
         @endif
         <label for="tipo_comorbidade" class="ml-2">Tipo de comorbidade</label>
-        <input type="text" class="form-control" id="tipo_comorbidade" name="tipo_comorbidade" placeholder="Cadastrar nova comorbidade">
+        <input type="text" class="form-control" id="tipo_comorbidade" name="tipo_comorbidade">
 
         <button type="submit" class="btn btn-secondary mt-2">Cadastrar comorbidade</button>
     </form>
@@ -37,9 +37,13 @@
             <tbody>
                 @foreach ($comorbidades as $comorbidade)
                     <tr>
-                        <td>{{ $comorbidade->tipo_comorbidade }}</td>
                         <td>
-                            <button class="btn btn-secondary">Editar</button>
+                            <span id="span-comorbidade-{{ $comorbidade->id }}">{{ $comorbidade->tipo_comorbidade }}</span>
+                            <input type="text" class="form-control d-none" value="{{ $comorbidade->tipo_comorbidade }}" id="input-comorbidade-{{ $comorbidade->id }}">
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary" onclick="editarComorbidade({{ $comorbidade->id }})">Editar</button>
+                            <button class="btn btn-success d-none" id="save-btn-{{ $comorbidade->id }}" onclick="salvarComorbidade({{ $comorbidade->id }})">Salvar</button>
                         </td>
                         <td>
                             <form action="{{ route('delete-comorbidade', $comorbidade->id) }}" method="POST">
@@ -56,12 +60,58 @@
 </div>
 
 <script>
+    // Função para ativar o modo de edição
+    function editarComorbidade(comorbidadeId) {
+        // Esconde o texto da comorbidade e mostra o input
+        let spanNome = document.getElementById(`span-comorbidade-${comorbidadeId}`);
+        let inputNome = document.getElementById(`input-comorbidade-${comorbidadeId}`);
+        let saveButton = document.getElementById(`save-btn-${comorbidadeId}`);
+
+        spanNome.classList.add('d-none');
+        inputNome.classList.remove('d-none');
+        saveButton.classList.remove('d-none');
+    }
+
+    // Função para salvar a edição da comorbidade
+    function salvarComorbidade(comorbidadeId) {
+        let inputNome = document.getElementById(`input-comorbidade-${comorbidadeId}`);
+        let novoNome = inputNome.value;
+
+        // Criação do formulário dinâmico para enviar os dados
+        let form = document.createElement('form');
+        form.method = 'POST';
+        form.action = `/ferramentas/update-comorbidade/${comorbidadeId}`;
+
+        let csrfInput = document.createElement('input');
+        csrfInput.type = 'hidden';
+        csrfInput.name = '_token';
+        csrfInput.value = '{{ csrf_token() }}'; // Laravel CSRF token
+
+        let methodInput = document.createElement('input');
+        methodInput.type = 'hidden';
+        methodInput.name = '_method';
+        methodInput.value = 'PUT'; // Método PUT para edição
+
+        let nomeInput = document.createElement('input');
+        nomeInput.type = 'hidden';
+        nomeInput.name = 'tipo_comorbidade';
+        nomeInput.value = novoNome;
+
+        form.appendChild(csrfInput);
+        form.appendChild(methodInput);
+        form.appendChild(nomeInput);
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+
+    // Oculta o alerta de sucesso após 5 segundos
     setTimeout(function() {
         let alert = document.getElementById('success-alert');
         if (alert) {
             let bsAlert = new bootstrap.Alert(alert);
             bsAlert.close();
         }
-    }, 5000); // 5000 milissegundos = 5 segundos
+    }, 3000); // 5000 milissegundos = 5 segundos
 </script>
 @endsection

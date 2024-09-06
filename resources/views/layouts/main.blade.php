@@ -19,7 +19,6 @@
             color:#fff;
             text-decoration: none;
         }
-
         a:hover {
             color:#aaaaaa;
             text-decoration:none;
@@ -28,7 +27,6 @@
 </head>
 <body>
     <!-- <div class="container">
-
     </div> -->
     <div class="top-bar">
         <button class="btn btn-transparent btn-lg" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
@@ -96,7 +94,6 @@
                     </ul>
                 </nav>
             </aside> -->
-
             <div class="bg-custom-sidebar offcanvas offcanvas-start show" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
                 <div class="offcanvas-header d-flex">
                     <div class="offcanvas-title">
@@ -134,7 +131,7 @@
                             </li>
                             <ul class="sub-nav">
                                 <li>REGISTRAR INCIDENTE</li>
-                                <li><a href="/evolucao">EVOLUÇÃO</a></li>
+                                <li><a href="/lesoes/read-all-lesoes">EVOLUÇÃO</a></li>
                                 <li><a href="/pesquisar-lesoes">PESQUISAR</a></li>
                             </ul>
                             <li class="menu-item">
@@ -143,14 +140,12 @@
                                 <ion-icon name="chevron-down-outline" class="chevron-toggle"></ion-icon>
                             </li>
                             <ul class="sub-nav">
-                                <li><a href="/sala">SALAS</a></li>
-                                <li><a href="/leito">LEITO</a></li>
+                                <li><a href="/ferramentas/read-all-salas">SALAS</a></li>
+                                <li><a href="/ferramentas/read-all-leitos">LEITO</a></li>
                                 <li><a href="/ferramentas/read-all-comorbidades">COMORBIDADE</a></li>
-                                <li><a href="/local-lesao">LOCAL DA LESÃO</a></li>
-                                <li><a href="/tipo-lesao">TIPO DE LESÃO</a></li>
-                                <li><a href="/tipo-tratamento">TIPO DE TRATAMENTO</a></li>
-                                <li><a href="/local-lesao">EVOLUÇÃO DO TRATAMENTO</a></li>
-                                <li><a href="/local-lesao">CONCLUSÃO DO TRATAMENTO</a></li>
+                                <li><a href="/ferramentas/read-all-local-lesao">LOCAL DA LESÃO</a></li>
+                                <li><a href="/ferramentas/read-all-tipo-lesao">TIPO DE LESÃO</a></li>
+                                <li><a href="/ferramentas/read-all-tipo-tratamentos">TIPO DO TRATAMENTO</a></li>
                             </ul>
                         </ul>
                     </nav>

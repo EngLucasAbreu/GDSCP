@@ -4,17 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Leito extends Model
+class SalaLeitoStatus extends Model
 {
-    use HasFactory, SoftDeletes;
-
-    protected $table = 'leitos';
+    use HasFactory;
+    protected $table = 'sala_leito_status';
 
     protected $fillable = [
-        'tipo_leito',
         'id_sala',
+        'id_leito',
+        'leito_status',
+
     ];
 
     public function sala()
@@ -22,8 +22,9 @@ class Leito extends Model
         return $this->belongsTo(Sala::class, 'id_sala');
     }
 
-    public function salas()
+    public function leito()
     {
-        return $this->hasOne(Sala::class, 'id_sala');
+        return $this->belongsTo(Leito::class, 'id_leito');
     }
+
 }

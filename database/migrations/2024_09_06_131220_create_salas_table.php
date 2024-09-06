@@ -18,6 +18,7 @@ class CreateSalasTable extends Migration
             $table->string('nome_sala');
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

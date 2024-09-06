@@ -28,11 +28,28 @@ class PacientesController extends Controller
 
     public function create()
     {
-        return view('pacientes.cadastrarPaciente');
+        $salas = Sala::all();
+        $leitos = Leito::all();
+        $comorbidades = Comorbidade::all();
+        $tratamentos = Tratamento::all();
+        $lesoes = Lesao::all();
+        $locais = Lesao::where('local_lesao', '!=', '')->get();
+        $tipos = Lesao::where('tipo_lesao', '!=', '')->whereNotNull('tipo_lesao')->get();
+        return view('pacientes.cadastrarPaciente', [
+            'salas' => $salas,
+            'leitos' => $leitos,
+            'comorbidades' => $comorbidades,
+            'tratamentos' => $tratamentos,
+            'lesoes' => $lesoes,
+            'locais' => $locais,
+            'tipos' => $tipos,
+        ]);
     }
 
     public function store(Request $request)
     {
+
+
         // Validação dos dados
         $validatedData = $request->validate([
             'nome' => 'required|string|max:255',
