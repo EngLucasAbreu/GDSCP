@@ -54,6 +54,8 @@ Route::middleware(['auth'])->group(function () {
     // PACIENTES
     Route::get('/pacientes/create', [PacientesController::class, 'create'])->name('pacientes.create');
     Route::post('/pacientes/store', [PacientesController::class, 'store'])->name('pacientes.store');
+    Route::get('/pacientes/pesquisar', [PacientesController::class, 'pesquisar'])->name('pacientes.pesquisar');
+    Route::get('/pacientes/pesquisar-paciente', [PacientesController::class, 'pesquisarPaciente'])->name('pacientes.pesquisar-paciente');
 
     Route::get('/evolucao', [PacientController::class, 'evolucao']);
     Route::get('/visualizar', [PacientController::class, 'visualizar']);

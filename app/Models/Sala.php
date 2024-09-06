@@ -14,13 +14,8 @@ class Sala extends Model
 
     protected $fillable = [
         'nome_sala',
-        'id_leito',
     ];
 
-    public function leito()
-    {
-        return $this->belongsTo(Leito::class, 'id_leito');
-    }
 
     public function pacienteIncidenteSala()
     {

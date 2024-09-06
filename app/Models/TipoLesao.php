@@ -6,19 +6,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Leito extends Model
+class TipoLesao extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'leitos';
-
+    protected $table = 'tipo_lesoes';
     protected $fillable = [
-        'tipo_leito',
-        'id_sala',
+        'descricao_lesao',
     ];
 
-    public function salas()
+    public function lesoes()
     {
-        return $this->hasOne(Sala::class, 'id_sala');
+        return $this->hasMany(Lesao::class);
     }
 }

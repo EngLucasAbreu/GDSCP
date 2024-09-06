@@ -13,12 +13,24 @@ class Lesao extends Model
     protected $table = 'lesoes';
 
     protected $fillable = [
-        'tipo_lesao',
-        'local_lesao',
+        'id_tipo_lesao',
+        'id_local_lesao',
     ];
+
+
 
     public function incidentes()
     {
         return $this->hasOne(Incidente::class, 'id_lesao');
+    }
+
+    public function tipoLesao()
+    {
+        return $this->belongsTo(TipoLesao::class, 'id');
+    }
+
+    public function localLesao()
+    {
+        return $this->belongsTo(LocalLesao::class, 'id');
     }
 }

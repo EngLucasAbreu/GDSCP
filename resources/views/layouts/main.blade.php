@@ -125,7 +125,7 @@
                             </li>
                             <ul class="sub-nav">
                                 <li><a href="/pacientes/create">CADASTRAR</a></li>
-                                <li><a href="/pacientes/store">PESQUISAR</a></li>
+                                <li><a href="/pacientes/pesquisar">PESQUISAR</a></li>
                             </ul>
                             <li class="menu-item">
                                 <ion-icon name="bandage-outline"></ion-icon>
