@@ -35,16 +35,72 @@
             <tbody>
                 @foreach ($tratamentos as $tratamento)
                 <tr>
-                    <td>{{ $tratamento->tipo_tratamento }}</td>
                     <td>
-                        <button class="btn btn-secondary">Editar</button>
+                        <span id="span-tratamento-{{ $tratamento->id }}">{{ $tratamento->tipo_tratamento }}</span>
+                        <input type="text" class="form-control d-none" value="{{ $tratamento->tipo_tratamento }}" id="input-tratamento-{{ $tratamento->id }}">
                     </td>
                     <td>
-                        <button class="btn btn-danger">Deletar</button>
+                        <button class="btn btn-secondary" onclick="editarTratamento({{ $tratamento->id }})">Editar</button>
+                        <button class="btn btn-success d-none" id="save-btn-{{ $tratamento->id }}" onclick="salvarTratamento({{ $tratamento->id }})">Salvar</button>
                     </td>
+                    <td>
+                        <form action="{{ route('delete-tipo-tratamento', $tratamento->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Deletar</button>
+                        </form>
+                    </td>
+                </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
 </div>
+
+<script>
+    // Função para ativar o modo de edição
+    function editarTratamento(tratamentoId) {
+        let spanNome = document.getElementById(`span-tratamento-${tratamentoId}`);
+        let inputNome = document.getElementById(`input-tratamento-${tratamentoId}`);
+        let saveButton = document.getElementById(`save-btn-${tratamentoId}`);
+
+        // Esconde o span e mostra o input
+        spanNome.classList.add('d-none');
+        inputNome.classList.remove('d-none');
+        saveButton.classList.remove('d-none');
+    }
+
+    // Função para salvar a edição do tipo de tratamento
+    function salvarTratamento(tratamentoId) {
+        let inputNome = document.getElementById(`input-tratamento-${tratamentoId}`);
+        let novoNome = inputNome.value;
+
+        // Criação do formulário dinâmico para enviar os dados
+        let form = document.createElement('form');
+        form.method = 'POST';
+        form.action = `/ferramentas/update-tipo-tratamento/${tratamentoId}`;
+
+        let csrfInput = document.createElement('input');
+        csrfInput.type = 'hidden';
+        csrfInput.name = '_token';
+        csrfInput.value = '{{ csrf_token() }}'; // Laravel CSRF token
+
+        let methodInput = document.createElement('input');
+        methodInput.type = 'hidden';
+        methodInput.name = '_method';
+        methodInput.value = 'PUT'; // Método PUT para edição
+
+        let nomeInput = document.createElement('input');
+        nomeInput.type = 'hidden';
+        nomeInput.name = 'tipo_tratamento';
+        nomeInput.value = novoNome;
+
+        form.appendChild(csrfInput);
+        form.appendChild(methodInput);
+        form.appendChild(nomeInput);
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+</script>
 @endsection

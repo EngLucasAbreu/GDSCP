@@ -16,8 +16,7 @@ class FerramentasController extends Controller
 {
 
     //SALAS
-    public function createSala(Request $request)
-    {
+    public function createSala(Request $request){
         $validatedData = $request->validate([
             'nome_sala' => 'required|string|max:255',
         ]);
@@ -49,17 +48,23 @@ class FerramentasController extends Controller
             'nome_sala' => 'required|string|max:255',
         ]);
         $sala = Sala::find($id);
-        $sala->nome = $validatedData['nome_sala'];
+        $sala->nome_sala = $validatedData['nome_sala'];
         $sala->save();
+
+        return redirect()->route('salas.index')->with('success', 'Sala atualizada com sucesso!');
     }
 
-    public function deleteSala($id)
-    {
-        $sala = Sala::findOrFail($id);
-        $sala->delete();
+    public function deleteSala(Request $request, $nome_sala){
+        $sala = Sala::where('nome_sala', $nome_sala)->first(); // Busca a sala pelo nome
 
-        return redirect()->route('salas.index')->with('success', 'Sala deletada com sucesso!');
+        if ($sala) {
+            $sala->delete();
+            return redirect()->route('salas.index')->with('success', 'Sala deletada com sucesso!');
+        } else {
+            return redirect()->route('salas.index')->with('error', 'Sala não encontrada!');
+        }
     }
+
 
 
     //LEITOS
@@ -90,91 +95,75 @@ class FerramentasController extends Controller
 
     public function updateLeito(Request $request, $id){
         $validatedData = $request->validate([
-            'nome' => 'required|string|max:255',
+            'tipo_leito' => 'required|string|max:255',
             'id_sala' => 'required|integer',
         ]);
         $leito = Leito::find($id);
-        $leito->nome = $validatedData['nome'];
+        $leito->tipo_leito = $validatedData['tipo_leito'];
         $leito->id_sala = $validatedData['id_sala'];
         $leito->save();
+
+        return redirect()->route('leitos.index')->with('success', 'Leito atualizado com sucesso!');
     }
 
     public function deleteLeito(Request $request, $id){
-        $validatedData = $request->validate([
-            'id' => 'required|integer',
-        ]);
-        $leito = Leito::find($id);
-        $leito->delete();
+        $leito = Leito::where('id', $id)->first(); // Busca o leito pelo id
+
+        if ($leito) {
+            $leito->delete();
+            return redirect()->route('leitos.index')->with('success', 'Leito deletado com sucesso!');
+        } else {
+            return redirect()->route('leitos.index')->with('error', 'Leito não encontrado!');
+        }
     }
 
 
-    //TRATAMENTOS
-    public function createEvolucaoTratamento(Request $request){
+    //COMORBIDADES
+    public function createComorbidade(Request $request){
         $validatedData = $request->validate([
-            'tipo_tratamentos' => 'required|string|max:255',
+            'tipo_comorbidade' => 'required|string|max:255',
         ]);
-        $new_tratamento = [
-            'tipo_tratamentos' => $validatedData['tipo_tratamentos'],
+
+        $new_comorbidade = [
+            'tipo_comorbidade' => $validatedData['tipo_comorbidade'],
         ];
-        $tratamento = new Tratamento($new_tratamento);
-        $tratamento->save();
-        return redirect()->route('read-all-evolucao-tratamento')->with('success', 'Evolução de tratamento cadastrada com sucesso!');
 
+        $comorbidade = new Comorbidade($new_comorbidade);
+        $comorbidade->save();
+
+        return redirect()->route('comorbidades.index')->with('success', 'Comorbidade cadastrada com sucesso!');
     }
 
-    public function createConclusaoTratamento(Request $request){
+    public function readComorbidade(Request $request, $id){
+        $comorbidade = Comorbidade::find($id);
+        return $comorbidade;
+    }
+
+    public function readAllComorbidades(Request $request){
+        $comorbidades = Comorbidade::all();
+        return view('ferramentas.comorbidade', compact('comorbidades'));
+    }
+
+    public function updateComorbidade(Request $request, $id){
         $validatedData = $request->validate([
-            'tipo_tratamentos' => 'required|string|max:255',
+            'tipo_comorbidade' => 'required|string|max:255',
         ]);
-        $new_tratamento = [
-            'tipo_tratamentos' => $validatedData['tipo_tratamentos'],
-        ];
-        $tratamento = new Tratamento($new_tratamento);
-        $tratamento->save();
-        return redirect()->route('read-all-conclusao-tratamento')->with('success', 'Conclusão de tratamento cadastrada com sucesso!');
+        $comorbidade = Comorbidade::find($id);
+        $comorbidade->tipo_comorbidade = $validatedData['tipo_comorbidade'];
+        $comorbidade->save();
+
+        return redirect()->route('comorbidades.index')->with('success', 'Comorbidade atualizada com sucesso!');
     }
 
-    public function createTipoTratamento(Request $request){
-        $validatedData = $request->validate([
-            'tipo_tratamento' => 'required|string|max:255',
-        ]);
-        $new_tratamento = [
-            'tipo_tratamento' => $validatedData['tipo_tratamento'],
-        ];
-        $tratamento = new Tratamento($new_tratamento);
-        $tratamento->save();
-        return redirect()->route('read-all-tipo-tratamento')->with('success', 'Tipo de tratamento cadastrada com sucesso!');
-    }
+    public function deleteComorbidade($id){
+        $comorbidade = Comorbidade::where('id', $id)->first(); // Busca a comorbidade pelo id
 
-    public function readTratamento(Request $request, $id){
-        $tratamento = Tratamento::find($id);
-        return $tratamento;
-    }
-
-    public function readAllEvolucaoTratamentos(Request $request){
-        $tratamentos = Tratamento::all();
-        return view('ferramentas.evolucaoTratamento', compact('tratamentos'));
-
-    }
-
-    public function readAllConclusaoTratamentos(Request $request){
-        $tratamentos = Tratamento::all();
-        return view('ferramentas.conclusaoTratamento', compact('tratamentos'));
-
-    }
-
-    public function readAllTipoTratamentos(Request $request){
-        $tratamentos = Tratamento::all();
-        return view('ferramentas.tipoTratamento', compact('tratamentos'));
-
-    }
-
-    public function updateTratamento(Request $request, $id){
-
-    }
-
-    public function deleteTratamento(Request $request, $id){
-
+        if ($comorbidade) {
+            $comorbidade->delete();
+            return redirect()->route('comorbidades.index')->with('success', 'Comorbidade deletada com sucesso!');
+        } else {
+            return redirect()->route('comorbidades.index')->with('error', 'Comorbidade não encontrada!');
+        }
     }
 
 
@@ -220,57 +209,97 @@ class FerramentasController extends Controller
         return view('ferramentas.tipoLesao', compact('lesoes'));
     }
 
-    public function updateLesoes(Request $request, $id){
-
-    }
-
-    public function deleteLesoes(Request $request, $id){
-
-    }
-
-
-    //COMORBIDADES
-    public function createComorbidade(Request $request)
-    {
+    public function updateLocalLesao(Request $request, $id){
         $validatedData = $request->validate([
-            'tipo_comorbidade' => 'required|string|max:255',
+            'local_lesao' => 'required|string|max:255',
         ]);
+        $lesao = Lesao::find($id);
+        $lesao->local_lesao = $validatedData['local_lesao'];
+        $lesao->tipo_lesao = '';
+        $lesao->save();
 
-        $new_comorbidade = [
-            'tipo_comorbidade' => $validatedData['tipo_comorbidade'],
+        return redirect()->route('read-all-local-lesao')->with('success', 'Lesão atualizada com sucesso!');
+    }
+
+    public function updateTipoLesao(Request $request, $id){
+        $validatedData = $request->validate([
+            'tipo_lesao' => 'required|string|max:255',
+        ]);
+        $lesao = Lesao::find($id);
+        $lesao->tipo_lesao = $validatedData['tipo_lesao'];
+        $lesao->local_lesao = '';
+        $lesao->save();
+
+        return redirect()->route('read-all-tipo-lesao')->with('success', 'Lesão atualizada com sucesso!');
+    }
+
+    public function deleteLocalLesao(Request $request, $id){
+        $local_lesao = Lesao::where('id', $id)->first(); // Busca a lesao pelo id
+
+        if ($local_lesao) {
+            $local_lesao->delete();
+            return redirect()->route('read-all-local-lesao')->with('success', 'Lesão deletada com sucesso!');
+        } else {
+            return redirect()->route('read-all-local-lesao')->with('error', 'Lesão não encontrada!');
+        }
+    }
+
+    public function deleteTipoLesao(Request $request, $id){
+        $tipo_lesao = Lesao::where('id', $id)->first(); // Busca a lesao pelo id
+
+        if ($tipo_lesao) {
+            $tipo_lesao->delete();
+            return redirect()->route('read-all-tipo-lesao')->with('success', 'Lesão deletada com sucesso!');
+        } else {
+            return redirect()->route('read-all-tipo-lesao')->with('error', 'Lesão não encontrada!');
+        }
+    }
+
+
+    //TRATAMENTOS
+    public function createTipoTratamento(Request $request){
+        $validatedData = $request->validate([
+            'tipo_tratamento' => 'required|string|max:255',
+        ]);
+        $new_tratamento = [
+            'tipo_tratamento' => $validatedData['tipo_tratamento'],
         ];
-
-        $comorbidade = new Comorbidade($new_comorbidade);
-        $comorbidade->save();
-
-        return redirect()->route('comorbidades.index')->with('success', 'Comorbidade cadastrada com sucesso!');
+        $tratamento = new Tratamento($new_tratamento);
+        $tratamento->save();
+        return redirect()->route('read-all-tipo-tratamento')->with('success', 'Tipo de tratamento cadastrada com sucesso!');
     }
 
-    public function readComorbidade(Request $request, $id){
-        $comorbidade = Comorbidade::find($id);
-        return $comorbidade;
+    public function readTratamento(Request $request, $id){
+        $tratamento = Tratamento::find($id);
+        return $tratamento;
     }
 
-    public function readAllComorbidades(Request $request)
-    {
-        $comorbidades = Comorbidade::all();
-        return view('ferramentas.comorbidade', compact('comorbidades'));
+
+    public function readAllTipoTratamentos(Request $request){
+        $tratamentos = Tratamento::all();
+        return view('ferramentas.tipoTratamento', compact('tratamentos'));
+
     }
 
-    public function updateComorbidade(Request $request, $id){
+    public function updateTratamento(Request $request, $id){
         $validatedData = $request->validate([
-            'tipo_comorbidade' => 'required|string|max:255',
+            'tipo_tratamento' => 'required|string|max:255',
         ]);
-        $comorbidade = Comorbidade::find($id);
-        $comorbidade->tipo_comorbidade = $validatedData['tipo_comorbidade'];
-        $comorbidade->save();
+        $tratamento = Tratamento::find($id);
+        $tratamento->tipo_tratamento = $validatedData['tipo_tratamento'];
+        $tratamento->save();
+
+        return redirect()->route('read-all-tipo-tratamento')->with('success', 'Tratamento atualizado com sucesso!');
     }
 
-    public function deleteComorbidade($id)
-    {
-        $comorbidade = Comorbidade::findOrFail($id);
-        $comorbidade->delete();
+    public function deleteTratamento(Request $request, $id){
+        $tratamento = Tratamento::where('id', $id)->first(); // Busca o tratamento pelo id
 
-        return redirect()->route('comorbidades.index')->with('success', 'Comorbidade deletada com sucesso!');
+        if ($tratamento) {
+            $tratamento->delete();
+            return redirect()->route('read-all-tipo-tratamento')->with('success', 'Tratamento deletado com sucesso!');
+        } else {
+            return redirect()->route('read-all-tipo-tratamento')->with('error', 'Tratamento não encontrado!');
+        }
     }
 }
