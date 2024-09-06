@@ -148,8 +148,7 @@
                                 <li><a href="/ferramentas/read-all-comorbidades">COMORBIDADE</a></li>
                                 <li><a href="/ferramentas/read-all-local-lesao">LOCAL DA LESÃO</a></li>
                                 <li><a href="/ferramentas/read-all-tipo-lesao">TIPO DE LESÃO</a></li>
-                                <li><a href="/ferramentas/read-all-evolucao-tratamentos">EVOLUÇÃO DO TRATAMENTO</a></li>
-                                <li><a href="/ferramentas/read-all-conclusao-tratamentos">CONCLUSÃO DO TRATAMENTO</a></li>
+                                <li><a href="/ferramentas/read-all-tipo-tratamentos">TIPO DO TRATAMENTO</a></li>
                             </ul>
                         </ul>
                     </nav>

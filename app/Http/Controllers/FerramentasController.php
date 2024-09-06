@@ -134,6 +134,18 @@ class FerramentasController extends Controller
         return redirect()->route('read-all-conclusao-tratamento')->with('success', 'Conclusão de tratamento cadastrada com sucesso!');
     }
 
+    public function createTipoTratamento(Request $request){
+        $validatedData = $request->validate([
+            'tipo_tratamento' => 'required|string|max:255',
+        ]);
+        $new_tratamento = [
+            'tipo_tratamento' => $validatedData['tipo_tratamento'],
+        ];
+        $tratamento = new Tratamento($new_tratamento);
+        $tratamento->save();
+        return redirect()->route('read-all-tipo-tratamento')->with('success', 'Tipo de tratamento cadastrada com sucesso!');
+    }
+
     public function readTratamento(Request $request, $id){
         $tratamento = Tratamento::find($id);
         return $tratamento;
@@ -148,6 +160,12 @@ class FerramentasController extends Controller
     public function readAllConclusaoTratamentos(Request $request){
         $tratamentos = Tratamento::all();
         return view('ferramentas.conclusaoTratamento', compact('tratamentos'));
+
+    }
+
+    public function readAllTipoTratamentos(Request $request){
+        $tratamentos = Tratamento::all();
+        return view('ferramentas.tipoTratamento', compact('tratamentos'));
 
     }
 

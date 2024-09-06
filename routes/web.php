@@ -50,9 +50,11 @@ Route::middleware(['auth'])->group(function () {
     // TRATAMENTOS
     Route::post('/ferramentas/create-evolucao-tratamento', [FerramentasController::class, 'createEvolucaoTratamento'])->name('create-evolucao-tratamento');
     Route::post('/ferramentas/create-conclusao-tratamento', [FerramentasController::class, 'createConclusaoTratamento'])->name('create-conclusao-tratamento');
+    Route::post('/ferramentas/create-tipo-tratamento', [FerramentasController::class, 'createTipoTratamento'])->name('create-tipo-tratamento');
     Route::get('/ferramentas/read-tratamento', [FerramentasController::class, 'readTratamento'])->name('read-tratamento');
     Route::get('/ferramentas/read-all-evolucao-tratamentos', [FerramentasController::class, 'readAllEvolucaoTratamentos'])->name('read-all-evolucao-tratamento');
     Route::get('/ferramentas/read-all-conclusao-tratamentos', [FerramentasController::class, 'readAllConclusaoTratamentos'])->name('read-all-conclusao-tratamento');
+    Route::get('/ferramentas/read-all-tipo-tratamentos', [FerramentasController::class, 'readAllTipoTratamentos'])->name('read-all-tipo-tratamento');
     Route::put('/ferramentas/update-tratamento', [FerramentasController::class, 'updateTratamento'])->name('update-tratamento');
     Route::delete('/ferramentas/delete-tratamento', [FerramentasController::class, 'deleteTratamento'])->name('delete-tratamento');
 
