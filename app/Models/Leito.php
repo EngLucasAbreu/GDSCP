@@ -14,7 +14,7 @@ class Leito extends Model
 
     protected $fillable = [
         'tipo_leito',
-        'id_sala'
+        'id_sala',
     ];
 
     public function sala()
@@ -24,6 +24,6 @@ class Leito extends Model
 
     public function salas()
     {
-        return $this->hasOne(Sala::class, 'id_leito');
+        return $this->hasOne(Sala::class, 'id_sala');
     }
 }

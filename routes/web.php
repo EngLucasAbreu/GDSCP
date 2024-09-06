@@ -50,6 +50,11 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/ferramentas/delete-comorbidade/{id}', [FerramentasController::class, 'deleteComorbidade'])->name('delete-comorbidade');
 
 
+    // PACIENTES
+    Route::get('/pacientes/create', [PacientesController::class, 'create'])->name('pacientes.create');
+    Route::post('/pacientes/store', [PacientesController::class, 'store'])->name('pacientes.store');
+    Route::get('/pacientes/pesquisar', [PacientesController::class, 'pesquisar'])->name('pacientes.pesquisar');
+    Route::get('/pacientes/pesquisar-paciente', [PacientesController::class, 'pesquisarPaciente'])->name('pacientes.pesquisar-paciente');
     // LESÕES
     Route::post('/ferramentas/create-local-lesao', [FerramentasController::class, 'createLocalLesao'])->name('create-local-lesao');
     Route::post('/ferramentas/create-tipo-lesao', [FerramentasController::class, 'createTipoLesao'])->name('create-tipo-lesao');

@@ -2,23 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Paciente;
-use App\Models\Incidente;
-use App\Models\Comorbidade;
-use App\Models\Tratamento;
-use App\Models\Lesao;
 use App\Models\Sala;
 use App\Models\Leito;
+use App\Models\Lesao;
+use App\Models\Paciente;
+use App\Models\Incidente;
+use App\Models\TipoLesao;
+use App\Models\LocalLesao;
+use App\Models\Tratamento;
+use App\Models\Comorbidade;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use App\Models\PacienteIncidenteLeito;
+use App\Services\PacienteIncidenteLeitoService;
 
 class PacientesController extends Controller
 {
 
-    public function __construct()
+    private $pacienteIncidenteLeitoService;
+    public function __construct(PacienteIncidenteLeitoService $pacienteIncidenteLeitoService)
     {
-        //
+        $this->pacienteIncidenteLeitoService = $pacienteIncidenteLeitoService;
     }
 
     public function create()
@@ -71,15 +76,34 @@ class PacientesController extends Controller
                 $comorbidade_id = $comorbidade->id;
             }
 
-            $lesao = Lesao::create([
-                'tipo_lesao' => $request->tipoLesao,
-                'local_lesao' => $request->localLesao,
+            $tipo_lesao = TipoLesao::create([
+                'descricao_lesao' => $request->tipoLesao,
             ]);
+
+            $local_lesao = LocalLesao::create([
+                'regiao_lesao' => $request->localLesao,
+            ]);
+
+            $lesao = Lesao::create([
+                'id_tipo_lesao' => $tipo_lesao->id,
+                'id_local_lesao' => $local_lesao->id,
+            ]);
+
             $tratamento = Tratamento::create([
                 'tipo_tratamento' => $request->tratamento,
             ]);
 
-            Paciente::create([
+            $sala = Sala::create([
+                'nome_sala' => $request->sala,
+            ]);
+
+            $leito = Leito::create([
+                'tipo_leito' => $request->leito,
+                'id_sala' => $sala->id,
+            ]);
+
+
+            $paciente = Paciente::create([
                 'nome' => $request->nome,
                 'data_nascimento' => $request->nascimento,
                 'cpf' => $request->cpf,
@@ -89,12 +113,18 @@ class PacientesController extends Controller
                 'id_comorbidade' => $comorbidade_id,  // Will be null if no comorbidade was provided
             ]);
 
-            Incidente::create([
+            $incidente = Incidente::create([
                 'data_internacao' => $request->internacao,
                 'saida' => $request->evento,
                 'id_lesao' => $lesao->id,
                 'id_tratamento' => $tratamento->id,
                 'descricao' => $request->descricao,
+            ]);
+
+            PacienteIncidenteLeito::create([
+                'id_paciente' => $paciente->id,
+                'id_incidente' => $incidente->id,
+                'id_leito' => $leito->id,
             ]);
 
             DB::commit();
@@ -106,9 +136,20 @@ class PacientesController extends Controller
         }
     }
 
-    public function pesquisar(Request $request)
+    public function pesquisar()
     {
-        $pacientes = DB::table('pacientes')->get();
-        return view('pacientes.pesquisar', ['pacientes' => $pacientes]);
+        $pacientes = [];
+        return view('pacientes.pesquisar', compact('pacientes'));
+    }
+
+    public function pesquisarPaciente(Request $request)
+    {
+        $pacientes = [];
+        $nome = $request->nome;
+        $cpf = $request->cpf;
+        if ($nome !== null || $cpf !== null) {
+            $pacientes = $this->pacienteIncidenteLeitoService->getIncidentesLeitos($nome, $cpf);
+        }
+        return view('pacientes.pesquisar', compact('pacientes'));
     }
 }
