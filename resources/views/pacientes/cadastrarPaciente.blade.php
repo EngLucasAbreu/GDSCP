@@ -91,7 +91,6 @@
                     @foreach ($locais as $local)
                         <option value="{{$local->id}}">{{$local->local_lesao}}</option>
                     @endforeach
-
                 </select>
             </li>
             <li class="col-sm">

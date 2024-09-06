@@ -43,6 +43,7 @@
         <table class="table table-striped">
             <thead>
                 <tr>
+                    <th scope="col">Sala</th>
                     <th scope="col">Leitos</th>
                     <th scope="col"></th>
                     <th scope="col"></th>
@@ -51,6 +52,7 @@
             <tbody>
                 @foreach ($leitos as $leito)
                     <tr>
+                        <td>{{ $leito->id_sala }}</td>
                         <td>{{ $leito->tipo_leito }}</td>
                         <td>
                             <button class="btn btn-secondary">Editar</button>
