@@ -17,6 +17,7 @@ class CreatePacienteIncidenteLeitoTable extends Migration
             $table->foreign('id_incidente')->references('id')->on('incidentes');
             $table->foreign('id_leito')->references('id')->on('leitos');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

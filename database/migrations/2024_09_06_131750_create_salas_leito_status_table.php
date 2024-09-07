@@ -21,6 +21,7 @@ class CreateSalasLeitoStatusTable extends Migration
             $table->foreign('id_sala')->references('id')->on('leitos');
             $table->foreign('id_leito')->references('id')->on('leitos');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

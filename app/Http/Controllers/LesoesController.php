@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Lesao;
 
 class LesoesController extends Controller
 {
     public function create()
     {
-        return view('lesoes.evolucao');
+        return view('lesoes.pesquisar');
     }
 
     public function read()
@@ -21,6 +22,13 @@ class LesoesController extends Controller
         $lesoes = Lesao::all();
 
         return view('lesoes.evolucao', compact('lesoes'));
+    }
+
+    public function readAllPesquisarLesoes(Request $request)
+    {
+        $lesoes = Lesao::all();
+
+        return view('lesoes.pesquisar', compact('lesoes'));
     }
 
     public function update()

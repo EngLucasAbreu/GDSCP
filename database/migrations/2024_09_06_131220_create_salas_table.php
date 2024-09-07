@@ -16,7 +16,6 @@ class CreateSalasTable extends Migration
         Schema::create('salas', function (Blueprint $table) {
             $table->id();
             $table->string('nome_sala');
-
             $table->timestamps();
             $table->softDeletes();
         });

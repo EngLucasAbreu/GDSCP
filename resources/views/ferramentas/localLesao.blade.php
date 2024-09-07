@@ -3,17 +3,21 @@
 @section('title', 'GDSCP - Local da Lesão')
 
 @section('content')
-@include('msg.message')
 <div class="container-cad">
     <h3>LOCAL DA LESÃO</h3>
     <hr>
     <br>
     <form action="{{ route('create-local-lesao') }}" method="POST">
         @csrf
+        @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert" id="success-alert">
+                {{ session('success') }}
+            </div>
+        @endif
         <ul class="row form">
             <li class="col-sm-12">
                 <label for="lesao">Local da lesão</label>
-                <input type="text" id="lesao" name="local_lesao">
+                <input type="text" id="lesao" name="regiao_lesao">
             </li>
         </ul>
         <button type="submit" class="btn btn-secondary">Cadastrar Local da Lesão</button>
@@ -36,8 +40,8 @@
                 @foreach ($lesoes as $local)
                 <tr>
                     <td>
-                        <span id="span-lesao-{{ $local->id }}">{{ $local->local_lesao }}</span>
-                        <input type="text" class="form-control d-none" value="{{ $local->local_lesao }}" id="input-lesao-{{ $local->id }}">
+                        <span id="span-lesao-{{ $local->id }}">{{ $local->regiao_lesao }}</span>
+                        <input type="text" class="form-control d-none" value="{{ $local->regiao_lesao }}" id="input-lesao-{{ $local->id }}">
                     </td>
                     <td>
                         <button class="btn btn-secondary" onclick="editarLesao({{ $local->id }})">Editar</button>
@@ -92,7 +96,7 @@
 
         let nomeInput = document.createElement('input');
         nomeInput.type = 'hidden';
-        nomeInput.name = 'local_lesao';
+        nomeInput.name = 'regiao_lesao';
         nomeInput.value = novoNome;
 
         form.appendChild(csrfInput);

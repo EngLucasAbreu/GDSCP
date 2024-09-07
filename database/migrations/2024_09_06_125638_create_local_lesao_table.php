@@ -17,6 +17,7 @@ class CreateLocalLesaoTable extends Migration
             $table->id();
             $table->string('regiao_lesao');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

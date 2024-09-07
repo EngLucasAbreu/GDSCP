@@ -3,17 +3,21 @@
 @section('title', 'GDSCP - Tipo de Lesão')
 
 @section('content')
-@include('msg.message')
 <div class="container-cad">
     <h3>TIPO DE LESÃO</h3>
     <hr>
     <br>
     <form action="{{ route('create-tipo-lesao')}}" method="POST">
         @csrf
+        @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert" id="success-alert">
+                {{ session('success') }}
+            </div>
+        @endif
         <ul class="row form">
             <li class="col-sm-12">
                 <label for="tipolesao">Tipo de Lesão</label>
-                <input type="text" id="tipolesao" name="tipo_lesao">
+                <input type="text" id="tipolesao" name="descricao_lesao">
             </li>
         </ul>
         <button type="submit" class="btn btn-secondary">Cadastrar Tipo de Lesão</button>
@@ -36,8 +40,8 @@
                 @foreach ($lesoes as $tipo)
                 <tr>
                     <td>
-                        <span id="span-lesao-{{ $tipo->id }}">{{ $tipo->tipo_lesao }}</span>
-                        <input type="text" class="form-control d-none" value="{{ $tipo->tipo_lesao }}" id="input-lesao-{{ $tipo->id }}">
+                        <span id="span-lesao-{{ $tipo->id }}">{{ $tipo->descricao_lesao }}</span>
+                        <input type="text" class="form-control d-none" value="{{ $tipo->descricao_lesao }}" id="input-lesao-{{ $tipo->id }}">
                     </td>
                     <td>
                         <button class="btn btn-secondary" onclick="editarLesao({{ $tipo->id }})">Editar</button>
@@ -92,7 +96,7 @@
 
         let nomeInput = document.createElement('input');
         nomeInput.type = 'hidden';
-        nomeInput.name = 'tipo_lesao';
+        nomeInput.name = 'descricao_lesao';
         nomeInput.value = novoNome;
 
         form.appendChild(csrfInput);

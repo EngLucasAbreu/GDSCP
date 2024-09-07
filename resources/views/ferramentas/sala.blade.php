@@ -3,7 +3,6 @@
 @section('title', 'GDSCP - Sala')
 
 @section('content')
-@include('msg.message')
 <div class="container-cad">
     <h3>SALA</h3>
     <hr>
@@ -13,7 +12,6 @@
         @if (session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert" id="success-alert">
                 {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
         <label for="sala" class="ml-2">Cadastrar nova sala</label>

@@ -33,8 +33,8 @@ class PacientesController extends Controller
         $comorbidades = Comorbidade::all();
         $tratamentos = Tratamento::all();
         $lesoes = Lesao::all();
-        $locais = Lesao::where('local_lesao', '!=', '')->get();
-        $tipos = Lesao::where('tipo_lesao', '!=', '')->whereNotNull('tipo_lesao')->get();
+        $locais = LocalLesao::where('regiao_lesao', '!=', '')->get();
+        $tipos = TipoLesao::where('descricao_lesao', '!=', '')->get();
         return view('pacientes.cadastrarPaciente', [
             'salas' => $salas,
             'leitos' => $leitos,
@@ -77,11 +77,11 @@ class PacientesController extends Controller
             }
 
             $tipo_lesao = TipoLesao::create([
-                'descricao_lesao' => $request->tipoLesao,
+                'descricao_lesao' => $request->tipo_lesao, // Corrigido para pegar a descrição
             ]);
 
             $local_lesao = LocalLesao::create([
-                'regiao_lesao' => $request->localLesao,
+                'regiao_lesao' => $request->local_lesao, // Corrigido para pegar a região da lesão
             ]);
 
             $lesao = Lesao::create([
@@ -90,7 +90,7 @@ class PacientesController extends Controller
             ]);
 
             $tratamento = Tratamento::create([
-                'tipo_tratamento' => $request->tratamento,
+                'tipo_tratamento' => $request->tipo_tratamento, // Certifique-se de que está capturando o valor correto
             ]);
 
             $sala = Sala::create([
@@ -110,7 +110,7 @@ class PacientesController extends Controller
                 'cns' => $request->cns,
                 'sexo' => $request->sexo,
                 'evolucao' => true,
-                'id_comorbidade' => $comorbidade_id,  // Will be null if no comorbidade was provided
+                'id_comorbidade' => $request->id_comorbidade, // O valor correto deve ser capturado aqui
             ]);
 
             $incidente = Incidente::create([

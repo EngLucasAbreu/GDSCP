@@ -8,6 +8,8 @@ use App\Models\Sala;
 use App\Models\Tratamento;
 use App\Models\Lesao;
 use App\Models\Comorbidade;
+use App\Models\LocalLesao;
+use App\Models\TipoLesao;
 use resources\views;
 
 
@@ -39,7 +41,7 @@ class FerramentasController extends Controller
     }
 
     public function readAllSalas(Request $request){
-        $salas = Sala::all();
+        $salas = Sala::orderBy('nome_sala', 'asc')->get();
         return view('ferramentas.sala', compact('salas'));
     }
 
@@ -55,7 +57,7 @@ class FerramentasController extends Controller
     }
 
     public function deleteSala(Request $request, $nome_sala){
-        $sala = Sala::where('nome_sala', $nome_sala)->first(); // Busca a sala pelo nome
+        $sala = Sala::where('nome_sala', $nome_sala)->first();
 
         if ($sala) {
             $sala->delete();
@@ -107,7 +109,7 @@ class FerramentasController extends Controller
     }
 
     public function deleteLeito(Request $request, $id){
-        $leito = Leito::where('id', $id)->first(); // Busca o leito pelo id
+        $leito = Leito::where('id', $id)->first();
 
         if ($leito) {
             $leito->delete();
@@ -156,7 +158,7 @@ class FerramentasController extends Controller
     }
 
     public function deleteComorbidade($id){
-        $comorbidade = Comorbidade::where('id', $id)->first(); // Busca a comorbidade pelo id
+        $comorbidade = Comorbidade::where('id', $id)->first();
 
         if ($comorbidade) {
             $comorbidade->delete();
@@ -170,26 +172,24 @@ class FerramentasController extends Controller
     //LESOES
     public function createLocalLesao(Request $request){
         $validatedData = $request->validate([
-            'local_lesao' => 'required|string|max:255',
+            'regiao_lesao' => 'required|string|max:255',
         ]);
         $new_lesao = [
-            'local_lesao' => $validatedData['local_lesao'],
-            'tipo_lesao' => '',
+            'regiao_lesao' => $validatedData['regiao_lesao'],
         ];
-        $lesao = new Lesao($new_lesao);
+        $lesao = new LocalLesao($new_lesao);
         $lesao->save();
         return redirect()->route('read-all-local-lesao')->with('success', 'Local da lesão cadastrada com sucesso!');
     }
 
     public function createTipoLesao(Request $request){
         $validatedData = $request->validate([
-            'tipo_lesao' => 'required|string|max:255',
+            'descricao_lesao' => 'required|string|max:255',
         ]);
         $new_lesao = [
-            'local_lesao' => '',
-            'tipo_lesao' => $validatedData['tipo_lesao'],
+            'descricao_lesao' => $validatedData['descricao_lesao'],
         ];
-        $lesao = new Lesao($new_lesao);
+        $lesao = new TipoLesao($new_lesao);
         $lesao->save();
         return redirect()->route('read-all-tipo-lesao')->with('success', 'Local da lesão cadastrada com sucesso!');
     }
@@ -200,22 +200,21 @@ class FerramentasController extends Controller
     }
 
     public function readAllLocalLesoes(Request $request){
-        $lesoes = Lesao::where('local_lesao', '!=', '')->get();
+        $lesoes = LocalLesao::where('regiao_lesao', '!=', '')->get();
         return view('ferramentas.localLesao', compact('lesoes'));
     }
 
     public function readAllTipoLesoes(Request $request){
-        $lesoes = Lesao::where('tipo_lesao', '!=', '')->whereNotNull('tipo_lesao')->get();
+        $lesoes = TipoLesao::where('descricao_lesao', '!=', '')->whereNotNull('descricao_lesao')->get();
         return view('ferramentas.tipoLesao', compact('lesoes'));
     }
 
     public function updateLocalLesao(Request $request, $id){
         $validatedData = $request->validate([
-            'local_lesao' => 'required|string|max:255',
+            'regiao_lesao' => 'required|string|max:255',
         ]);
-        $lesao = Lesao::find($id);
-        $lesao->local_lesao = $validatedData['local_lesao'];
-        $lesao->tipo_lesao = '';
+        $lesao = LocalLesao::find($id);
+        $lesao->regiao_lesao = $validatedData['regiao_lesao'];
         $lesao->save();
 
         return redirect()->route('read-all-local-lesao')->with('success', 'Lesão atualizada com sucesso!');
@@ -223,18 +222,17 @@ class FerramentasController extends Controller
 
     public function updateTipoLesao(Request $request, $id){
         $validatedData = $request->validate([
-            'tipo_lesao' => 'required|string|max:255',
+            'descricao_lesao' => 'required|string|max:255',
         ]);
-        $lesao = Lesao::find($id);
-        $lesao->tipo_lesao = $validatedData['tipo_lesao'];
-        $lesao->local_lesao = '';
+        $lesao = TipoLesao::find($id);
+        $lesao->descricao_lesao = $validatedData['descricao_lesao'];
         $lesao->save();
 
         return redirect()->route('read-all-tipo-lesao')->with('success', 'Lesão atualizada com sucesso!');
     }
 
     public function deleteLocalLesao(Request $request, $id){
-        $local_lesao = Lesao::where('id', $id)->first(); // Busca a lesao pelo id
+        $local_lesao = LocalLesao::where('id', $id)->first();
 
         if ($local_lesao) {
             $local_lesao->delete();
@@ -245,7 +243,7 @@ class FerramentasController extends Controller
     }
 
     public function deleteTipoLesao(Request $request, $id){
-        $tipo_lesao = Lesao::where('id', $id)->first(); // Busca a lesao pelo id
+        $tipo_lesao = TipoLesao::where('id', $id)->first();
 
         if ($tipo_lesao) {
             $tipo_lesao->delete();
@@ -274,7 +272,6 @@ class FerramentasController extends Controller
         return $tratamento;
     }
 
-
     public function readAllTipoTratamentos(Request $request){
         $tratamentos = Tratamento::all();
         return view('ferramentas.tipoTratamento', compact('tratamentos'));
@@ -293,7 +290,7 @@ class FerramentasController extends Controller
     }
 
     public function deleteTratamento(Request $request, $id){
-        $tratamento = Tratamento::where('id', $id)->first(); // Busca o tratamento pelo id
+        $tratamento = Tratamento::where('id', $id)->first();
 
         if ($tratamento) {
             $tratamento->delete();

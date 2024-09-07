@@ -3,13 +3,17 @@
 @section('title', 'GDSCP - Tipo do tratamento')
 
 @section('content')
-@include('msg.message')
 <div class="container-cad">
     <h3>TIPO DO TRATAMENTO</h3>
     <hr>
     <br>
     <form action="{{ route('create-tipo-tratamento') }}" method="POST">
         @csrf
+        @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert" id="success-alert">
+                {{ session('success') }}
+            </div>
+        @endif
         <ul class="row form">
             <li class="col-sm-12">
                 <label for="tipoTratamento">Tipo evolução do tratamento</label>

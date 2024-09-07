@@ -17,6 +17,7 @@ class CreateTipoLesaoTable extends Migration
             $table->id();
             $table->string('descricao_lesao');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -122,7 +122,7 @@
                             </li>
                             <ul class="sub-nav">
                                 <li><a href="/pacientes/create">CADASTRAR</a></li>
-                                <li><a href="/pacientes/pesquisar">PESQUISAR</a></li>
+                                <li><a href="/pacientes/pesquisar-paciente">PESQUISAR</a></li>
                             </ul>
                             <li class="menu-item">
                                 <ion-icon name="bandage-outline"></ion-icon>
@@ -130,9 +130,8 @@
                                 <ion-icon name="chevron-down-outline" class="chevron-toggle"></ion-icon>
                             </li>
                             <ul class="sub-nav">
-                                <li>REGISTRAR INCIDENTE</li>
                                 <li><a href="/lesoes/read-all-lesoes">EVOLUÇÃO</a></li>
-                                <li><a href="/pesquisar-lesoes">PESQUISAR</a></li>
+                                <li><a href="/lesoes/read-all-pesquisar-lesoes">PESQUISAR</a></li>
                             </ul>
                             <li class="menu-item">
                                 <ion-icon name="hammer-outline"></ion-icon>

@@ -20,6 +20,7 @@ class CreateLesaoTable extends Migration
             $table->foreign('id_tipo_lesao')->references('id')->on('tipo_lesoes');
             $table->foreign('id_local_lesao')->references('id')->on('local_lesoes');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
