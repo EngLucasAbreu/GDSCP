@@ -77,36 +77,6 @@ class PacientController extends Controller
         return view('regEvolucao');
     }
 
-    public function localLesao()
-    {
-        return view('ferramentas.localLesao');
-    }
-
-    public function sala()
-    {
-        return view('ferramentas.sala');
-    }
-
-    public function leito()
-    {
-        return view('ferramentas.leito');
-    }
-
-    public function tipoLesao()
-    {
-        return view('ferramentas.tipoLesao');
-    }
-
-    public function tipoTratamento()
-    {
-        return view('ferramentas.tipoTratamento');
-    }
-
-    public function comorbidade()
-    {
-        return view('ferramentas.comorbidade');
-    }
-
     public function pesquisarPaciente()
     {
         return view('pacientes.pesquisar');
