@@ -3,7 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Lesao;
+use App\Models\Sala;
+use App\Models\Leito;
+use App\Models\TipoLesao;
+use App\Models\LocalLesao;
+use App\Models\Tratamento;
+use App\Models\Comorbidade;
+use App\Models\PacienteIncidenteLeito;
 
 class LesoesController extends Controller
 {
@@ -12,16 +18,25 @@ class LesoesController extends Controller
         return view('lesoes.pesquisar');
     }
 
-    public function read()
+    public function readLesao($paciente_id)
     {
-        return view('lesoes.pesquisarLesao');
+        $comorbidades = Comorbidade::all();
+        $salas = Sala::all();
+        $leitos = Leito::all();
+        $locais = LocalLesao::all();
+        $tipos = TipoLesao::all();
+        $tratamentos = Tratamento::all();
+
+
+        $evolucao = PacienteIncidenteLeito::find($paciente_id);
+        return view('lesoes.regIncidente', compact('evolucao', 'comorbidades', 'salas', 'leitos', 'locais', 'tipos', 'tratamentos'));
     }
 
     public function readAllLesoes(Request $request)
     {
-        $lesoes = Lesao::all();
+        $evolucoes = PacienteIncidenteLeito::all();
 
-        return view('lesoes.evolucao', compact('lesoes'));
+        return view('lesoes.evolucao', compact('evolucoes'));
     }
 
     public function readAllPesquisarLesoes(Request $request)

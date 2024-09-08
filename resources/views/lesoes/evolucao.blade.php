@@ -22,7 +22,9 @@
                 <input type="date" id="nascimento" name="nascimento">
             </li>
         </ul>
-        <button type="submit">PESQUISAR</button>
+        <div class="text-right">
+            <button type="submit" class="btn btn-primary">PESQUISAR</button>
+        </div>
     </form>
     <div>
         <br>
@@ -42,72 +44,30 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Lucas</td>
-                    <td>01/01/2021</td>
-                    <td>UTI</td>
-                    <td>1</td>
-                    <td>
-                        <a href="/visualizar">
-                            <button type="button" class="btn btn-secondary">
-                                <ion-icon name="eye-outline"></ion-icon>
-                                Visualizar
-                            </button>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="/evoluir">
-                            <button type="button" class="btn btn-primary">
-                            <ion-icon name="create-outline"></ion-icon>
-                                Evoluir
-                            </button>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>João</td>
-                    <td>01/01/2021</td>
-                    <td>UTI</td>
-                    <td>2</td>
-                    <td>
-                        <a href="/visualizar">
-                            <button type="button" class="btn btn-secondary">
-                                <ion-icon name="eye-outline"></ion-icon>
-                                Visualizar
-                            </button>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="/evoluir">
-                            <button type="button" class="btn btn-primary">
-                            <ion-icon name="create-outline"></ion-icon>
-                                Evoluir
-                            </button>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Maria</td>
-                    <td>01/01/2021</td>
-                    <td>UTI</td>
-                    <td>3</td>
-                    <td>
-                        <a href="/visualizar">
-                            <button type="button" class="btn btn-secondary">
-                                <ion-icon name="eye-outline"></ion-icon>
-                                Visualizar
-                            </button>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="/evoluir">
-                            <button type="button" class="btn btn-primary">
-                            <ion-icon name="create-outline"></ion-icon>
-                                Evoluir
-                            </button>
-                        </a>
-                    </td>
-                </tr>
+                @foreach ($evolucoes as $evolucao)
+                    <tr>
+                        <td>{{$evolucao->paciente->nome}}</td>
+                        <td>{{$evolucao->incidente->data_internacao}}</td>
+                        <td>{{$evolucao->leito->sala->nome_sala}}</td>
+                        <td>{{$evolucao->leito->tipo_leito}}</td>
+                        <td>
+                            <a href="{{ route('read-evolucao-lesao', ['paciente_id' => $evolucao->paciente->id]) }}">
+                                <button type="button" class="btn btn-secondary">
+                                    <ion-icon name="eye-outline"></ion-icon>
+                                    Visualizar
+                                </button>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{ route('read-evolucao-lesao', ['paciente_id' => $evolucao->paciente->id]) }}">
+                                <button type="button" class="btn btn-primary">
+                                <ion-icon name="create-outline"></ion-icon>
+                                    Evoluir
+                                </button>
+                            </a>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

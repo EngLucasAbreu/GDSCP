@@ -29,6 +29,6 @@ class PacienteIncidenteLeito extends Model
 
     public function leito()
     {
-        return $this->belongsTo(Sala::class, 'id_leito');
+        return $this->belongsTo(Leito::class, 'id_leito');
     }
 }

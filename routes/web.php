@@ -27,7 +27,7 @@ Route::middleware(['auth'])->group(function () {
 
     // EVOLUÇÂO DE LESÕES
     Route::post('/lesoes/create-lesao', [LesoesController::class, 'create'])->name('create-evolucao-lesao');
-    Route::get('/lesoes/read-lesao', [LesoesController::class, 'readLesao'])->name('read-evolucao-lesao');
+    Route::get('/lesoes/read-lesao/{paciente_id}', [LesoesController::class, 'readLesao'])->name('read-evolucao-lesao');
     Route::get('/lesoes/read-all-lesoes', [LesoesController::class, 'readAllLesoes'])->name('read-all-evolucao-lesao');
     Route::get('/lesoes/read-all-pesquisar-lesoes', [LesoesController::class, 'readAllPesquisarLesoes'])->name('read-all-pesquisar-lesao');
     Route::put('/lesoes/update-lesao', [LesoesController::class, 'updateLesao'])->name('update-evolucao-lesao');

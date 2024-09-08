@@ -14,7 +14,7 @@
             <li class="col-sm-8">
                 <label for="nome">Nome</label>
                 <input type="text" id="nome" name="nome" required>
-            </li>
+            </li> 
             <li class="col-sm-4">
                 <label for="nascimento">Data de Nascimento</label>
                 <input type="date" id="nascimento" name="nascimento" required>
