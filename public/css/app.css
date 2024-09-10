@@ -778,9 +778,6 @@ select {
 .mb-4 {
   margin-bottom: 1rem;
 }
-.mb-auto {
-  margin-bottom: auto;
-}
 .me-2 {
   margin-inline-end: 0.5rem;
 }
@@ -888,6 +885,9 @@ select {
 }
 .flex-1 {
   flex: 1 1 0%;
+}
+.flex-grow {
+  flex-grow: 1;
 }
 .origin-top {
   transform-origin: top;
@@ -1018,6 +1018,9 @@ select {
 .p-2 {
   padding: 0.5rem;
 }
+.p-3 {
+  padding: 0.75rem;
+}
 .p-6 {
   padding: 1.5rem;
 }
@@ -1048,10 +1051,6 @@ select {
 .py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
-}
-.py-6 {
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
 }
 .pl-3 {
   padding-left: 0.75rem;
@@ -1113,6 +1112,10 @@ select {
 }
 .tracking-widest {
   letter-spacing: 0.1em;
+}
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 .text-gray-200 {
   --tw-text-opacity: 1;

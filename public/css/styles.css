@@ -6,15 +6,9 @@ body, html {
 }
 
 .bg-custom-sidebar {
-    background-color: #e30505 !important; 
+    background-color: #e30505 !important;
     color: #fff !important;
     max-width: 300px !important;
-}
-
-.wrapper {
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
 }
 
 .main-container {
@@ -71,7 +65,6 @@ body, html {
 
 .footer {
     background-color: #f5f5f5;
-    padding: 1em 1em;
 }
 
 .sidebar {
@@ -110,6 +103,7 @@ body, html {
 .sidebar-nav ul {
     list-style: none;
     padding: 0;
+    margin-top: 10px;
 }
 
 .sidebar-nav ul li {
