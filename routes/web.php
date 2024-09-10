@@ -24,7 +24,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/pacientes/store', [PacientesController::class, 'store'])->name('pacientes.store');
     Route::get('/pacientes/pesquisar', [PacientesController::class, 'pesquisar'])->name('pacientes.pesquisar');
     Route::get('/pacientes/pesquisar-paciente', [PacientesController::class, 'pesquisarPaciente'])->name('pacientes.pesquisar-paciente');
-    Route::get('/get-leitos/{id_sala}', [LeitoController::class, 'getLeitosBySala']);
+    Route::get('/get-leitos/{id_sala}', [PacientesController::class, 'getLeitosBySala']);
 
 
     // EVOLUÇÂO DE LESÕES

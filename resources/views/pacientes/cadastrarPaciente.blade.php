@@ -75,11 +75,8 @@
             </li>
             <li class="col-sm-4">
                 <label for="leito">Leito</label>
-                <select id="leito" name="leito" required>
-                    <option value="" selected>Selecione uma opção</option>
-                    @foreach($leitos as $leito)
-                        <option value="{{$leito->id}}">{{$leito->tipo_leito}}</option>
-                    @endforeach
+                <select id="leito" name="leito" required disabled>
+                    <option value="" selected>Selecione uma sala primeiro</option>
                 </select>
             </li>
 
@@ -125,35 +122,30 @@
     </form>
 </div>
 <!-- Link para o jQuery completo com suporte a AJAX -->
-{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 
 <script type="text/javascript">
     $(document).ready(function() {
-        // Desabilitar o campo de leitos inicialmente
-        $('#leito').prop('disabled', true);
-
-        // Captura quando a sala é selecionada
         $('#sala').on('change', function() {
             var salaId = $(this).val(); // Pega o ID da sala selecionada
 
-            // Limpa os leitos previamente selecionados
+            // Limpa e desabilita o campo de leitos antes de fazer a requisição
             $('#leito').empty().append('<option value="" selected>Selecione uma opção</option>');
-            $('#leito').prop('disabled', true); // Desabilita enquanto faz a requisição
+            $('#leito').prop('disabled', true);
 
             if (salaId) {
-                // Faz a requisição AJAX para buscar os leitos da sala selecionada
+                // Faz a requisição AJAX
                 $.ajax({
-                    url: '/get-leitos/' + salaId,  // Chama a rota criada
+                    url: '/get-leitos/' + salaId,  // URL da requisição com o ID da sala
                     type: 'GET',
                     dataType: 'json',
                     success: function(data) {
-                    console.log(data);
-                        // Verifica se retornou algum leito
+                        // Verifica se recebeu dados
                         if (data.length > 0) {
                             $('#leito').prop('disabled', false); // Habilita o campo de leitos
 
-                            // Popula o campo com os leitos retornados
+                            // Popula o campo de seleção com os leitos recebidos
                             $.each(data, function(key, leito) {
                                 $('#leito').append('<option value="'+ leito.id +'">'+ leito.tipo_leito +'</option>');
                             });
@@ -161,14 +153,17 @@
                             $('#leito').append('<option value="" selected>Nenhum leito disponível</option>');
                         }
                     },
-                    error: function() {
-                        alert('Erro ao buscar leitos. Tente novamente.');
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.log("Erro na requisição AJAX: " + textStatus, errorThrown);
+                        console.log(jqXHR.responseText); // Para exibir a mensagem de erro vinda do servidor
+                        alert('Erro ao buscar leitos. Tente novamente mais tarde.');
                     }
                 });
             }
         });
     });
-</script> --}}
+
+</script>
 
 
 @endsection

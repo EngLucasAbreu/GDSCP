@@ -153,13 +153,23 @@ class PacientesController extends Controller
         return view('pacientes.pesquisar', compact('pacientes'));
     }
 
-    public function getLeitosBySala(Request $request)
+    public function getLeitosBySala(Request $request, $id_sala)
     {
-        // Valide se o ID da sala foi enviado
-        $leitos = Leito::where('id_sala', $request->id_sala)->get();  // Assumindo que sua tabela Leito tem a coluna id_sala
-        return $leitos;
+        try {
+            // Buscando leitos associados à sala
+            $leitos = Leito::where('id_sala', $id_sala)->get();
+            // Verifica se encontrou leitos
+            if ($leitos->isEmpty()) {
+                return response()->json(['message' => 'Nenhum leito encontrado'], 404);
+            }
 
-        return response()->json($leitos);  // Retorne os leitos como JSON
+            // Retorna os leitos como JSON
+            return response()->json($leitos);
+        } catch (\Exception $e) {
+            // Log do erro para depuração
+            Log::error('Erro ao buscar leitos: ' . $e->getMessage());
+            return response()->json(['error' => 'Erro no servidor: ' . $e->getMessage()], 500);
+        }
     }
 
 }
