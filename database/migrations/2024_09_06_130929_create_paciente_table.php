@@ -12,7 +12,7 @@ class CreatePacienteTable extends Migration
             $table->id();
             $table->string('nome');
             $table->string('cpf');
-            $table->integer('cns');
+            $table->bigInteger('cns');
             $table->date('data_nascimento');
             $table->enum('sexo', ['M', 'F', 'O', 'N']);
             $table->boolean('evolucao');

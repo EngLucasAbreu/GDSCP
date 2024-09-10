@@ -14,7 +14,7 @@
             <li class="col-sm-8">
                 <label for="nome">Nome</label>
                 <input type="text" id="nome" name="nome" required>
-            </li> 
+            </li>
             <li class="col-sm-4">
                 <label for="nascimento">Data de Nascimento</label>
                 <input type="date" id="nascimento" name="nascimento" required>
@@ -66,7 +66,7 @@
             </li>
             <li class="col-sm-4">
                 <label for="sala">Sala</label>
-                <select type="text" id="sala" name="sala" required>
+                <select id="sala" name="sala" required>
                     <option value="" selected>Selecione uma opção</option>
                     @foreach($salas as $sala)
                         <option value="{{$sala->id}}">{{$sala->nome_sala}}</option>
@@ -75,13 +75,11 @@
             </li>
             <li class="col-sm-4">
                 <label for="leito">Leito</label>
-                <select type="text" id="leito" name="leito" required>
-                    <option value="" selected>Selecione uma opção</option>
-                    @foreach($leitos as $leito)
-                        <option value="{{$leito->id}}">{{$leito->tipo_leito}}</option>
-                    @endforeach
+                <select id="leito" name="leito" required disabled>
+                    <option value="" selected>Selecione uma sala primeiro</option>
                 </select>
             </li>
+
         </ul>
         <ul class="row form">
             <li class="col-sm">
@@ -123,4 +121,51 @@
         </div>
     </form>
 </div>
+<!-- Link para o jQuery completo com suporte a AJAX -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        // Desabilitar o campo de leitos inicialmente
+        $('#leito').prop('disabled', true);
+
+        // Captura quando a sala é selecionada
+        $('#sala').on('change', function() {
+            var salaId = $(this).val(); // Pega o ID da sala selecionada
+
+            // Limpa os leitos previamente selecionados
+            $('#leito').empty().append('<option value="" selected>Selecione uma opção</option>');
+            $('#leito').prop('disabled', true); // Desabilita enquanto faz a requisição
+
+            if (salaId) {
+                // Faz a requisição AJAX para buscar os leitos da sala selecionada
+                $.ajax({
+                    url: '/get-leitos/' + salaId,  // Chama a rota criada
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                    console.log(data);
+                        // Verifica se retornou algum leito
+                        if (data.length > 0) {
+                            $('#leito').prop('disabled', false); // Habilita o campo de leitos
+
+                            // Popula o campo com os leitos retornados
+                            $.each(data, function(key, leito) {
+                                $('#leito').append('<option value="'+ leito.id +'">'+ leito.tipo_leito +'</option>');
+                            });
+                        } else {
+                            $('#leito').append('<option value="" selected>Nenhum leito disponível</option>');
+                        }
+                    },
+                    error: function() {
+                        alert('Erro ao buscar leitos. Tente novamente.');
+                    }
+                });
+            }
+        });
+    });
+</script>
+
+
 @endsection

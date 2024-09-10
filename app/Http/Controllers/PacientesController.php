@@ -152,4 +152,14 @@ class PacientesController extends Controller
         }
         return view('pacientes.pesquisar', compact('pacientes'));
     }
+
+    public function getLeitosBySala(Request $request)
+    {
+        // Valide se o ID da sala foi enviado
+        $leitos = Leito::where('id_sala', $request->id_sala)->get();  // Assumindo que sua tabela Leito tem a coluna id_sala
+        return $leitos;
+
+        return response()->json($leitos);  // Retorne os leitos como JSON
+    }
+
 }
