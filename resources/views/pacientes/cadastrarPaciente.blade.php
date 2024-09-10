@@ -75,8 +75,11 @@
             </li>
             <li class="col-sm-4">
                 <label for="leito">Leito</label>
-                <select id="leito" name="leito" required disabled>
-                    <option value="" selected>Selecione uma sala primeiro</option>
+                <select id="leito" name="leito" required>
+                    <option value="" selected>Selecione uma opção</option>
+                    @foreach($leitos as $leito)
+                        <option value="{{$leito->id}}">{{$leito->tipo_leito}}</option>
+                    @endforeach
                 </select>
             </li>
 
@@ -122,7 +125,7 @@
     </form>
 </div>
 <!-- Link para o jQuery completo com suporte a AJAX -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 
 <script type="text/javascript">
@@ -165,7 +168,7 @@
             }
         });
     });
-</script>
+</script> --}}
 
 
 @endsection
