@@ -41,9 +41,10 @@ class LesoesController extends Controller
 
     public function readAllPesquisarLesoes(Request $request)
     {
-        $lesoes = Lesao::all();
 
-        return view('lesoes.pesquisar', compact('lesoes'));
+        // $evolucao = PacienteIncidenteLeito::all();
+
+        return view('lesoes.AltaPaciente');
     }
 
     public function update()

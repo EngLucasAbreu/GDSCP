@@ -53,7 +53,7 @@
                         <td>
                             <a href="{{ route('read-evolucao-lesao', ['paciente_id' => $evolucao->paciente->id]) }}">
                                 <button type="button" class="btn btn-secondary">
-                                    <ion-icon name="eye-outline"></ion-icon>
+                                    <ion-icon name="eye-outline" class="mr-2"></ion-icon>
                                     Visualizar
                                 </button>
                             </a>
@@ -61,7 +61,7 @@
                         <td>
                             <a href="{{ route('read-evolucao-lesao', ['paciente_id' => $evolucao->paciente->id]) }}">
                                 <button type="button" class="btn btn-primary">
-                                <ion-icon name="create-outline"></ion-icon>
+                                <ion-icon name="create-outline" class="mr-2"></ion-icon>
                                     Evoluir
                                 </button>
                             </a>

@@ -48,7 +48,7 @@
         </ul>
         <br>
         <br>
-        <h3>REGISTRAR NOVO INCIDENTE</h3>
+        <h3>VISUALIZAR INCIDENTE</h3>
         <hr>
         <br>
         <ul class="row form">
@@ -106,7 +106,7 @@
             </li>
         </ul>
         <div class="text-right">
-            <button type="submit" class="btn btn-primary">Registrar novo incidente</button>
+            <button type="submit" class="btn btn-primary">Voltar</button>
         </div>
     </form>
 </div>
