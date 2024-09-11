@@ -13,8 +13,7 @@ class Incidente extends Model
     protected $table = 'incidentes';
 
     protected $fillable = [
-        'data_internacao',
-        'saida',
+        'data_evento',
         'id_lesao',
         'id_tratamento',
         'descricao',

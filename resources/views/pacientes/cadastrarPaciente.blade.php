@@ -42,8 +42,8 @@
         <ul class="row form">
             <li class="col-sm-4">
                 <label for="comorbidade">Comorbidade</label>
-                <select id="comorbidade" name="id_comorbidade" required> <!-- O nome do campo deve ser 'id_comorbidade' -->
-                    <option value="" selected>Selecione uma opção</option>
+                <select id="comorbidade" name="id_comorbidade"> <!-- O nome do campo deve ser 'id_comorbidade' -->
+                    <option value='0' selected>Selecione uma opção</option>
                     @foreach ($comorbidades as $comorbidade)
                         <option value="{{$comorbidade->id}}">{{$comorbidade->tipo_comorbidade}}</option> <!-- O valor deve ser o ID da comorbidade -->
                     @endforeach

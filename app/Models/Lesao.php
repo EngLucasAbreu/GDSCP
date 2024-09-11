@@ -26,11 +26,11 @@ class Lesao extends Model
 
     public function tipoLesao()
     {
-        return $this->belongsTo(TipoLesao::class, 'id');
+        return $this->belongsTo(TipoLesao::class, 'id_tipo_lesao');
     }
 
     public function localLesao()
     {
-        return $this->belongsTo(LocalLesao::class, 'id');
+        return $this->belongsTo(LocalLesao::class, 'id_local_lesao');
     }
 }

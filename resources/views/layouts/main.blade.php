@@ -142,7 +142,6 @@
                             </li>
                             <ul class="sub-nav">
                                 <li><a href="/lesoes/read-all-lesoes">EVOLUÇÃO</a></li>
-                                <li><a href="/lesoes/read-all-pesquisar-lesoes">PESQUISAR</a></li>
                             </ul>
                             <li class="menu-item">
                                 <ion-icon name="hammer-outline"></ion-icon>

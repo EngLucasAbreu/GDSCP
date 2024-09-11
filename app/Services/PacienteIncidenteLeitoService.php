@@ -18,11 +18,14 @@ class PacienteIncidenteLeitoService
             ->join('leitos as l', 'pil.id_leito', '=', 'l.id')
             ->join('salas as s', 'l.id_sala', '=', 's.id')
             ->select(
+                'p.id',
                 'p.nome',
+                DB::raw('MAX(i.data_internacao) as data_internacao'),
                 'i.data_internacao',
                 's.nome_sala',
                 'l.tipo_leito'
-            );
+            )
+            ->groupBy('p.id', 'p.nome', 'i.data_internacao', 's.nome_sala', 'l.tipo_leito');
 
         // Verifica se $nome não está vazio
         if ($nome !== null && $nome !== '') {

@@ -10,8 +10,7 @@ class CreateIncidenteTable extends Migration
     {
         Schema::create('incidentes', function (Blueprint $table) {
             $table->id();
-            $table->date('data_internacao');
-            $table->date('saida');
+            $table->date('data_evento');
             $table->unsignedBigInteger('id_lesao');
             $table->unsignedBigInteger('id_tratamento');
             $table->string('descricao');

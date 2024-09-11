@@ -15,6 +15,7 @@ class PacienteIncidenteLeito extends Model
         'id_paciente',
         'id_incidente',
         'id_leito',
+        'id_status_paciente',
     ];
 
     public function paciente()
@@ -30,5 +31,10 @@ class PacienteIncidenteLeito extends Model
     public function leito()
     {
         return $this->belongsTo(Leito::class, 'id_leito');
+    }
+
+    public function statusPaciente()
+    {
+        return $this->belongsTo(StatusPaciente::class, 'id_status_paciente');
     }
 }

@@ -13,9 +13,11 @@ class CreatePacienteIncidenteLeitoTable extends Migration
             $table->unsignedBigInteger('id_paciente');
             $table->unsignedBigInteger('id_incidente');
             $table->unsignedBigInteger('id_leito');
+            $table->unsignedBigInteger('id_status_paciente');
             $table->foreign('id_paciente')->references('id')->on('pacientes');
             $table->foreign('id_incidente')->references('id')->on('incidentes');
             $table->foreign('id_leito')->references('id')->on('leitos');
+            $table->foreign('id_status_paciente')->references('id')->on('status_paciente');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -26,4 +28,3 @@ class CreatePacienteIncidenteLeitoTable extends Migration
         Schema::dropIfExists('paciente_incidente_leito');
     }
 }
-

@@ -28,10 +28,14 @@ Route::middleware(['auth'])->group(function () {
 
 
     // EVOLUÇÂO DE LESÕES
-    Route::post('/lesoes/create-lesao', [LesoesController::class, 'create'])->name('create-evolucao-lesao');
+    Route::post('/lesoes/create-incidente', [LesoesController::class, 'create'])->name('create-evolucao-lesao');
+    Route::post('/lesoes/store-novo-incidente/{paciente_id}/{leito_id}', [LesoesController::class, 'storeNovoIncidente'])->name('incidente.store');
+    Route::post('/lesoes/alta-paciente/{paciente_id}', [LesoesController::class, 'liberarPaciente'])->name('liberar-paciente');
+    Route::get('/lesoes/alta-paciente/{paciente_id}', [LesoesController::class, 'altaPaciente'])->name('alta-paciente');
     Route::get('/lesoes/read-lesao/{paciente_id}', [LesoesController::class, 'readLesao'])->name('read-evolucao-lesao');
+    Route::get('/lesoes/registrar-incidente/{paciente_id}', [LesoesController::class, 'registrarNovoIncidente'])->name('registrar-novo-incidente');
+    Route::get('/lesoes/read-lesao/{paciente_id}/{incidente_id}', [LesoesController::class, 'readIncidenteLesao'])->name('read-incidente-lesao');
     Route::get('/lesoes/read-all-lesoes', [LesoesController::class, 'readAllLesoes'])->name('read-all-evolucao-lesao');
-    Route::get('/lesoes/read-all-pesquisar-lesoes', [LesoesController::class, 'readAllPesquisarLesoes'])->name('read-all-pesquisar-lesao');
     Route::put('/lesoes/update-lesao', [LesoesController::class, 'updateLesao'])->name('update-evolucao-lesao');
     Route::delete('/lesoes/delete-lesao', [LesoesController::class, 'deleteLesao'])->name('delete-evolucao-lesao');
 

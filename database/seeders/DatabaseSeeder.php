@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
         $this->call(InsertFirstUser::class);
         $this->call(InsertLesoes::class);
         $this->call(InsertPaciente::class);
+        $this->call(InsertStatusPaciente::class);
         $this->call(InsertIncidente::class);
         $this->call(InsertPacienteIncidenteLeito::class);
 

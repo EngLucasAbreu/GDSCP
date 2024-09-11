@@ -12,6 +12,7 @@ use App\Models\LocalLesao;
 use App\Models\Tratamento;
 use App\Models\Comorbidade;
 use Illuminate\Http\Request;
+use App\Models\StatusPaciente;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Models\PacienteIncidenteLeito;
@@ -67,14 +68,12 @@ class PacientesController extends Controller
         DB::beginTransaction();
         try {
             // Initialize comorbidade_id as null in case it's not created
-            $comorbidade_id = null;
 
-            if ($request->has('comorbidade')) {
-                $comorbidade = Comorbidade::create([
-                    'tipo_comorbidade' => $request->comorbidade,
-                ]);
-                $comorbidade_id = $comorbidade->id;
-            }
+
+            $comorbidade = Comorbidade::create([
+                'tipo_comorbidade' => $request->comorbidade,
+            ]);
+            $comorbidade_id = $comorbidade->id;
 
             $tipo_lesao = TipoLesao::create([
                 'descricao_lesao' => $request->tipo_lesao, // Corrigido para pegar a descrição
@@ -93,15 +92,11 @@ class PacientesController extends Controller
                 'tipo_tratamento' => $request->tipo_tratamento, // Certifique-se de que está capturando o valor correto
             ]);
 
-            $sala = Sala::create([
-                'nome_sala' => $request->sala,
-            ]);
+            $leito = Leito::where('id', $request->leito)->get();
 
-            $leito = Leito::create([
-                'tipo_leito' => $request->leito,
-                'id_sala' => $sala->id,
-            ]);
-
+            foreach ($leito as $l) {
+                $leito_id = $l->id;
+            }
 
             $paciente = Paciente::create([
                 'nome' => $request->nome,
@@ -110,26 +105,32 @@ class PacientesController extends Controller
                 'cns' => $request->cns,
                 'sexo' => $request->sexo,
                 'evolucao' => true,
-                'id_comorbidade' => $request->id_comorbidade, // O valor correto deve ser capturado aqui
+                'id_comorbidade' => $comorbidade_id , // O valor correto deve ser capturado aqui
             ]);
 
             $incidente = Incidente::create([
-                'data_internacao' => $request->internacao,
-                'saida' => $request->evento,
+                'data_evento' => $request->evento,
                 'id_lesao' => $lesao->id,
                 'id_tratamento' => $tratamento->id,
                 'descricao' => $request->descricao,
             ]);
 
+            $status = StatusPaciente::create([
+                'paciente_alta' => false,
+                'data_internacao' => $request->internacao,
+                'data_alta' => null,
+            ]);
+
             PacienteIncidenteLeito::create([
                 'id_paciente' => $paciente->id,
                 'id_incidente' => $incidente->id,
-                'id_leito' => $leito->id,
+                'id_leito' => $leito_id,
+                'id_status_paciente' => $status->id,
             ]);
 
             DB::commit();
 
-            return redirect()->route('pacientes.create')->with('success', 'Paciente e incidente cadastrados com sucesso!');
+            return redirect()->route('read-evolucao-lesao', ['paciente_id' => $paciente->id])->with('success', 'Paciente e incidente cadastrados com sucesso!');
         } catch (\Exception $e) {
             DB::rollback();
             return back()->with('error', 'Erro ao cadastrar paciente e incidente. ' . $e->getMessage())->withInput();
@@ -145,12 +146,17 @@ class PacientesController extends Controller
     public function pesquisarPaciente(Request $request)
     {
         $pacientes = [];
+        $paciente_id = null;
         $nome = $request->nome;
         $cpf = $request->cpf;
         if ($nome !== null || $cpf !== null) {
             $pacientes = $this->pacienteIncidenteLeitoService->getIncidentesLeitos($nome, $cpf);
+            foreach ($pacientes as $p) {
+                $paciente_id = $p->id;
+            }
         }
-        return view('pacientes.pesquisar', compact('pacientes'));
+
+        return view('pacientes.pesquisar', compact('pacientes', 'paciente_id'));
     }
 
     public function getLeitosBySala(Request $request, $id_sala)
