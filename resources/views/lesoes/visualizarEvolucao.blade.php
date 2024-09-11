@@ -3,6 +3,7 @@
 @section('title', 'GDSCP - Visualizar Paciente')
 
 @section('content')
+
 <style>
     .btn-custom {
     background-color: #e30505;
