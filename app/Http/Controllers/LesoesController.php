@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\StatusPaciente;
 use Exception;
 use App\Models\Sala;
 use App\Models\Leito;
@@ -24,7 +25,7 @@ class LesoesController extends Controller
         foreach ($paciente as $p) {
             $paciente = $p->paciente;
         }
-        $data_internacao = $p->incidente->data_internacao;
+        $data_internacao = $p->statusPaciente->data_internacao;
 
 
         DB::beginTransaction();
@@ -40,17 +41,24 @@ class LesoesController extends Controller
 
 
             $incidente = Incidente::create([
-                'data_internacao' => $data_internacao,
                 'data_evento' => $request->evento,
                 'id_lesao' => $lesao->id,
                 'id_tratamento' => $request->tipo_tratamento,
                 'descricao' => $request->descricao,
             ]);
 
+            $status = StatusPaciente::create([
+                'paciente_alta' => false,
+                'data_internacao' => $data_internacao,
+                'data_alta' => null,
+            ]);
+
+
             PacienteIncidenteLeito::create([
                 'id_paciente' => $paciente,
                 'id_incidente' => $incidente->id,
                 'id_leito' => $leito,
+                'id_status_paciente' => $status->id,
             ]);
 
             DB::commit();
@@ -123,7 +131,11 @@ class LesoesController extends Controller
             $inc = $inc->incidente;
         }
 
-        return view('lesoes.regEvolucao', compact('inc', 'e', 'i', 'salas', 'leitos', 'comorbidades', 'tratamentos', 'locais', 'tipos'));
+        foreach ($evolucao as $s) {
+            $s = $s->statusPaciente;
+        }
+
+        return view('lesoes.regEvolucao', compact('inc', 'e', 'i', 's', 'salas', 'leitos', 'comorbidades', 'tratamentos', 'locais', 'tipos'));
     }
 
     public function altaPaciente($paciente_id)
@@ -134,7 +146,7 @@ class LesoesController extends Controller
         }
 
 
-        return view('lesoes.AltaPaciente', compact('e'));
+        return view('lesoes.AltaPaciente', compact('e', 'evolucao'));
     }
 
     public function liberarPaciente(Request $request, $paciente_id)

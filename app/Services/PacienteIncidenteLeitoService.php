@@ -14,7 +14,7 @@ class PacienteIncidenteLeitoService
 
         $query = DB::table('paciente_incidente_leito as pil')
             ->join('pacientes as p', 'pil.id_paciente', '=', 'p.id')
-            ->join('incidentes as i', 'pil.id_incidente', '=', 'i.id')
+            ->join('status_paciente as i', 'pil.id_status_paciente', '=', 'i.id')
             ->join('leitos as l', 'pil.id_leito', '=', 'l.id')
             ->join('salas as s', 'l.id_sala', '=', 's.id')
             ->select(

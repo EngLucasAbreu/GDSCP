@@ -57,15 +57,24 @@
         <form action="/pacientes" method="POST">
             @csrf
             <ul class="row form">
-                <li class="col-sm-4">
-                    <label for="alta">Data da Alta</label>
-                    <input type="date" id="nascimento" name="alta">
+                <li class="col-sm-6">
+                    <label for="data_alta">Data da Alta</label>
+                    <input type="date" id="data_alta" name="data_alta">
+                </li>
+                <li class="col-sm-6">
+                    <label for="tipo_alta">Tipo de Alta</label>
+                    <select id="tipo_alta" name="tipo_alta">
+                        <option value="" selected>Selecione uma opção</option>
+                        <option value="alta_melhorada">Alta Melhorada</option>
+                        <option value="alta_obito">Alta por Óbito</option>
+                        <option value="alta_transferencia">Alta por Transferência</option>
+                    </select>
                 </li>
             </ul>
             <ul class="row form">
                 <li class="col-sm-12">
-                    <label for="descricao">Descrição</label>
-                    <input type="text" id="descricao" name="descricao">
+                    <label for="descricao_alta">Descrição da Alta</label>
+                    <input type="text" id="descricao_alta" name="descricao_alta">
                 </li>
             </ul>
             <div class="text-right">

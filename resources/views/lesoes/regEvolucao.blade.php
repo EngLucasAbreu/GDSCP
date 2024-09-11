@@ -60,7 +60,7 @@
             <ul class="row form">
                 <li class="col-sm-2">
                     <label for="internacao">Data de Internação</label>
-                    <input type="text" id="internacao" name="internacao" value="{{date('d/m/Y', strtotime($e))}}" disabled required>
+                    <input type="text" id="internacao" name="internacao" value="{{date('d/m/Y', strtotime($s->data_internacao))}}" disabled required>
                 </li>
                 <li class="col-sm-2">
                     <label for="evento">Data do Evento</label>
