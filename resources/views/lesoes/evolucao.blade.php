@@ -47,7 +47,7 @@
                 @foreach ($evolucoes as $evolucao)
                     <tr>
                         <td>{{$evolucao->paciente->nome}}</td>
-                        <td>{{$evolucao->incidente->data_internacao}}</td>
+                        <td>{{date('d/m/Y', strtotime($evolucao->statusPaciente->data_internacao))}}</td>
                         <td>{{$evolucao->leito->sala->nome_sala}}</td>
                         <td>{{$evolucao->leito->tipo_leito}}</td>
                         <td>

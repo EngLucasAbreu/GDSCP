@@ -78,7 +78,8 @@ class LesoesController extends Controller
     public function readIncidenteLesao($paciente_id, $incidente_id)
     {
         $evolucao = PacienteIncidenteLeito::where('id_incidente', $incidente_id)->get();
-        foreach ($evolucao as $e) {
+
+        foreach ($evolucao as $e ) {
             $e = $e->paciente;
         }
         foreach ($evolucao as $i) {
@@ -87,7 +88,11 @@ class LesoesController extends Controller
         foreach ($evolucao as $l) {
             $l = $l->leito;
         }
-        return view('lesoes.visualizarIncidentePaciente', compact('e', 'i', 'l'));
+        foreach ($evolucao as $s) {
+            $s = $s->statusPaciente;
+        }
+
+        return view('lesoes.visualizarIncidentePaciente', compact('e', 'i', 'l', 's'));
     }
 
     public function readAllLesoes(Request $request)

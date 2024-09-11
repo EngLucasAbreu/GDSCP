@@ -90,7 +90,7 @@
             <tbody>
                 @foreach ($evolucao as $e)
                 <tr>
-                    <td>{{ $e->incidente->data_internacao }}</td>
+                    <td>{{date('d/m/Y', strtotime($e->statusPaciente->data_internacao))}}</td>
                     <td>{{ $e->incidente->data_evento }}</td>
                     <td>{{ $e->leito->sala->nome_sala }}</td>
                     <td>{{ $e->leito->tipo_leito }}</td>
