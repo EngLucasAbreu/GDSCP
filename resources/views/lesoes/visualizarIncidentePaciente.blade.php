@@ -64,8 +64,8 @@
                 <input type="date" id="evento" name="evento" value="{{ $i->data_evento }}" disabled>
             </li>
             <li class="col-sm-4">
-                <label for="sala">Sala</label>
-                <input type="text" id="sala" name="sala" value="{{ $l->sala->nome_sala}}" disabled>
+                <label for="setor">Setor</label>
+                <input type="text" id="setor" name="setor" value="{{ $l->setor->nome_setor}}" disabled>
             </li>
             <li class="col-sm-4">
                 <label for="leito">Leito</label>
@@ -94,9 +94,9 @@
             </li>
         </ul>
         <ul class="row form">
-            <li class="col-sm-12">
+            <li class="col-sm-12 d-flex flex-column">
                 <label for="descricao">Descrição</label>
-                <input type="text" id="descricao" name="descricao" value="{{ $i->descricao }}" disabled>
+                <textarea type="text" rows="8" cols="100" id="descricao" name="descricao" value="{{ $i->descricao }}" class="rounded text-area-custom border-light-subtle p-3" disabled></textarea>
             </li>
         </ul>
         <div class="text-right">

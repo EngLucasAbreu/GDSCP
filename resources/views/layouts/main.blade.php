@@ -133,6 +133,7 @@
                             </li>
                             <ul class="sub-nav">
                                 <li><a href="/pacientes/create">CADASTRAR</a></li>
+                                <li><a href="">EDITAR DADOS DO PACIENTE</a></li>
                                 <li><a href="/pacientes/pesquisar-paciente">PESQUISAR</a></li>
                             </ul>
                             <li class="menu-item">
@@ -149,7 +150,7 @@
                                 <ion-icon name="chevron-down-outline" class="chevron-toggle"></ion-icon>
                             </li>
                             <ul class="sub-nav">
-                                <li><a href="/ferramentas/read-all-salas">SALAS</a></li>
+                                <li><a href="/ferramentas/read-all-setores">SETORES</a></li>
                                 <li><a href="/ferramentas/read-all-leitos">LEITO</a></li>
                                 <li><a href="/ferramentas/read-all-comorbidades">COMORBIDADE</a></li>
                                 <li><a href="/ferramentas/read-all-local-lesao">LOCAL DA LESÃO</a></li>

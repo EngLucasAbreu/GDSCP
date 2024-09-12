@@ -37,7 +37,7 @@
                 <tr>
                     <th scope="col">Pacientes</th>
                     <th scope="col">Data de Internação</th>
-                    <th scope="col">Sala</th>
+                    <th scope="col">Setor</th>
                     <th scope="col">Leito</th>
                     <th scope="col"></th>
                     <th scope="col"></th>
@@ -48,7 +48,7 @@
                     <tr>
                         <td>{{$evolucao->paciente->nome}}</td>
                         <td>{{date('d/m/Y', strtotime($evolucao->statusPaciente->data_internacao))}}</td>
-                        <td>{{$evolucao->leito->sala->nome_sala}}</td>
+                        <td>{{$evolucao->leito->setor->nome_setor}}</td>
                         <td>{{$evolucao->leito->tipo_leito}}</td>
                         <td>
                             <a href="{{ route('read-evolucao-lesao', ['paciente_id' => $evolucao->paciente->id]) }}">

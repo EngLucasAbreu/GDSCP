@@ -11,8 +11,8 @@ class CreateLeitosTable extends Migration
         Schema::create('leitos', function (Blueprint $table) {
             $table->id();
             $table->string('tipo_leito');
-            $table->unsignedBigInteger('id_sala');
-            $table->foreign('id_sala')->references('id')->on('salas');
+            $table->unsignedBigInteger('id_setor');
+            $table->foreign('id_setor')->references('id')->on('setores');
             $table->timestamps();
             $table->softDeletes();
         });

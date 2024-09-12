@@ -24,7 +24,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/pacientes/store', [PacientesController::class, 'store'])->name('pacientes.store');
     Route::get('/pacientes/pesquisar', [PacientesController::class, 'pesquisar'])->name('pacientes.pesquisar');
     Route::get('/pacientes/pesquisar-paciente', [PacientesController::class, 'pesquisarPaciente'])->name('pacientes.pesquisar-paciente');
-    Route::get('/get-leitos/{id_sala}', [PacientesController::class, 'getLeitosBySala']);
+    Route::get('/get-leitos/{id_setor}', [PacientesController::class, 'getLeitosBySetor']);
 
 
     // EVOLUÇÂO DE LESÕES
@@ -39,12 +39,12 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/lesoes/update-lesao', [LesoesController::class, 'updateLesao'])->name('update-evolucao-lesao');
     Route::delete('/lesoes/delete-lesao', [LesoesController::class, 'deleteLesao'])->name('delete-evolucao-lesao');
 
-    // SALAS
-    Route::post('/ferramentas/create-sala', [FerramentasController::class, 'createSala'])->name('create-sala');
-    Route::get('/ferramentas/read-sala', [FerramentasController::class, 'readSala'])->name('read-sala');
-    Route::get('/ferramentas/read-all-salas', [FerramentasController::class, 'readAllSalas'])->name('salas.index');
-    Route::put('/ferramentas/update-sala/{id}', [FerramentasController::class, 'updateSala'])->name('update-sala');
-    Route::delete('/ferramentas/delete-sala/{nome_sala}', [FerramentasController::class, 'deleteSala'])->name('delete-sala');
+    // SETORES
+    Route::post('/ferramentas/create-setor', [FerramentasController::class, 'createSetor'])->name('create-setor');
+    Route::get('/ferramentas/read-setor', [FerramentasController::class, 'readSetor'])->name('read-setor');
+    Route::get('/ferramentas/read-all-setores', [FerramentasController::class, 'readAllSetores'])->name('setores.index');
+    Route::put('/ferramentas/update-setor/{id}', [FerramentasController::class, 'updateSetor'])->name('update-setor');
+    Route::delete('/ferramentas/delete-setor/{nome_setor}', [FerramentasController::class, 'deleteSetor'])->name('delete-setor');
 
 
     // LEITOS

@@ -34,7 +34,7 @@
                 <tr>
                     <th scope="col">Pacientes</th>
                     <th scope="col">Data de Internação</th>
-                    <th scope="col">Sala</th>
+                    <th scope="col">Setor</th>
                     <th scope="col">Leito</th>
                     <th scope="col"></th>
                     <th scope="col"></th>
@@ -46,7 +46,7 @@
                         <tr>
                             <td>{{$p->nome }}</td>
                             <td>{{$p->data_internacao }}</td>
-                            <td>{{$p->nome_sala }}</td>
+                            <td>{{$p->nome_setor }}</td>
                             <td>{{$p->tipo_leito }}</td>
                             <td>
                                 <a href="{{ route('read-evolucao-lesao', ['paciente_id' => $p->id]) }}">

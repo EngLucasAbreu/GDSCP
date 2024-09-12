@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Sala;
+use App\Models\Setor;
 use App\Models\Leito;
 use App\Models\Lesao;
 use App\Models\Paciente;
@@ -29,7 +29,7 @@ class PacientesController extends Controller
 
     public function create()
     {
-        $salas = Sala::all();
+        $setores = Setor::all();
         $leitos = Leito::all();
         $comorbidades = Comorbidade::all();
         $tratamentos = Tratamento::all();
@@ -37,7 +37,7 @@ class PacientesController extends Controller
         $locais = LocalLesao::where('regiao_lesao', '!=', '')->get();
         $tipos = TipoLesao::where('descricao_lesao', '!=', '')->get();
         return view('pacientes.cadastrarPaciente', [
-            'salas' => $salas,
+            'setores' => $setores,
             'leitos' => $leitos,
             'comorbidades' => $comorbidades,
             'tratamentos' => $tratamentos,
@@ -59,7 +59,7 @@ class PacientesController extends Controller
             'cns' => 'required|string|max:15|unique:pacientes',
             'internacao' => 'required|date',
             'evento' => 'required|date',
-            'sala' => 'required|string|max:255',
+            'setor' => 'required|string|max:255',
             'leito' => 'required|string|max:255',
             'descricao' => 'required|string',
             'sexo' => 'required|string|in:M,F,O,N',
@@ -159,11 +159,11 @@ class PacientesController extends Controller
         return view('pacientes.pesquisar', compact('pacientes', 'paciente_id'));
     }
 
-    public function getLeitosBySala(Request $request, $id_sala)
+    public function getLeitosBySetor(Request $request, $id_setor)
     {
         try {
-            // Buscando leitos associados à sala
-            $leitos = Leito::where('id_sala', $id_sala)->get();
+            // Buscando leitos associados à setor
+            $leitos = Leito::where('id_setor', $id_setor)->get();
             // Verifica se encontrou leitos
             if ($leitos->isEmpty()) {
                 return response()->json(['message' => 'Nenhum leito encontrado'], 404);

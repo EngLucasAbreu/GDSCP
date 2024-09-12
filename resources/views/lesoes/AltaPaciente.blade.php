@@ -72,9 +72,9 @@
                 </li>
             </ul>
             <ul class="row form">
-                <li class="col-sm-12">
+                <li class="col-sm-12 d-flex flex-column">
                     <label for="descricao_alta">Descrição da Alta</label>
-                    <input type="text" id="descricao_alta" name="descricao_alta">
+                    <textarea type="text" rows="8" cols="100" id="descricao_alta" name="descricao_alta" class="rounded text-area-custom border-light-subtle p-3" required></textarea>
                 </li>
             </ul>
             <div class="text-right">

@@ -16,11 +16,11 @@
         @endif
         <ul class="row form">
             <li class="col-sm-12">
-                <label for="leito">Salas Cadastradas</label>
-                <select id="sala" name="id_sala">
-                    <option value="0" selected>Selecione a Sala</option>
-                    @foreach ($salas as $sala)
-                        <option value="{{ $sala->id }}">{{ $sala->nome_sala }}</option>
+                <label for="leito">Setores Cadastrados</label>
+                <select id="setor" name="id_setor">
+                    <option value="0" selected>Selecione o Setor</option>
+                    @foreach ($setores as $setor)
+                        <option value="{{ $setor->id }}">{{ $setor->nome_setor }}</option>
                     @endforeach
                 </select>
             </li>
@@ -42,7 +42,7 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">Sala</th>
+                    <th scope="col">Setor</th>
                     <th scope="col">Leitos</th>
                     <th scope="col"></th>
                     <th scope="col"></th>
@@ -52,11 +52,11 @@
                 @foreach ($leitos as $leito)
                     <tr>
                         <td>
-                            <span id="span-sala-{{ $leito->id }}">{{ $salas->firstWhere('id', $leito->id_sala)->nome_sala ?? 'Desconhecido' }}</span>
-                            <select id="select-sala-{{ $leito->id }}" class="form-control d-none">
-                                @foreach ($salas as $sala)
-                                    <option value="{{ $sala->id }}" {{ $leito->id_sala == $sala->id ? 'selected' : '' }}>
-                                        {{ $sala->nome_sala }}
+                            <span id="span-setor-{{ $leito->id }}">{{ $setores->firstWhere('id', $leito->id_setor)->nome_setor ?? 'Desconhecido' }}</span>
+                            <select id="select-setor-{{ $leito->id }}" class="form-control d-none">
+                                @foreach ($setores as $setor)
+                                    <option value="{{ $setor->id }}" {{ $leito->id_setor == $setor->id ? 'selected' : '' }}>
+                                        {{ $setor->nome_setor }}
                                     </option>
                                 @endforeach
                             </select>
@@ -87,8 +87,8 @@
     // Função para ativar o modo de edição
     function editarLeito(leitoId) {
         // Oculta os spans e exibe os inputs
-        document.getElementById(`span-sala-${leitoId}`).classList.add('d-none');
-        document.getElementById(`select-sala-${leitoId}`).classList.remove('d-none');
+        document.getElementById(`span-setor-${leitoId}`).classList.add('d-none');
+        document.getElementById(`select-setor-${leitoId}`).classList.remove('d-none');
 
         document.getElementById(`span-leito-${leitoId}`).classList.add('d-none');
         document.getElementById(`input-leito-${leitoId}`).classList.remove('d-none');
@@ -101,8 +101,8 @@
         let inputNome = document.getElementById(`input-leito-${leitoId}`);
         let novoNome = inputNome.value;
 
-        let selectSala = document.getElementById(`select-sala-${leitoId}`);
-        let idSala = selectSala.value;
+        let selectSetor = document.getElementById(`select-setor-${leitoId}`);
+        let idSetor = selectSetor.value;
 
         // Cria um formulário para enviar os dados
         let form = document.createElement('form');
@@ -124,15 +124,15 @@
         nomeInput.name = 'tipo_leito';
         nomeInput.value = novoNome;
 
-        let salaInput = document.createElement('input');
-        salaInput.type = 'hidden';
-        salaInput.name = 'id_sala';
-        salaInput.value = idSala;
+        let setorInput = document.createElement('input');
+        setorInput.type = 'hidden';
+        setorInput.name = 'id_setor';
+        setorInput.value = idSetor;
 
         form.appendChild(csrfInput);
         form.appendChild(methodInput);
         form.appendChild(nomeInput);
-        form.appendChild(salaInput);
+        form.appendChild(setorInput);
 
         document.body.appendChild(form);
         form.submit();

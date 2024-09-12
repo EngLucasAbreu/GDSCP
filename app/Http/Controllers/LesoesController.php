@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\StatusPaciente;
 use Exception;
-use App\Models\Sala;
+use App\Models\Setor;
 use App\Models\Leito;
 use App\Models\Lesao;
 use App\Models\Incidente;
@@ -112,7 +112,7 @@ class LesoesController extends Controller
     public function registrarNovoIncidente($paciente_id)
     {
         $evolucao = PacienteIncidenteLeito::where('id_paciente', $paciente_id)->get();
-        $salas = Sala::all();
+        $setores = Setor::all();
         $leitos = Leito::all();
         $comorbidades = Comorbidade::all();
         $tratamentos = Tratamento::all();
@@ -135,7 +135,7 @@ class LesoesController extends Controller
             $s = $s->statusPaciente;
         }
 
-        return view('lesoes.regEvolucao', compact('inc', 'e', 'i', 's', 'salas', 'leitos', 'comorbidades', 'tratamentos', 'locais', 'tipos'));
+        return view('lesoes.regEvolucao', compact('inc', 'e', 'i', 's', 'setores', 'leitos', 'comorbidades', 'tratamentos', 'locais', 'tipos'));
     }
 
     public function altaPaciente($paciente_id)

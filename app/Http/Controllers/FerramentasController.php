@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Leito;
-use App\Models\Sala;
+use App\Models\Setor;
 use App\Models\Tratamento;
 use App\Models\Lesao;
 use App\Models\Comorbidade;
@@ -17,53 +17,53 @@ use resources\views;
 class FerramentasController extends Controller
 {
 
-    //SALAS
-    public function createSala(Request $request){
+    //SETORES
+    public function createSetor(Request $request){
         $validatedData = $request->validate([
-            'nome_sala' => 'required|string|max:255',
+            'nome_setor' => 'required|string|max:255',
         ]);
 
-        $new_sala = [
-            'nome_sala' => $validatedData['nome_sala'],
+        $new_setor = [
+            'nome_setor' => $validatedData['nome_setor'],
         ];
 
-        $sala = new Sala($new_sala);
-        $sala->save();
+        $setor = new Setor($new_setor);
+        $setor->save();
 
-        return redirect()->route('salas.index')->with('success', 'Sala cadastrada com sucesso!');
+        return redirect()->route('setores.index')->with('success', 'Setor cadastrada com sucesso!');
 
 
     }
 
-    public function readSala(Request $request, $id){
-        $sala = Sala::find($id);
-        return $sala;
+    public function readSetor(Request $request, $id){
+        $setor = Setor::find($id);
+        return $setor;
     }
 
-    public function readAllSalas(Request $request){
-        $salas = Sala::orderBy('nome_sala', 'asc')->get();
-        return view('ferramentas.sala', compact('salas'));
+    public function readAllSetores(Request $request){
+        $setores = Setor::orderBy('nome_setor', 'asc')->get();
+        return view('ferramentas.setor', compact('setores'));
     }
 
-    public function updateSala(Request $request, $id){
+    public function updateSetor(Request $request, $id){
         $validatedData = $request->validate([
-            'nome_sala' => 'required|string|max:255',
+            'nome_setor' => 'required|string|max:255',
         ]);
-        $sala = Sala::find($id);
-        $sala->nome_sala = $validatedData['nome_sala'];
-        $sala->save();
+        $setor = Setor::find($id);
+        $setor->nome_setor = $validatedData['nome_setor'];
+        $setor->save();
 
-        return redirect()->route('salas.index')->with('success', 'Sala atualizada com sucesso!');
+        return redirect()->route('setores.index')->with('success', 'Setor atualizada com sucesso!');
     }
 
-    public function deleteSala(Request $request, $nome_sala){
-        $sala = Sala::where('nome_sala', $nome_sala)->first();
+    public function deleteSetor(Request $request, $nome_setor){
+        $setor = Setor::where('nome_setor', $nome_setor)->first();
 
-        if ($sala) {
-            $sala->delete();
-            return redirect()->route('salas.index')->with('success', 'Sala deletada com sucesso!');
+        if ($setor) {
+            $setor->delete();
+            return redirect()->route('setores.index')->with('success', 'Setor deletada com sucesso!');
         } else {
-            return redirect()->route('salas.index')->with('error', 'Sala não encontrada!');
+            return redirect()->route('setores.index')->with('error', 'Setor não encontrada!');
         }
     }
 
@@ -73,11 +73,11 @@ class FerramentasController extends Controller
     public function createLeito(Request $request){
         $validatedData = $request->validate([
             'tipo_leito' => 'required|string|max:255',
-            'id_sala' => 'required|integer',
+            'id_setor' => 'required|integer',
         ]);
         $new_leito = [
             'tipo_leito' => $validatedData['tipo_leito'],
-            'id_sala' => $validatedData['id_sala'],
+            'id_setor' => $validatedData['id_setor'],
         ];
         $leito = new Leito($new_leito);
         $leito->save();
@@ -90,19 +90,19 @@ class FerramentasController extends Controller
     }
 
     public function readAllLeitos(Request $request){
-        $salas = Sala::all();
+        $setores = Setor::all();
         $leitos = Leito::all();
-        return view('ferramentas.leito', compact('leitos', 'salas'));
+        return view('ferramentas.leito', compact('leitos', 'setores'));
     }
 
     public function updateLeito(Request $request, $id){
         $validatedData = $request->validate([
             'tipo_leito' => 'required|string|max:255',
-            'id_sala' => 'required|integer',
+            'id_setor' => 'required|integer',
         ]);
         $leito = Leito::find($id);
         $leito->tipo_leito = $validatedData['tipo_leito'];
-        $leito->id_sala = $validatedData['id_sala'];
+        $leito->id_setor = $validatedData['id_setor'];
         $leito->save();
 
         return redirect()->route('leitos.index')->with('success', 'Leito atualizado com sucesso!');

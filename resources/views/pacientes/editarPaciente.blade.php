@@ -113,7 +113,7 @@
         <ul class="row form">
             <li class="col-sm-12 d-flex flex-column">
                 <label for="descricao">Descrição</label>
-                <textarea type="text" rows="8" cols="100" id="descricao" name="descricao" class="rounded text-area-custom border-light-subtle p-3" required></textarea>
+                <textarea type="text" rows="8" cols="100" id="descricao" name="descricao" value="{{ $i->descricao }}" class="rounded text-area-custom border-light-subtle p-3" required></textarea>
 
             </li>
         </ul>

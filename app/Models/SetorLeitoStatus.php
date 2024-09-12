@@ -5,21 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SalaLeitoStatus extends Model
+class SetorLeitoStatus extends Model
 {
     use HasFactory;
-    protected $table = 'sala_leito_status';
+    protected $table = 'setor_leito_status';
 
     protected $fillable = [
-        'id_sala',
+        'id_setor',
         'id_leito',
         'leito_status',
 
     ];
 
-    public function sala()
+    public function setor()
     {
-        return $this->belongsTo(Sala::class, 'id_sala');
+        return $this->belongsTo(Setor::class, 'id_setor');
     }
 
     public function leito()

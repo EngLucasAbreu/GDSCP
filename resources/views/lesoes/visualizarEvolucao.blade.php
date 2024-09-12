@@ -82,7 +82,7 @@
                 <tr>
                     <th scope="col">Data de internação</th>
                     <th scope="col">Data do evento</th>
-                    <th scope="col">Sala</th>
+                    <th scope="col">Setor</th>
                     <th scope="col">Leito</th>
                     <th scope="col">Local de Lesão</th>
                     <th scope="col"></th>
@@ -93,7 +93,7 @@
                 <tr>
                     <td>{{date('d/m/Y', strtotime($e->statusPaciente->data_internacao))}}</td>
                     <td>{{ $e->incidente->data_evento }}</td>
-                    <td>{{ $e->leito->sala->nome_sala }}</td>
+                    <td>{{ $e->leito->setor->nome_setor }}</td>
                     <td>{{ $e->leito->tipo_leito }}</td>
                     <td>{{ $e->incidente->lesao->localLesao->regiao_lesao  }} </td>
                     <td>

@@ -28,7 +28,7 @@ class Paciente extends Model
         return $this->belongsTo(Comorbidade::class, 'id_comorbidade');
     }
 
-    public function pacienteIncidenteSala()
+    public function pacienteIncidenteSetor()
     {
         return $this->hasMany(PacienteIncidenteLeito::class, 'id_paciente');
     }

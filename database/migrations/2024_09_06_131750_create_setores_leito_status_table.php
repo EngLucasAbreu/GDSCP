@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSalasLeitoStatusTable extends Migration
+class CreateSetoresLeitoStatusTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateSalasLeitoStatusTable extends Migration
      */
     public function up()
     {
-        Schema::create('salas_leito_status', function (Blueprint $table) {
+        Schema::create('setores_leito_status', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_sala');
+            $table->unsignedBigInteger('id_setor');
             $table->unsignedBigInteger('id_leito');
             $table->boolean('leito_status');
-            $table->foreign('id_sala')->references('id')->on('leitos');
+            $table->foreign('id_setor')->references('id')->on('leitos');
             $table->foreign('id_leito')->references('id')->on('leitos');
             $table->timestamps();
             $table->softDeletes();
@@ -27,6 +27,6 @@ class CreateSalasLeitoStatusTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('salas_leito_status');
+        Schema::dropIfExists('setores_leito_status');
     }
 }

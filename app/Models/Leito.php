@@ -14,16 +14,16 @@ class Leito extends Model
 
     protected $fillable = [
         'tipo_leito',
-        'id_sala',
+        'id_setor',
     ];
 
-    public function sala()
+    public function setor()
     {
-        return $this->belongsTo(Sala::class, 'id_sala');
+        return $this->belongsTo(Setor::class, 'id_setor');
     }
 
-    public function salas()
+    public function setores()
     {
-        return $this->hasOne(Sala::class, 'id_sala');
+        return $this->hasOne(Setor::class, 'id_setor');
     }
 }

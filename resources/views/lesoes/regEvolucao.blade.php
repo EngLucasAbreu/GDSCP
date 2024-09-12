@@ -67,11 +67,11 @@
                     <input type="date" id="evento" name="evento" required>
                 </li>
                 <li class="col-sm-4">
-                    <label for="sala">Sala</label>
-                    <select id="sala" name="sala" disabled required>
-                        <option selected >{{ $i->sala->nome_sala}}</option>
-                        @foreach($salas as $sala)
-                            <option value="{{$sala->id}}">{{$sala->nome_sala}}</option>
+                    <label for="setor">Setor</label>
+                    <select id="setor" name="setor" disabled required>
+                        <option selected >{{ $i->setor->nome_setor}}</option>
+                        @foreach($setores as $setor)
+                            <option value="{{$setor->id}}">{{$setor->nome_setor}}</option>
                         @endforeach
                     </select>
                 </li>
@@ -113,9 +113,10 @@
                 </li>
             </ul>
             <ul class="row form">
-                <li class="col-sm-12">
+                <li class="col-sm-12 d-flex flex-column">
                     <label for="descricao">Descrição</label>
-                    <input type="text" id="descricao" name="descricao" required>
+                    <textarea type="text" rows="8" cols="100" id="descricao" name="descricao" class="rounded text-area-custom border-light-subtle p-3" required></textarea>
+
                 </li>
             </ul>
             <div class="text-right">
@@ -131,17 +132,17 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#sala').on('change', function() {
-            var salaId = $(this).val(); // Pega o ID da sala selecionada
+        $('#setor').on('change', function() {
+            var setorId = $(this).val(); // Pega o ID da setor selecionada
 
             // Limpa e desabilita o campo de leitos antes de fazer a requisição
             $('#leito').empty().append('<option value="" selected>Selecione uma opção</option>');
             $('#leito').prop('disabled', true);
 
-            if (salaId) {
+            if (setorId) {
                 // Faz a requisição AJAX
                 $.ajax({
-                    url: '/get-leitos/' + salaId,  // URL da requisição com o ID da sala
+                    url: '/get-leitos/' + setorId,  // URL da requisição com o ID da setor
                     type: 'GET',
                     dataType: 'json',
                     success: function(data) {

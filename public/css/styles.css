@@ -211,11 +211,11 @@ input[type="text"], input[type="date"], select {
 }
 
 .tx-custom {
-    color: #333;
+    color: #000000;
 }
 
-.tx-custom:hover {
-    color: #606060;
+.text-area-custom {
+    resize: none;
 }
 
 @media (max-width: 480px) {

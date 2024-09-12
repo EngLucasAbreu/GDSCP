@@ -73,11 +73,11 @@
                     <input type="date" id="evento" name="evento" required>
                 </li>
                 <li class="col-sm-4">
-                    <label for="sala">Sala</label>
-                    <select type="text" id="sala" name="sala" required>
-                        <option value="{{ $evolucao->leito->sala->nome_sala }}" selected>{{ $evolucao->leito->sala->nome_sala }}</option>
-                        @foreach($salas as $sala)
-                            <option value="{{$sala->id}}">{{$sala->nome_sala}}</option>
+                    <label for="setor">Setor</label>
+                    <select type="text" id="setor" name="setor" required>
+                        <option value="{{ $evolucao->leito->setor->nome_setor }}" selected>{{ $evolucao->leito->setor->nome_setor }}</option>
+                        @foreach($setores as $setor)
+                            <option value="{{$setor->id}}">{{$setor->nome_setor}}</option>
                         @endforeach
                     </select>
                 </li>
@@ -121,9 +121,9 @@
                 </li>
             </ul>
             <ul class="row form">
-                <li class="col-sm-12">
+                <li class="col-sm-12 d-flex flex-column">
                     <label for="descricao">Descrição</label>
-                    <input type="text" id="descricao" name="descricao" required>
+                    <textarea type="text" rows="8" cols="100" id="descricao" name="descricao" class="rounded text-area-custom border-light-subtle p-3" required></textarea>
                 </li>
             </ul>
             <div class="d-flex justify-content-end ">
