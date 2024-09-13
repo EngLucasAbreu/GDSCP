@@ -47,6 +47,55 @@ class PacientesController extends Controller
         ]);
     }
 
+    public function edit($paciente_id)
+    {
+        $evolucao = PacienteIncidenteLeito::where('id_paciente', $paciente_id)->get();
+        $setores = Setor::all();
+        $leitos = Leito::all();
+        $comorbidades = Comorbidade::all();
+        foreach ($evolucao as $p) {
+            $p = $p->paciente;
+        }
+        foreach ($evolucao as $l) {
+            $l = $l->leito;
+        }
+        foreach ($evolucao as $s) {
+            $s = $s->statusPaciente;
+        }
+        return view('pacientes.editarPaciente', compact('evolucao', 'p', 'l', 's', 'setores', 'leitos', 'comorbidades', 'paciente_id'));
+    }
+
+    public function update(Request $request, $paciente_id) {
+
+        DB::beginTransaction();
+        try {
+
+            $paciente = Paciente::where('id', $paciente_id)->update([
+                'nome' => $request->nome,
+                'data_nascimento' => $request->nascimento,
+                'cpf' => $request->cpf,
+                'cns' => $request->cns,
+                'sexo' => $request->sexo,
+                'evolucao' => true,
+                'id_comorbidade' => $request->id_comorbidade,
+            ]);
+
+
+            $leito = Leito::where('id', $request->leito)->updateOrFail([
+                'tipo_leito' => $request->leito,
+                'id_setor' => $request->setor,
+            ]);
+
+            return [$paciente, $leito];
+
+            DB::commit();
+            }
+        catch (\Exception $e) {
+            DB::rollback();
+            return back()->with('error', 'Erro ao atualizar paciente. ' . $e->getMessage())->withInput();
+        }
+    }
+
     public function store(Request $request)
     {
 

@@ -38,6 +38,7 @@
                     <th scope="col">Leito</th>
                     <th scope="col"></th>
                     <th scope="col"></th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -49,18 +50,26 @@
                             <td>{{$p->nome_setor }}</td>
                             <td>{{$p->tipo_leito }}</td>
                             <td>
-                                <a href="{{ route('read-evolucao-lesao', ['paciente_id' => $p->id]) }}">
-                                    <button type="button" class="btn btn-secondary">
-                                        <ion-icon name="eye-outline" class="mr-2"></ion-icon>
+                                <a href="{{ route('read-evolucao-lesao', ['paciente_id' => $p->id]) }}" class="d-flex justify-content-end">
+                                    <button type="button" class="btn btn-secondary d-flex align-items-center">
                                         Visualizar
+                                        <ion-icon name="eye-outline" class="ml-2"></ion-icon>
+                                    </button>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{ route('pacientes.edit', ['paciente_id' => $p->id])}}" class="d-flex justify-content-center">
+                                    <button type="button" class="btn btn-secondary d-flex align-items-center">
+                                        Editar
+                                        <ion-icon name="create-outline" class="ml-2"></ion-icon>
                                     </button>
                                 </a>
                             </td>
                             <td>
                                 <a href="{{ route('registrar-novo-incidente', ['paciente_id' => $p->id])}}">
-                                    <button type="button" class="btn btn-primary">
-                                        <ion-icon name="create-outline" class="mr-2"></ion-icon>
+                                    <button type="button" class="btn btn-primary d-flex align-items-center">
                                         Evoluir
+                                        <ion-icon name="clipboard-outline" class="ml-2"></ion-icon>
                                     </button>
                                 </a>
                             </td>

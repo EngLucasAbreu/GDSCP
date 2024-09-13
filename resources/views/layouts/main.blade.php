@@ -100,6 +100,7 @@
             height: 100vh;
             overflow-x: hidden;
         }
+
     </style>
 </head>
 <body>
@@ -133,7 +134,6 @@
                             </li>
                             <ul class="sub-nav">
                                 <li><a href="/pacientes/create">CADASTRAR</a></li>
-                                <li><a href="">EDITAR DADOS DO PACIENTE</a></li>
                                 <li><a href="/pacientes/pesquisar-paciente">PESQUISAR</a></li>
                             </ul>
                             <li class="menu-item">

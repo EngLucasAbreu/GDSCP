@@ -8,34 +8,39 @@
     <h3>CADASTRAR PACIENTE</h3>
     <hr>
     <br>
-    <form action="/pacientes/store" method="POST">
+    <form action="{{ route('pacientes.update', ['paciente_id' => $paciente_id])}}" method="POST">
         @csrf  {{-- Codigo de segurança para formulário, todos devem conter --}}
         <ul class="row form">
             <li class="col-sm-8">
                 <label for="nome">Nome</label>
-                <input type="text" id="nome" name="nome" required>
+                <input type="text" id="nome" name="nome" value="{{ $p->nome }}" required>
             </li>
             <li class="col-sm-4">
                 <label for="nascimento">Data de Nascimento</label>
-                <input type="date" id="nascimento" name="nascimento" required>
+                <input type="date" id="nascimento" name="nascimento" value="{{ $p->data_nascimento }}" required>
             </li>
         </ul>
         <ul class="row form">
             <li class="col-sm">
                 <label for="cpf">CPF</label>
-                <input type="text" id="cpf" name="cpf" required>
+                <input type="text" id="cpf" name="cpf" value="{{ $p->cpf }}" required>
             </li>
             <li class="col-sm">
                 <label for="cns">CNS</label>
-                <input type="text" id="cns" name="cns" required>
+                <input type="text" id="cns" name="cns" value="{{ $p->cns }}" required>
             </li>
             <li class="col-sm">
                 <label for="sexo">Sexo</label>
                 <select id="sexo" name="sexo" required>
-                    <option value="M">Masculino</option>
-                    <option value="F">Feminino</option>
-                    <option value="O">Outro</option>
-                    <option value="N">Prefiro não informar</option>
+                @if ($p->sexo == 'M')
+                    <option value="M" selected>Masculino</option>
+                @elseif ($p->sexo == 'F')
+                    <option value="F" selected>Feminino</option>
+                @elseif ($p->sexo == 'O')
+                    <option value="O" selected>Outro</option>
+                @else
+                    <option value="N" selected>Prefiro não informar</option>
+                @endif
                 </select>
             </li>
         </ul>
@@ -43,82 +48,38 @@
             <li class="col-sm-4">
                 <label for="comorbidade">Comorbidade</label>
                 <select id="comorbidade" name="id_comorbidade"> <!-- O nome do campo deve ser 'id_comorbidade' -->
-                    <option value='0' selected>Selecione uma opção</option>
-                    @foreach ($comorbidades as $comorbidade)
-                        <option value="{{$comorbidade->id}}">{{$comorbidade->tipo_comorbidade}}</option> <!-- O valor deve ser o ID da comorbidade -->
+                    <option value='{{ $p->comorbidade->id}}' selected>{{ $p->comorbidade->tipo_comorbidade}}</option>
+                    @foreach ($comorbidades as $c)
+                        <option value="{{$c->id}}">{{$c->tipo_comorbidade}}</option> <!-- O valor deve ser o ID da comorbidade -->
                     @endforeach
                 </select>
-            </li>
-        </ul>
-        <br>
-        <br>
-        <h3>REGISTRAR INCIDENTE</h3>
-        <hr>
-        <br>
-        <ul class="row form">
-            <li class="col-sm-2">
-                <label for="internacao">Data de Internação</label>
-                <input type="date" id="internacao" name="internacao" required>
-            </li>
-            <li class="col-sm-2">
-                <label for="evento">Data do Evento</label>
-                <input type="date" id="evento" name="evento" required>
             </li>
             <li class="col-sm-4">
                 <label for="setor">Setor</label>
                 <select id="setor" name="setor" required>
-                    <option value="" selected>Selecione uma opção</option>
+                    <option value="{{ $l->setor->id }}" selected>{{ $l->setor->nome_setor }}</option>
                     @foreach($setores as $setor)
+                    @if (!($setor->id == $l->setor->id))
                         <option value="{{$setor->id}}">{{$setor->nome_setor}}</option>
+                    @endif
                     @endforeach
                 </select>
             </li>
             <li class="col-sm-4">
                 <label for="leito">Leito</label>
-                <select id="leito" name="leito" required disabled>
-                    <option value="" selected>Selecione uma setor primeiro</option>
+                <select id="leito" name="leito" required>
+                    <option value="{{ $l->id }}" selected>{{ $l->tipo_leito }}</option>
+                    @foreach ( $leitos as $leito )
+                    @if (!($leito->id == $l->id))
+                        <option value="{{ $leito->tipo_leito }}">{{ $leito->tipo_leito }}</option>
+                    @endif
+                    @endforeach
                 </select>
             </li>
 
-        </ul>
-        <ul class="row form">
-            <li class="col-sm">
-                <label for="localLesao">Local de Lesão</label>
-                <select id="localLesao" name="local_lesao" required> <!-- Alterado para enviar a região da lesão -->
-                    <option value="" selected>Selecione uma opção</option>
-                    @foreach ($locais as $local)
-                        <option value="{{$local->regiao_lesao}}">{{$local->regiao_lesao}}</option> <!-- Captura a região, não o ID -->
-                    @endforeach
-                </select>
-            </li>
-            <li class="col-sm">
-                <label for="tipoLesao">Tipo de Lesão</label>
-                <select id="tipoLesao" name="tipo_lesao" required> <!-- Alterado o nome do campo -->
-                    <option value="" selected>Selecione uma opção</option>
-                    @foreach ($tipos as $tipo)
-                        <option value="{{$tipo->descricao_lesao}}">{{$tipo->descricao_lesao}}</option> <!-- Captura a descrição, não o ID -->
-                    @endforeach
-                </select>
-            </li>
-            <li class="col-sm">
-                <label for="tratamento">Tipo de Tratamento</label>
-                <select id="tratamento" name="tipo_tratamento" required> <!-- Certifique-se de que o campo nome está correto -->
-                    <option value="" selected>Selecione uma opção</option>
-                    @foreach ($tratamentos as $tratamento)
-                        <option value="{{$tratamento->tipo_tratamento}}">{{$tratamento->tipo_tratamento}}</option> <!-- Certifique-se de que está capturando o tipo, não o ID -->
-                    @endforeach
-                </select>
-            </li>
-        </ul>
-        <ul class="row form">
-            <li class="col-sm-12 d-flex flex-column">
-                <label for="descricao">Descrição</label>
-                <textarea type="text" rows="8" cols="100" id="descricao" name="descricao" value="{{ $i->descricao }}" class="rounded text-area-custom border-light-subtle p-3" required></textarea>
-
-            </li>
         </ul>
         <div class="d-flex justify-content-end ">
-            <button type="submit" class="btn btn-primary">Cadastrar</button>
+            <button type="submit" class="btn btn-primary">Editar Paciente</button>
         </div>
     </form>
 </div>
