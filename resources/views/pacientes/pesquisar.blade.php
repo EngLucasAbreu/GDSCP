@@ -3,6 +3,7 @@
 @section('title', 'GDSCP - Pesquisar Paciente')
 
 @section('content')
+
 <div class="container-cad">
     <h3>FILTRO DE PESQUISA</h3>
     <hr>
@@ -42,40 +43,39 @@
                 </tr>
             </thead>
             <tbody>
-                @if (count($pacientes) > 0)
-                    @foreach ($pacientes as $p)
-                        <tr>
-                            <td>{{$p->nome }}</td>
-                            <td>{{$p->data_internacao }}</td>
-                            <td>{{$p->nome_setor }}</td>
-                            <td>{{$p->tipo_leito }}</td>
-                            <td>
-                                <a href="{{ route('read-evolucao-lesao', ['paciente_id' => $p->id]) }}" class="d-flex justify-content-end">
-                                    <button type="button" class="btn btn-secondary d-flex align-items-center">
-                                        Visualizar
-                                        <ion-icon name="eye-outline" class="ml-2"></ion-icon>
-                                    </button>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="{{ route('pacientes.edit', ['paciente_id' => $p->id])}}" class="d-flex justify-content-center">
-                                    <button type="button" class="btn btn-secondary d-flex align-items-center">
-                                        Editar
-                                        <ion-icon name="create-outline" class="ml-2"></ion-icon>
-                                    </button>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="{{ route('registrar-novo-incidente', ['paciente_id' => $p->id])}}">
-                                    <button type="button" class="btn btn-primary d-flex align-items-center">
-                                        Evoluir
-                                        <ion-icon name="clipboard-outline" class="ml-2"></ion-icon>
-                                    </button>
-                                </a>
-                            </td>
-                        </tr>
-                    @endforeach
-                @endif
+
+                @foreach ($pacientes as $p)
+                    <tr>
+                        <td>{{$p->nome }}</td>
+                        <td>{{date('d/m/Y', strtotime($p->data_internacao))}}</td>
+                        <td>{{$p->nome_setor }}</td>
+                        <td>{{$p->tipo_leito }}</td>
+                        <td>
+                            <a href="{{ route('read-evolucao-lesao', ['paciente_id' => $p->id]) }}" class="d-flex justify-content-end">
+                                <button type="button" class="btn btn-secondary d-flex align-items-center">
+                                    Visualizar
+                                    <ion-icon name="eye-outline" class="ml-2"></ion-icon>
+                                </button>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{ route('pacientes.edit', ['paciente_id' => $p->id])}}" class="d-flex justify-content-center">
+                                <button type="button" class="btn btn-secondary d-flex align-items-center">
+                                    Editar
+                                    <ion-icon name="create-outline" class="ml-2"></ion-icon>
+                                </button>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{ route('registrar-novo-incidente', ['paciente_id' => $p->id])}}">
+                                <button type="button" class="btn btn-primary d-flex align-items-center">
+                                    Evoluir
+                                    <ion-icon name="clipboard-outline" class="ml-2"></ion-icon>
+                                </button>
+                            </a>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

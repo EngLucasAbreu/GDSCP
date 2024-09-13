@@ -2,23 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\StatusPaciente;
 use Exception;
-use App\Models\Setor;
 use App\Models\Leito;
 use App\Models\Lesao;
+use App\Models\Setor;
 use App\Models\Incidente;
 use App\Models\TipoLesao;
 use App\Models\LocalLesao;
 use App\Models\Tratamento;
 use App\Models\Comorbidade;
 use Illuminate\Http\Request;
+use App\Models\StatusPaciente;
+use App\Services\LesaoService;
 use Illuminate\Support\Facades\DB;
 use League\Flysystem\Adapter\Local;
 use App\Models\PacienteIncidenteLeito;
 
 class LesoesController extends Controller
 {
+    private $lesaoService;
+    public function __construct(LesaoService $lesaoService)
+    {
+        $this->lesaoService = $lesaoService;
+    }
     public function storeNovoIncidente(Request $request, $paciente_id, $leito_id)
     {
         $paciente = PacienteIncidenteLeito::where('id_paciente', $paciente_id)->get();
@@ -103,10 +109,29 @@ class LesoesController extends Controller
         return view('lesoes.visualizarIncidentePaciente', compact('e', 'i', 'l', 's'));
     }
 
-    public function readAllLesoes(Request $request)
+    public function pesquisar()
     {
-        $evolucoes = PacienteIncidenteLeito::all();
-        return view('lesoes.evolucao', compact('evolucoes'));
+        $pacientes = $this->lesaoService->getAllIncidentesLeitos();
+        return view('lesoes.evolucao', compact('pacientes'));
+    }
+
+    public function pesquisarLesao(Request $request)
+    {
+        $pacientes = [];
+        $paciente_id = null;
+        $nome = $request->nome;
+        $cpf = $request->cpf;
+        if ($nome == null && $cpf == null) {
+            $pacientes = $this->lesaoService->getAllIncidentesLeitos();
+        }
+        if ($nome !== null || $cpf !== null) {
+            $pacientes = $this->lesaoService->getIncidentesLeitos($nome, $cpf);
+            foreach ($pacientes as $p) {
+                $paciente_id = $p->id;
+            }
+        }
+
+        return view('lesoes.evolucao', compact('pacientes', 'paciente_id'));
     }
 
     public function registrarNovoIncidente($paciente_id)

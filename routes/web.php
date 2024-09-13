@@ -17,7 +17,7 @@ Route::middleware(['auth'])->group(function () {
     // PACIENTES
     Route::get('/pacientes/create', [PacientesController::class, 'create'])->name('pacientes.create');
     Route::get('/pacientes/edit/{paciente_id}', [PacientesController::class, 'edit'])->name('pacientes.edit');
-    Route::put('/pacientes/update/{paciente_id}', [PacientesController::class, 'update'])->name('pacientes.update');
+    Route::any('/pacientes/update/{paciente_id}/', [PacientesController::class, 'update'])->name('pacientes.update');
     Route::post('/pacientes/store', [PacientesController::class, 'store'])->name('pacientes.store');
     Route::get('/pacientes/pesquisar', [PacientesController::class, 'pesquisar'])->name('pacientes.pesquisar');
     Route::get('/pacientes/pesquisar-paciente', [PacientesController::class, 'pesquisarPaciente'])->name('pacientes.pesquisar-paciente');
@@ -32,7 +32,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/lesoes/read-lesao/{paciente_id}', [LesoesController::class, 'readLesao'])->name('read-evolucao-lesao');
     Route::get('/lesoes/registrar-incidente/{paciente_id}', [LesoesController::class, 'registrarNovoIncidente'])->name('registrar-novo-incidente');
     Route::get('/lesoes/read-lesao/{paciente_id}/{incidente_id}', [LesoesController::class, 'readIncidenteLesao'])->name('read-incidente-lesao');
-    Route::get('/lesoes/read-all-lesoes', [LesoesController::class, 'readAllLesoes'])->name('read-all-evolucao-lesao');
+    Route::get('/lesoes/pesquisar', [LesoesController::class, 'pesquisar'])->name('lesoes.pesquisar');
+    Route::get('/lesoes/pesquisar-lesao', [LesoesController::class, 'pesquisarLesao'])->name('lesoes.pesquisar-lesao');
     Route::put('/lesoes/update-lesao', [LesoesController::class, 'updateLesao'])->name('update-evolucao-lesao');
     Route::delete('/lesoes/delete-lesao', [LesoesController::class, 'deleteLesao'])->name('delete-evolucao-lesao');
 

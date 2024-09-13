@@ -3,12 +3,11 @@
 @section('title', 'GDSCP - Cadastrar Paciente')
 
 @section('content')
-@include('msg.message')
 <div class="container-cad">
-    <h3>CADASTRAR PACIENTE</h3>
+    <h3>EDITAR PACIENTE</h3>
     <hr>
     <br>
-    <form action="{{ route('pacientes.update', ['paciente_id' => $paciente_id])}}" method="POST">
+    <form action="{{ route('pacientes.update', ['paciente_id' => $paciente_id])}}" method="PUT">
         @csrf  {{-- Codigo de segurança para formulário, todos devem conter --}}
         <ul class="row form">
             <li class="col-sm-8">
@@ -41,6 +40,10 @@
                 @else
                     <option value="N" selected>Prefiro não informar</option>
                 @endif
+                    <option value="M">Masculino</option>
+                    <option value="F">Feminino</option>
+                    <option value="O">Outro</option>
+                    <option value="N">Prefiro não informar</option>
                 </select>
             </li>
         </ul>

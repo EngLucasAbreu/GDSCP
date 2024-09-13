@@ -9,11 +9,6 @@
     <br>
     <form action="{{ route('create-setor') }}" method="POST">
         @csrf
-        @if (session('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert" id="success-alert">
-                {{ session('success') }}
-            </div>
-        @endif
         <label for="setor" class="ml-2">Cadastrar novo setor</label>
         <input type="text" class="form-control" aria-label="Text input with dropdown button" id="setor-input" name="nome_setor">
 
@@ -105,14 +100,5 @@
         document.body.appendChild(form);
         form.submit();
     }
-
-    // Oculta o alerta de sucesso após 5 segundos
-    setTimeout(function() {
-        let alert = document.getElementById('success-alert');
-        if (alert) {
-            let bsAlert = new bootstrap.Alert(alert);
-            bsAlert.close();
-        }
-    }, 3000); // 5000 milissegundos = 5 segundos
 </script>
 @endsection

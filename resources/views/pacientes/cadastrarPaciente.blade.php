@@ -3,7 +3,6 @@
 @section('title', 'GDSCP - Cadastrar Paciente')
 
 @section('content')
-@include('msg.message')
 <div class="container-cad">
     <h3>CADASTRAR PACIENTE</h3>
     <hr>
@@ -43,7 +42,7 @@
             <li class="col-sm-4">
                 <label for="comorbidade">Comorbidade</label>
                 <select id="comorbidade" name="id_comorbidade"> <!-- O nome do campo deve ser 'id_comorbidade' -->
-                    <option value='0' selected>Selecione uma opção</option>
+                    <option value='' selected>Selecione uma opção</option>
                     @foreach ($comorbidades as $comorbidade)
                         <option value="{{$comorbidade->id}}">{{$comorbidade->tipo_comorbidade}}</option> <!-- O valor deve ser o ID da comorbidade -->
                     @endforeach
@@ -87,7 +86,7 @@
                 <select id="localLesao" name="local_lesao" required> <!-- Alterado para enviar a região da lesão -->
                     <option value="" selected>Selecione uma opção</option>
                     @foreach ($locais as $local)
-                        <option value="{{$local->regiao_lesao}}">{{$local->regiao_lesao}}</option> <!-- Captura a região, não o ID -->
+                        <option value="{{$local->id}}">{{$local->regiao_lesao}}</option> <!-- Captura a região, não o ID -->
                     @endforeach
                 </select>
             </li>
@@ -96,7 +95,7 @@
                 <select id="tipoLesao" name="tipo_lesao" required> <!-- Alterado o nome do campo -->
                     <option value="" selected>Selecione uma opção</option>
                     @foreach ($tipos as $tipo)
-                        <option value="{{$tipo->descricao_lesao}}">{{$tipo->descricao_lesao}}</option> <!-- Captura a descrição, não o ID -->
+                        <option value="{{$tipo->id}}">{{$tipo->descricao_lesao}}</option> <!-- Captura a descrição, não o ID -->
                     @endforeach
                 </select>
             </li>
@@ -105,7 +104,7 @@
                 <select id="tratamento" name="tipo_tratamento" required> <!-- Certifique-se de que o campo nome está correto -->
                     <option value="" selected>Selecione uma opção</option>
                     @foreach ($tratamentos as $tratamento)
-                        <option value="{{$tratamento->tipo_tratamento}}">{{$tratamento->tipo_tratamento}}</option> <!-- Certifique-se de que está capturando o tipo, não o ID -->
+                        <option value="{{$tratamento->id}}">{{$tratamento->tipo_tratamento}}</option> <!-- Certifique-se de que está capturando o tipo, não o ID -->
                     @endforeach
                 </select>
             </li>

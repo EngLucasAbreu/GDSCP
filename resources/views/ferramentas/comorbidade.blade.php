@@ -9,12 +9,6 @@
     <br>
     <form action="{{ route('create-comorbidade') }}" method="POST">
         @csrf
-        @if (session('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert" id="success-alert">
-                {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif
         <label for="tipo_comorbidade" class="ml-2">Tipo de comorbidade</label>
         <input type="text" class="form-control" id="tipo_comorbidade" name="tipo_comorbidade">
 
@@ -105,13 +99,5 @@
         form.submit();
     }
 
-    // Oculta o alerta de sucesso após 5 segundos
-    setTimeout(function() {
-        let alert = document.getElementById('success-alert');
-        if (alert) {
-            let bsAlert = new bootstrap.Alert(alert);
-            bsAlert.close();
-        }
-    }, 3000); // 5000 milissegundos = 5 segundos
 </script>
 @endsection

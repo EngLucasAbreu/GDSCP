@@ -7,7 +7,8 @@
     <h3>FILTRO DE PESQUISA</h3>
     <hr>
     <br>
-    <form action="/pacientes" method="GET">
+    <form action="{{ route('lesoes.pesquisar-lesao')}}" method="GET">
+        @csrf
         <ul class="row form">
             <li class="col-sm-6">
                 <label for="nome">Nome</label>
@@ -44,29 +45,29 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($evolucoes as $evolucao)
-                    <tr>
-                        <td>{{$evolucao->paciente->nome}}</td>
-                        <td>{{date('d/m/Y', strtotime($evolucao->statusPaciente->data_internacao))}}</td>
-                        <td>{{$evolucao->leito->setor->nome_setor}}</td>
-                        <td>{{$evolucao->leito->tipo_leito}}</td>
-                        <td>
-                            <a href="{{ route('read-evolucao-lesao', ['paciente_id' => $evolucao->paciente->id]) }}">
-                                <button type="button" class="btn btn-secondary">
-                                    <ion-icon name="eye-outline" class="mr-2"></ion-icon>
-                                    Visualizar
-                                </button>
-                            </a>
-                        </td>
-                        <td>
-                            <a href="{{ route('read-evolucao-lesao', ['paciente_id' => $evolucao->paciente->id]) }}">
-                                <button type="button" class="btn btn-primary">
+                @foreach ($pacientes as $p)
+                <tr>
+                    <td>{{$p->nome}}</td>
+                    <td>{{date('d/m/Y', strtotime($p->data_internacao))}}</td>
+                    <td>{{$p->nome_setor}}</td>
+                    <td>{{$p->tipo_leito}}</td>
+                    <td>
+                        <a href="{{ route('read-evolucao-lesao', ['paciente_id' => $p->id]) }}">
+                            <button type="button" class="btn btn-secondary">
+                                <ion-icon name="eye-outline" class="mr-2"></ion-icon>
+                                Visualizar
+                            </button>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ route('read-evolucao-lesao', ['paciente_id' => $p->id]) }}">
+                            <button type="button" class="btn btn-primary">
                                 <ion-icon name="create-outline" class="mr-2"></ion-icon>
-                                    Evoluir
-                                </button>
-                            </a>
-                        </td>
-                    </tr>
+                                Evoluir
+                            </button>
+                        </a>
+                    </td>
+                </tr>
                 @endforeach
             </tbody>
         </table>

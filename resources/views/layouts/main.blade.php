@@ -100,6 +100,55 @@
             height: 100vh;
             overflow-x: hidden;
         }
+        /* Estilos para dispositivos pequenos: converte a barra lateral em uma top bar */
+        @media (max-width: 768px) {
+            /* Transformar sidebar em uma top bar */
+            #sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                top: 0;
+                left: 0;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px;
+            }
+
+            #main-content {
+                margin-left: 0;
+            }
+
+            .top-bar {
+                display: none; /* Esconder a top bar original */
+            }
+
+            /* Colocar o botão de três linhas no lado direito */
+            #toggleSidebar {
+                order: 2;
+                margin-left: auto;
+            }
+
+            /* Reorganizar o conteúdo da sidebar para a top bar */
+            .user-info {
+                display: none;
+            }
+
+            .sidebar-nav {
+                display: flex;
+                flex-direction: row;
+            }
+
+            .menu-item {
+                margin-left: 15px;
+            }
+
+            /* Adicionar o botão de desconectar dentro do menu */
+            .menu-item .disconnect-button {
+                display: inline-block;
+                margin-left: 15px;
+            }
+}
 
     </style>
 </head>
@@ -142,7 +191,7 @@
                                 <ion-icon name="chevron-down-outline" class="chevron-toggle"></ion-icon>
                             </li>
                             <ul class="sub-nav">
-                                <li><a href="/lesoes/read-all-lesoes">EVOLUÇÃO</a></li>
+                                <li><a href="/lesoes/pesquisar">EVOLUÇÃO</a></li>
                             </ul>
                             <li class="menu-item">
                                 <ion-icon name="hammer-outline"></ion-icon>
@@ -172,6 +221,7 @@
                         <div class="user-info">
                             <x-slot name="header">
                                 <div class="container p-3">
+                                    @include('msg.message')
                                     @yield('content')
                                 </div>
                             </x-slot>

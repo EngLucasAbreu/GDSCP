@@ -9,11 +9,6 @@
     <br>
     <form action="{{ route('create-tipo-lesao')}}" method="POST">
         @csrf
-        @if (session('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert" id="success-alert">
-                {{ session('success') }}
-            </div>
-        @endif
         <ul class="row form">
             <li class="col-sm-12">
                 <label for="tipolesao">Tipo de Lesão</label>

@@ -3,7 +3,6 @@
 @section('title', 'GDSCP - Cadastrar Paciente')
 
 @section('content')
-@include('msg.message')
 <div class="container-cad">
     <h3>EVOLUIR PACIENTE</h3>
     <hr>

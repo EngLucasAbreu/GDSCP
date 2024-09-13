@@ -65,7 +65,8 @@ class PacientesController extends Controller
         return view('pacientes.editarPaciente', compact('evolucao', 'p', 'l', 's', 'setores', 'leitos', 'comorbidades', 'paciente_id'));
     }
 
-    public function update(Request $request, $paciente_id) {
+    public function update(Request $request, $paciente_id)
+    {
 
         DB::beginTransaction();
         try {
@@ -80,17 +81,14 @@ class PacientesController extends Controller
                 'id_comorbidade' => $request->id_comorbidade,
             ]);
 
-
-            $leito = Leito::where('id', $request->leito)->updateOrFail([
-                'tipo_leito' => $request->leito,
-                'id_setor' => $request->setor,
+            $pacienteIncidenteLeito = PacienteIncidenteLeito::where('id_paciente', $paciente_id)->update([
+                'id_paciente' => $paciente_id,
+                'id_leito' => $request->leito,
             ]);
 
-            return [$paciente, $leito];
-
             DB::commit();
-            }
-        catch (\Exception $e) {
+            return redirect()->route('pacientes.pesquisar')->with('success', 'Paciente atualizado com sucesso!');
+        } catch (\Exception $e) {
             DB::rollback();
             return back()->with('error', 'Erro ao atualizar paciente. ' . $e->getMessage())->withInput();
         }
@@ -118,34 +116,18 @@ class PacientesController extends Controller
         try {
             // Initialize comorbidade_id as null in case it's not created
 
-
-            $comorbidade = Comorbidade::create([
-                'tipo_comorbidade' => $request->comorbidade,
-            ]);
-            $comorbidade_id = $comorbidade->id;
-
-            $tipo_lesao = TipoLesao::create([
-                'descricao_lesao' => $request->tipo_lesao, // Corrigido para pegar a descrição
-            ]);
-
-            $local_lesao = LocalLesao::create([
-                'regiao_lesao' => $request->local_lesao, // Corrigido para pegar a região da lesão
-            ]);
-
-            $lesao = Lesao::create([
-                'id_tipo_lesao' => $tipo_lesao->id,
-                'id_local_lesao' => $local_lesao->id,
-            ]);
-
-            $tratamento = Tratamento::create([
-                'tipo_tratamento' => $request->tipo_tratamento, // Certifique-se de que está capturando o valor correto
-            ]);
-
             $leito = Leito::where('id', $request->leito)->get();
+
 
             foreach ($leito as $l) {
                 $leito_id = $l->id;
             }
+
+            $lesao = Lesao::create([
+                'id_tipo_lesao' => $request->tipo_lesao,
+                'id_local_lesao' => $request->local_lesao,
+            ]);
+
 
             $paciente = Paciente::create([
                 'nome' => $request->nome,
@@ -154,13 +136,13 @@ class PacientesController extends Controller
                 'cns' => $request->cns,
                 'sexo' => $request->sexo,
                 'evolucao' => true,
-                'id_comorbidade' => $comorbidade_id , // O valor correto deve ser capturado aqui
+                'id_comorbidade' => $request->id_comorbidade, // O valor correto deve ser capturado aqui
             ]);
 
             $incidente = Incidente::create([
                 'data_evento' => $request->evento,
                 'id_lesao' => $lesao->id,
-                'id_tratamento' => $tratamento->id,
+                'id_tratamento' => $request->tipo_tratamento,
                 'descricao' => $request->descricao,
             ]);
 
@@ -188,7 +170,7 @@ class PacientesController extends Controller
 
     public function pesquisar()
     {
-        $pacientes = [];
+        $pacientes = $this->pacienteIncidenteLeitoService->getAllIncidentesLeitos();
         return view('pacientes.pesquisar', compact('pacientes'));
     }
 
@@ -198,12 +180,16 @@ class PacientesController extends Controller
         $paciente_id = null;
         $nome = $request->nome;
         $cpf = $request->cpf;
+        if ($nome == null && $cpf == null) {
+            $pacientes = $this->pacienteIncidenteLeitoService->getAllIncidentesLeitos();
+        }
         if ($nome !== null || $cpf !== null) {
             $pacientes = $this->pacienteIncidenteLeitoService->getIncidentesLeitos($nome, $cpf);
             foreach ($pacientes as $p) {
                 $paciente_id = $p->id;
             }
         }
+
 
         return view('pacientes.pesquisar', compact('pacientes', 'paciente_id'));
     }
