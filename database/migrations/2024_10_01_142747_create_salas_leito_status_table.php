@@ -6,20 +6,13 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateSalasLeitoStatusTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('salas_leito_status', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_sala');
-            $table->unsignedBigInteger('id_leito');
+            $table->foreignId('id_sala')->constrained('salas')->onDelete('restrict')->onUpdate('cascade');
+            $table->foreignId('id_leito')->constrained('leitos')->onDelete('restrict')->onUpdate('cascade');
             $table->boolean('leito_status');
-            $table->foreign('id_sala')->references('id')->on('leitos');
-            $table->foreign('id_leito')->references('id')->on('leitos');
             $table->timestamps();
             $table->softDeletes();
         });

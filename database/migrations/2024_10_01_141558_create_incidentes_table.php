@@ -4,19 +4,17 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateIncidenteTable extends Migration
+class CreateIncidentesTable extends Migration
 {
     public function up()
     {
         Schema::create('incidentes', function (Blueprint $table) {
             $table->id();
             $table->date('data_internacao');
-            $table->date('saida');
-            $table->unsignedBigInteger('id_lesao');
-            $table->unsignedBigInteger('id_tratamento');
-            $table->string('descricao');
-            $table->foreign('id_lesao')->references('id')->on('lesoes');
-            $table->foreign('id_tratamento')->references('id')->on('tratamentos');
+            $table->date('data_evento');
+            $table->foreignId('id_lesao')->constrained('lesoes')->onDelete('restrict')->onUpdate('cascade');
+            $table->foreignId('id_tratamento')->constrained('tratamento_lesao')->onDelete('restrict')->onUpdate('cascade');
+            $table->string('descricao', 255);
             $table->timestamps();
             $table->softDeletes();
         });

@@ -6,28 +6,18 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateSalasTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('salas', function (Blueprint $table) {
             $table->id();
-            $table->string('nome_sala');
+            $table->string('nome_sala', 255);
             $table->timestamps();
             $table->softDeletes();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
-        Schema::dropIfExists('sala');
+        Schema::dropIfExists('salas');
     }
 }

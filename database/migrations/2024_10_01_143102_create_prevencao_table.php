@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLesaoTable extends Migration
+class CreatePrevencaoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateLesaoTable extends Migration
      */
     public function up()
     {
-        Schema::create('lesoes', function (Blueprint $table) {
+        Schema::create('prevencao', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_tipo_lesao');
-            $table->unsignedBigInteger('id_local_lesao');
-            $table->foreign('id_tipo_lesao')->references('id')->on('tipo_lesoes');
-            $table->foreign('id_local_lesao')->references('id')->on('local_lesoes');
+            $table->string('proeminencia_ossea', 255)->nullable();
+            $table->string('material', 255)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -31,6 +29,6 @@ class CreateLesaoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lesoes');
+        Schema::dropIfExists('prevencao');
     }
 }

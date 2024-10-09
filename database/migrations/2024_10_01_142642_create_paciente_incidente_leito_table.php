@@ -10,12 +10,10 @@ class CreatePacienteIncidenteLeitoTable extends Migration
     {
         Schema::create('paciente_incidente_leito', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_paciente');
-            $table->unsignedBigInteger('id_incidente');
-            $table->unsignedBigInteger('id_leito');
-            $table->foreign('id_paciente')->references('id')->on('pacientes');
-            $table->foreign('id_incidente')->references('id')->on('incidentes');
-            $table->foreign('id_leito')->references('id')->on('leitos');
+            $table->foreignId('id_paciente')->constrained('pacientes')->onDelete('restrict')->onUpdate('cascade');
+            $table->foreignId('id_incidente')->constrained('incidentes')->onDelete('restrict')->onUpdate('cascade');
+            $table->foreignId('id_leito')->constrained('leitos')->onDelete('restrict')->onUpdate('cascade');
+            $table->foreignId('id_status_paciente')->constrained('status_paciente')->onDelete('restrict')->onUpdate('cascade');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -26,4 +24,3 @@ class CreatePacienteIncidenteLeitoTable extends Migration
         Schema::dropIfExists('paciente_incidente_leito');
     }
 }
-

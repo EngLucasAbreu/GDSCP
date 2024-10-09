@@ -4,13 +4,13 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTratamentosTable extends Migration
+class CreateComorbidadesTable extends Migration
 {
     public function up()
     {
-        Schema::create('tratamentos', function (Blueprint $table) {
+        Schema::create('comorbidades', function (Blueprint $table) {
             $table->id();
-            $table->string('tipo_tratamento');
+            $table->string('tipo_comorbidade')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -18,6 +18,6 @@ class CreateTratamentosTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('tratamentos');
+        Schema::dropIfExists('comorbidades');
     }
 }

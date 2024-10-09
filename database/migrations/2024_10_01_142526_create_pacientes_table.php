@@ -4,20 +4,19 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePacienteTable extends Migration
+class CreatePacientesTable extends Migration
 {
     public function up()
     {
         Schema::create('pacientes', function (Blueprint $table) {
             $table->id();
-            $table->string('nome');
-            $table->string('cpf');
+            $table->string('nome', 255);
+            $table->string('cpf', 255);
             $table->bigInteger('cns');
             $table->date('data_nascimento');
             $table->enum('sexo', ['M', 'F', 'O', 'N']);
             $table->boolean('evolucao');
-            $table->unsignedBigInteger('id_comorbidade');
-            $table->foreign('id_comorbidade')->references('id')->on('comorbidades');
+            $table->foreignId('id_comorbidade')->constrained('comorbidades')->onDelete('restrict')->onUpdate('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

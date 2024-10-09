@@ -4,15 +4,13 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLeitosTable extends Migration
+class CreateLocalLesaoTable extends Migration
 {
     public function up()
     {
-        Schema::create('leitos', function (Blueprint $table) {
+        Schema::create('local_lesao', function (Blueprint $table) {
             $table->id();
-            $table->string('tipo_leito');
-            $table->unsignedBigInteger('id_sala');
-            $table->foreign('id_sala')->references('id')->on('salas');
+            $table->string('regiao_lesao');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -20,6 +18,6 @@ class CreateLeitosTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('leitos');
+        Schema::dropIfExists('local_lesao');
     }
 }
